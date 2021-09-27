@@ -9,7 +9,15 @@
         android:id="@+id/navigation_home"
         android:name="technited.minds.gurumantra.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_batchDetails"
+            app:destination="@id/batchDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +30,9 @@
         android:name="technited.minds.gurumantra.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/batchDetails"
+        android:name="technited.minds.gurumantra.ui.batch.BatchDetails"
+        android:label="BatchDetails"
+        tools:layout="@layout/fragment_batch_details" />
 </navigation>

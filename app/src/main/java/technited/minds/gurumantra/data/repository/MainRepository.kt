@@ -25,7 +25,10 @@ class MainRepository @Inject constructor(
 //        saveCallResult = { galleryDataSource.insertAll(it) })
 
     suspend fun getBatches() = remoteDataSource.getBatches()
-//    suspend fun getMemberProfile(memberId: String) = remoteDataSource.getMemberProfile(memberId)
+    suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
+    suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
+
+    //    suspend fun getMemberProfile(memberId: String) = remoteDataSource.getMemberProfile(memberId)
     suspend fun login(username: String, password: String) = remoteDataSource.login(username, password)
 
 }

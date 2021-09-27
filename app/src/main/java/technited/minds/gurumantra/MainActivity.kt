@@ -30,9 +30,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_GuruMantra)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initializeSdk(this)
-//        binding.join.setOnClickListener{
-////            getMeetings()
-//        }
         val bottomNavigationView: BottomNavigationView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         bottomNavigationView.setupWithNavController(navController)
@@ -141,7 +138,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // 1. Add joinMeeting feature
     private fun joinMeeting(context: Context, meetingNumber: String, pw: String) {
         val meetingService = ZoomSDK.getInstance().meetingService
         val options = JoinMeetingOptions()

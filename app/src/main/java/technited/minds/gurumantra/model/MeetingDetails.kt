@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class MeetingDetails(
     @SerializedName("data")
-    val details : List<Details>
+    val details: List<MeetingDetailsItem>
 )
 
 
-data class Details(
+data class MeetingDetailsItem(
     @SerializedName("classId")
     val classId: Int,
     @SerializedName("batchId")

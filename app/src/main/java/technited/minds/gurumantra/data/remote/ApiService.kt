@@ -1,11 +1,9 @@
 package technited.minds.gurumantra.data.remote
 
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import technited.minds.gurumantra.model.BatchDetails
+import technited.minds.gurumantra.model.BatchDetailsItem
 import technited.minds.gurumantra.model.LoginDetails
 import technited.minds.gurumantra.model.MeetingDetails
 
@@ -28,8 +26,11 @@ interface ApiService {
 //        order_id: String?
 //    ): Call<ResponseBody?>
 
-    @GET("getMeetings")
-    suspend fun getMeetings(): Response<MeetingDetails>
+    @GET("getMeetings/{batchNo}")
+    suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
+
+    @GET("batchDetails/{batchNo}")
+    suspend fun getBatchDetails(@Path("batchNo") batchNo: String): Response<BatchDetailsItem>
 
     @GET("getBatches")
     suspend fun getBatches(): Response<BatchDetails>
