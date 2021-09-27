@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_edit_text.xml" value="0.31851851851851853" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.31851851851851853" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/splash.xml" value="0.31851851851851853" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/dailog_main.xml" value="0.25" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/process_dialog.xml" value="0.3140625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

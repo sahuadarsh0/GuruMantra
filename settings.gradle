@@ -3,8 +3,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        jcenter()
     }
 }
 rootProject.name = "GuruMantra"
 include ':app'
+include ':commonlib'
+include ':mobilertc'
