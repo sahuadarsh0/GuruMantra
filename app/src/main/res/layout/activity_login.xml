@@ -20,6 +20,7 @@
 
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginTop="24dp"
@@ -111,6 +112,7 @@
             app:layout_constraintWidth_percent=".5" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:background="@color/red_500"
@@ -122,5 +124,25 @@
             android:layout_height="10dp"
             android:background="@color/purple_500"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loader" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="imageView,blurView,welcome_text,view,password,login_button,view8,username" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

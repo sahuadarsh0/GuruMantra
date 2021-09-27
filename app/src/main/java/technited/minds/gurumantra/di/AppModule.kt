@@ -17,7 +17,6 @@ import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.data.repository.MainRepository
 import technited.minds.gurumantra.utils.Constants
-import technited.minds.gurumantra.utils.ProcessDialog
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Singleton
 
@@ -78,11 +77,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideSharedPrefs(@ApplicationContext appContext: Context) = SharedPrefs(appContext, "USER")
-
-
-    @Singleton
-    @Provides
-    fun provideProcessDialog(@ApplicationContext appContext: Context) = ProcessDialog(appContext)
 
 //    @Singleton
 //    @Provides
