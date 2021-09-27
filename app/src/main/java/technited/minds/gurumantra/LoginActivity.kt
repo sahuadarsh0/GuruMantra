@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
+import dagger.hilt.android.AndroidEntryPoint
 import eightbitlab.com.blurview.RenderScriptBlur
 import kotlinx.coroutines.Dispatchers.Main
 import retrofit2.Call
@@ -17,11 +18,15 @@ import technited.minds.gurumantra.databinding.ActivityLoginBinding
 import technited.minds.gurumantra.model.LoginDetails
 import technited.minds.gurumantra.utils.ProcessDialog
 import technited.minds.gurumantra.utils.SharedPrefs
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var userSharedPreferences: SharedPrefs
-    private lateinit var processDialog: ProcessDialog
+    @Inject
+    lateinit var userSharedPreferences: SharedPrefs
+    @Inject
+    lateinit var processDialog: ProcessDialog
     private lateinit var loginData: LoginDetails
 
 
@@ -30,8 +35,6 @@ class LoginActivity : AppCompatActivity() {
         setTheme(R.style.Theme_GuruMantra)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        processDialog = ProcessDialog(this)
-        userSharedPreferences = SharedPrefs(this, "USER")
         if (!userSharedPreferences["name"].isNullOrEmpty()) {
             openMain()
         }
