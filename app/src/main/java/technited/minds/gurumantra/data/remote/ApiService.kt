@@ -1,6 +1,5 @@
-package technited.minds.gurumantra.data
+package technited.minds.gurumantra.data.remote
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -20,7 +19,7 @@ interface ApiService {
         username: String?,
         @Field("password")
         password: String?
-    ): Response<LoginDetails?>
+    ): Response<LoginDetails>
 
 //    @FormUrlEncoded
 //    @POST("customer/cancelOrderStatus")
@@ -30,10 +29,10 @@ interface ApiService {
 //    ): Call<ResponseBody?>
 
     @GET("getMeetings")
-    suspend fun getMeetings(): Response<MeetingDetails?>
+    suspend fun getMeetings(): Response<MeetingDetails>
 
     @GET("getBatches")
-    suspend fun getBatches(): Response<BatchDetails?>
+    suspend fun getBatches(): Response<BatchDetails>
 
 //    @GET("rider/sendOTP/{mobile}/{otp}")
 //    fun sendOtp(

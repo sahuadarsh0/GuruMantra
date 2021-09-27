@@ -1,19 +1,15 @@
 package technited.minds.gurumantra
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
-import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import technited.minds.gurumantra.BuildConfig
-import technited.minds.gurumantra.data.ApiService
+import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.databinding.ActivityMainBinding
 import technited.minds.gurumantra.model.MeetingDetails
 import us.zoom.sdk.*

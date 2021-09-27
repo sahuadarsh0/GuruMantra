@@ -12,8 +12,14 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import technited.minds.gurumantra.BuildConfig
+import technited.minds.gurumantra.data.remote.ApiService
+import technited.minds.gurumantra.data.remote.RemoteDataSource
+import technited.minds.gurumantra.data.repository.MainRepository
+import technited.minds.gurumantra.utils.Constants
+import technited.minds.gurumantra.utils.ProcessDialog
+import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Singleton
-import kotlin.coroutines.CoroutineContext
 
 
 @Module
@@ -22,17 +28,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCoroutine(): CoroutineContext {
-        return Dispatchers.IO
-    }
+    fun provideCoroutine() = Dispatchers.IO
 
     @Provides
+    @Singleton
     fun provideBaseUrl() = Constants.BASE_URL.toString()
 
-    @Singleton
     @Provides
     fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
-        val loggingInterceptor = HttpLoggingInterceptor{ s: String? -> Log.d("asa", s!!) }
+        val loggingInterceptor = HttpLoggingInterceptor { s: String? -> Log.d("asa", s!!) }
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -49,13 +53,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory, BASE_URL : String) : Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory, BASE_URL: String): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(gsonConverterFactory)
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
-
 
     @Provides
     @Singleton
@@ -70,11 +73,11 @@ object AppModule {
 //    @Singleton
 //    @Provides
 //    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
-//
+
 
     @Singleton
     @Provides
-    fun provideSharedPrefs(@ApplicationContext appContext: Context) = SharedPrefs(appContext,"USER")
+    fun provideSharedPrefs(@ApplicationContext appContext: Context) = SharedPrefs(appContext, "USER")
 
 
     @Singleton
@@ -93,9 +96,9 @@ object AppModule {
 //    @Provides
 //    fun provideRepository(remoteDataSource: RemoteDataSource,localDataSource: MembersDao,galleryDataSource: GalleryDao)
 //            = MainRepository(remoteDataSource,localDataSource,galleryDataSource)
+//
 
     @Singleton
     @Provides
-    fun provideRepository(remoteDataSource: RemoteDataSource)
-            = MainRepository(remoteDataSource)
+    fun provideRepository(remoteDataSource: RemoteDataSource) = MainRepository(remoteDataSource)
 }

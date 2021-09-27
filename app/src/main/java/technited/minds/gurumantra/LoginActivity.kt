@@ -3,19 +3,21 @@ package technited.minds.gurumantra
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import eightbitlab.com.blurview.RenderScriptBlur
-import kotlinx.coroutines.Dispatchers.Main
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import technited.minds.gurumantra.data.ApiService
+import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.databinding.ActivityLoginBinding
 import technited.minds.gurumantra.model.LoginDetails
+import technited.minds.gurumantra.ui.LoginViewModel
 import technited.minds.gurumantra.utils.ProcessDialog
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -28,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var processDialog: ProcessDialog
     private lateinit var loginData: LoginDetails
+    private val loginViewModel: LoginViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,18 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+        loginViewModel.memberItem.observe(this,{
+            when(it.status){
+                Resource.Status.LOADING -> Log.d("asa", "onCreate: loading")
+                Resource.Status.SUCCESS ->{ Log.d("asa", "onCreate: SUCCESS")
+                    userSharedPreferences["member_id"] = "AICP000004"
+                    startActivity(i)
+                    finish()
+                }
+                Resource.Status.ERROR -> Log.d("asa", "onCreate: ERROR")
+
+            }
+        })
         initBlur()
     }
 
@@ -67,6 +82,8 @@ class LoginActivity : AppCompatActivity() {
                         userSharedPreferences["name"] = name
                         userSharedPreferences["email"] = email
                         userSharedPreferences["contact"] = contact
+                        userSharedPreferences["type"] = type
+                        userSharedPreferences["image"] = image
                         userSharedPreferences["package"] = packageX.toString()
                         userSharedPreferences["id"] = id.toString()
                         userSharedPreferences.apply()

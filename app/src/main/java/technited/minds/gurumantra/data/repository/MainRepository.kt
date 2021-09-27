@@ -1,0 +1,31 @@
+package technited.minds.gurumantra.data.repository
+
+import technited.minds.gurumantra.data.remote.RemoteDataSource
+import javax.inject.Inject
+
+class MainRepository @Inject constructor(
+    private val remoteDataSource: RemoteDataSource
+) {
+//    fun getMembersList() = performGetOperation(
+//        databaseQuery = { localDataSource.getMembersList() },
+//        networkCall = { remoteDataSource.getMembersList() },
+//        saveCallResult = { localDataSource.insertAll(it) })
+//
+//    fun getMyMembersList(memberId: String) = performGetOperation(
+//        databaseQuery = { localDataSource.getMembersList() },
+//        networkCall = { remoteDataSource.getMyMembersList(memberId) },
+//        saveCallResult = {
+//            localDataSource.clearAll()
+//            localDataSource.insertAll(it)
+//        })
+
+//    fun getGallery() = performGetOperation(
+//        databaseQuery = { galleryDataSource.getGallery() },
+//        networkCall = { remoteDataSource.getGallery() },
+//        saveCallResult = { galleryDataSource.insertAll(it) })
+
+    suspend fun getBatches() = remoteDataSource.getBatches()
+//    suspend fun getMemberProfile(memberId: String) = remoteDataSource.getMemberProfile(memberId)
+    suspend fun login(username: String, password: String) = remoteDataSource.login(username, password)
+
+}
