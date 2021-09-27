@@ -99,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
             initBlur()
         }
     }
+
         private fun openMain() {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
@@ -129,5 +130,6 @@ class LoginActivity : AppCompatActivity() {
                 .setBlurAutoUpdate(true)
                 .setHasFixedTransformationMatrix(true)
         }
+
 
 }

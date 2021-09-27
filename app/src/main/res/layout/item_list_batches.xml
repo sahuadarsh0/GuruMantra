@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <data>
+            <import type="technited.minds.gurumantra.utils.Constants" />
+            <variable
+                name="batch"
+                type="technited.minds.gurumantra.model.BatchDetailsItem" />
+        </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="3dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/batch_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:setImageUrl="@{Constants.URL + batch.batchImage}"
+                android:src="@drawable/logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/batch_name"
+                style="@style/TextBlack.small"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:text="@{batch.batchName}"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/batch_image"
+                tools:text="Bla Bla Batches" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
