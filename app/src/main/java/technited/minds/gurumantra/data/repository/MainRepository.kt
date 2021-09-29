@@ -10,14 +10,6 @@ class MainRepository @Inject constructor(
 //        databaseQuery = { localDataSource.getMembersList() },
 //        networkCall = { remoteDataSource.getMembersList() },
 //        saveCallResult = { localDataSource.insertAll(it) })
-//
-//    fun getMyMembersList(memberId: String) = performGetOperation(
-//        databaseQuery = { localDataSource.getMembersList() },
-//        networkCall = { remoteDataSource.getMyMembersList(memberId) },
-//        saveCallResult = {
-//            localDataSource.clearAll()
-//            localDataSource.insertAll(it)
-//        })
 
 //    fun getGallery() = performGetOperation(
 //        databaseQuery = { galleryDataSource.getGallery() },
@@ -27,6 +19,7 @@ class MainRepository @Inject constructor(
     suspend fun getBatches() = remoteDataSource.getBatches()
     suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
     suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
+    suspend fun getFetchMeeting(classNo: String) = remoteDataSource.getFetchMeeting(classNo)
 
     //    suspend fun getMemberProfile(memberId: String) = remoteDataSource.getMemberProfile(memberId)
     suspend fun login(username: String, password: String) = remoteDataSource.login(username, password)

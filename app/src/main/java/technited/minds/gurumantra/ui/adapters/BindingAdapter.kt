@@ -14,8 +14,8 @@ object BindingAdapters {
     @JvmStatic
     fun loadImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
-            .load(imageUrl).apply(RequestOptions().circleCrop()).placeholder(R.drawable.logo)
-            .error(R.drawable.logo)
+            .load(imageUrl).apply(RequestOptions().circleCrop())
+            .error(R.drawable.splash)
             .into(view)
     }
 
@@ -24,8 +24,7 @@ object BindingAdapters {
     fun setImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .load(imageUrl)
-            .placeholder(R.drawable.logo)
-            .error(R.drawable.logo)
+            .error(R.drawable.splash)
             .into(view)
     }
 

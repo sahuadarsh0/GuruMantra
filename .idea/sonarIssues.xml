@@ -43,6 +43,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -78,6 +83,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ZoomActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/data/ApiService.kt">
           <value>
             <set />
@@ -94,6 +104,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/data/remote/RemoteDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/data/remote/ZoomApiService.kt">
           <value>
             <set />
           </value>
@@ -123,6 +138,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/FetchMeeting.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/LoginDetails.kt">
           <value>
             <set />
@@ -133,7 +153,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/LoginActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/LoginViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/ZoomActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/ZoomViewModel.kt">
           <value>
             <set />
           </value>
@@ -279,6 +319,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_zoom.xml">
           <value>
             <set />
           </value>

@@ -1,18 +1,19 @@
-package technited.minds.gurumantra
+package technited.minds.gurumantra.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import technited.minds.gurumantra.BuildConfig
+import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityMainBinding
 import technited.minds.gurumantra.utils.SharedPrefs
 import us.zoom.sdk.*
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_GuruMantra)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        initializeSdk(this)
         val bottomNavigationView: BottomNavigationView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         bottomNavigationView.setupWithNavController(navController)
@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
                         positiveButton(text = "Yes") { dialog ->
                             userSharedPreferences.clearAll()
                             dialog.dismiss()
+                            val i = Intent(this@MainActivity, LoginActivity::class.java)
+                            startActivity(i)
                             finish()
                         }
                         negativeButton(text = "Cancel") { dialog ->

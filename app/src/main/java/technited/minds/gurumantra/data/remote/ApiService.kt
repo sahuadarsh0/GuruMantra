@@ -2,10 +2,7 @@ package technited.minds.gurumantra.data.remote
 
 import retrofit2.Response
 import retrofit2.http.*
-import technited.minds.gurumantra.model.BatchDetails
-import technited.minds.gurumantra.model.BatchDetailsItem
-import technited.minds.gurumantra.model.LoginDetails
-import technited.minds.gurumantra.model.MeetingDetails
+import technited.minds.gurumantra.model.*
 
 
 interface ApiService {
@@ -31,6 +28,9 @@ interface ApiService {
 
     @GET("batchDetails/{batchNo}")
     suspend fun getBatchDetails(@Path("batchNo") batchNo: String): Response<BatchDetailsItem>
+
+    @GET("fetchMeeting/{classNo}")
+    suspend fun getFetchMeeting(@Path("classNo") classNo: String): Response<FetchMeeting>
 
     @GET("getBatches")
     suspend fun getBatches(): Response<BatchDetails>

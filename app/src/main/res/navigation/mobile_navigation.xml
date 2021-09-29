@@ -34,5 +34,22 @@
         android:id="@+id/batchDetails"
         android:name="technited.minds.gurumantra.ui.batch.BatchDetails"
         android:label="BatchDetails"
-        tools:layout="@layout/fragment_batch_details" />
+        tools:layout="@layout/fragment_batch_details" >
+        <action
+            android:id="@+id/action_batchDetails_to_zoomActivity"
+            app:destination="@id/zoomActivity"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <activity
+        android:id="@+id/zoomActivity"
+        android:name="technited.minds.gurumantra.ui.ZoomActivity"
+        android:label="activity_zoom"
+        tools:layout="@layout/activity_zoom" >
+        <argument
+            android:name="classNo"
+            app:argType="string" />
+    </activity>
 </navigation>

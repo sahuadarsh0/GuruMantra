@@ -1,4 +1,4 @@
-package technited.minds.gurumantra
+package technited.minds.gurumantra.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,9 @@ import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import eightbitlab.com.blurview.RenderScriptBlur
+import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityLoginBinding
 import technited.minds.gurumantra.model.LoginDetails
-import technited.minds.gurumantra.ui.LoginViewModel
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
