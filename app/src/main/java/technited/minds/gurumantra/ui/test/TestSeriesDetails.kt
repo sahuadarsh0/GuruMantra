@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.batch
+package technited.minds.gurumantra.ui.test
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,68 +11,78 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.databinding.FragmentBatchDetailsBinding
+import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
+import technited.minds.gurumantra.model.Ts
 import technited.minds.gurumantra.ui.adapters.MeetingsAdapter
+import technited.minds.gurumantra.ui.adapters.TestsAdapter
+import technited.minds.gurumantra.ui.batch.BatchDetailsViewModel
 import technited.minds.gurumantra.utils.Resource
+import technited.minds.gurumantra.utils.SharedPrefs
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class BatchDetails : Fragment() {
+class TestSeriesDetails : Fragment() {
 
-    private val batchDetailsViewModel: BatchDetailsViewModel by viewModels()
-    private var _binding: FragmentBatchDetailsBinding? = null
-    private val meetingsAdapter = MeetingsAdapter(this::onItemClicked)
+    private val testSeriesViewModel: TestSeriesViewModel by viewModels()
+    private var _binding: FragmentTestSeriesDetailsBinding? = null
+    private val testsAdapter = TestsAdapter(this::onItemClicked)
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var userSharedPreferences: SharedPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBatchDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentTestSeriesDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
-        arguments?.getString("id")?.let { batchDetailsViewModel.getBatchDetails(it) }
-        arguments?.getString("id")?.let { batchDetailsViewModel.getMeetings(it) }
+        arguments?.getString("id")?.let { testSeriesViewModel.getTestSeriesDetails(it,userSharedPreferences["id"]!!) }
+        arguments?.getString("id")?.let { testSeriesViewModel.getListTests(it) }
 
         return root
     }
 
     private fun setupRecyclerView() {
-        binding.meetingsList.adapter = meetingsAdapter
+        binding.testSeriesList.adapter = testsAdapter
     }
 
     private fun setupObservers() {
         binding.animationView.visibility = VISIBLE
-        binding.meetingsList.visibility = GONE
+        binding.testSeriesList.visibility = GONE
 
-        batchDetailsViewModel.meetings.observe(viewLifecycleOwner, {
+        testSeriesViewModel.tests.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
-                    binding.meetingsList.visibility = GONE
+                    binding.testSeriesList.visibility = GONE
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val meetings = it.data
+                    val tests = it.data
 
-                    if (meetings != null) {
+                    if (tests != null) {
 
-                        meetingsAdapter.submitList(meetings.details)
+                        testsAdapter.submitList(tests.ts)
                         binding.animationView.visibility = GONE
-                        binding.meetingsList.visibility = VISIBLE
+                        binding.testSeriesList.visibility = VISIBLE
 
                     }
 
                 }
                 Resource.Status.ERROR -> {
                     binding.animationView.visibility = GONE
-                    binding.meetingsList.visibility = VISIBLE
+                    binding.testSeriesList.visibility = VISIBLE
                 }
 
             }
         })
-        batchDetailsViewModel.batchDetails.observe(viewLifecycleOwner, {
+
+        testSeriesViewModel.testSeriesDetails.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -83,7 +93,7 @@ class BatchDetails : Fragment() {
 
                     if (details != null) {
 
-                        binding.details = details
+                        binding.details = details.tss
                         binding.animationView.visibility = GONE
 
                     }
@@ -103,7 +113,7 @@ class BatchDetails : Fragment() {
         _binding = null
     }
 
-    private fun onItemClicked(meetingDetailsItem: MeetingDetailsItem) {
+    private fun onItemClicked(ts: Ts) {
 //        userSharedPreferences["member_id_temp"] = batchDetailsItem.memberId
 //        findNavController().navigate(R.id.action_navigation_home_to_navigation_account)
     }

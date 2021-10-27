@@ -24,4 +24,10 @@ class MainRepository @Inject constructor(
     //    suspend fun getMemberProfile(memberId: String) = remoteDataSource.getMemberProfile(memberId)
     suspend fun login(username: String, password: String) = remoteDataSource.login(username, password)
 
+
+    //Test Series
+    suspend fun getTestSeries() = remoteDataSource.getTestSeries()
+    suspend fun getTestSeriesDetails(tsId: String, uId: String) = remoteDataSource.getTestSeriesDetails(tsId, uId)
+    suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
+
 }

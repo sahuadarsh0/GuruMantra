@@ -34,14 +34,16 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         bottomNavigationView.setupWithNavController(navController)
 
+        bottomNavigationView.itemIconTintList = null
+        bottomNavigationView.itemBackground = null
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home)
                     return@setOnItemSelectedListener true
                 }
-                R.id.navigation_dashboard -> {
-                    navController.navigate(R.id.navigation_dashboard)
+                R.id.navigation_test_series -> {
+                    navController.navigate(R.id.navigation_test_series)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_notifications -> {

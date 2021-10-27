@@ -3,29 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-        <data>
-            <import type="technited.minds.gurumantra.utils.Constants" />
-            <variable
-                name="batch"
-                type="technited.minds.gurumantra.model.BatchDetailsItem" />
-        </data>
+    <data>
+
+        <import type="technited.minds.gurumantra.utils.Constants" />
+
+        <variable
+            name="testSeries"
+            type="technited.minds.gurumantra.model.TestSeriesItem" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        app:cardElevation="3dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
-        android:layout_height="wrap_content">
+        app:cardElevation="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/batch_image"
+                android:id="@+id/test_series_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:setImageUrl="@{Constants.URL + batch.batchImage}"
+                android:setImageUrl="@{Constants.URL + testSeries.thumbnail}"
                 android:src="@drawable/notebook"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="16:9"
@@ -35,18 +37,18 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/batch_name"
+                android:id="@+id/test_series_name"
                 style="@style/TextBlack.small"
-                android:gravity="center"
                 android:layout_width="0dp"
-                android:text="@{batch.batchName}"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:padding="4dp"
+                android:text="@{testSeries.tsName}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/batch_image"
-                tools:text="Bla Bla Batches" />
+                app:layout_constraintTop_toBottomOf="@+id/test_series_image"
+                tools:text="Bla Bla Tests" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

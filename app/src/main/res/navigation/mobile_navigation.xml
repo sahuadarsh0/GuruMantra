@@ -20,10 +20,18 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="technited.minds.gurumantra.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_test_series"
+        android:name="technited.minds.gurumantra.ui.test.TestSeries"
+        android:label="@string/title_test_series"
+        tools:layout="@layout/fragment_test_series" >
+        <action
+            android:id="@+id/action_navigation_test_series_to_testSeriesDetails"
+            app:destination="@id/testSeriesDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -52,4 +60,8 @@
             android:name="classNo"
             app:argType="string" />
     </activity>
+    <fragment
+        android:id="@+id/testSeriesDetails"
+        android:name="technited.minds.gurumantra.ui.test.TestSeriesDetails"
+        android:label="TestSeriesDetails" />
 </navigation>

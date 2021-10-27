@@ -43,4 +43,19 @@ interface ApiService {
 //        otp: String?
 //    ): Call<ResponseBody>
 
+
+    //    Test Series
+    @GET("getTs")
+    suspend fun getTestSeries(): Response<TestSeries>
+
+    @GET("tsDetails")
+    suspend fun getTestSeriesDetails(
+        @Query("tsId") tsId: String,
+        @Query("uId") uId: String
+    ): Response<TestDetails>
+
+
+    @GET("listTests/{tsId}")
+    suspend fun getListTests(@Path("tsId") tsId: String): Response<ListTests>
+
 }
