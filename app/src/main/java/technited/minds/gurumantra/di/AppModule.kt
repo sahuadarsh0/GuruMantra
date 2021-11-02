@@ -2,6 +2,7 @@ package technited.minds.gurumantra.di
 
 import android.content.Context
 import android.util.Log
+import technited.minds.gurumantra.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +14,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import technited.minds.gurumantra.BuildConfig
+import technited.minds.gurumantra.data.local.AnswersDao
+import technited.minds.gurumantra.data.local.QuestionsDao
 import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.data.repository.MainRepository
@@ -69,18 +72,23 @@ object AppModule {
     fun provideRemoteDataSource(apiService: ApiService) = RemoteDataSource(apiService)
 
 
-//    @Singleton
-//    @Provides
-//    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
+    @Singleton
+    @Provides
+    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
 
 
     @Singleton
     @Provides
     fun provideSharedPrefs(@ApplicationContext appContext: Context) = SharedPrefs(appContext, "USER")
 
-//    @Singleton
-//    @Provides
-//    fun provideMembersDao(db: AppDatabase) = db.membersDao()
+    @Singleton
+    @Provides
+    fun provideQuestionsSao(db : AppDatabase) = db.questionsDao()
+
+
+    @Singleton
+    @Provides
+    fun provideAnswersSao(db : AppDatabase) = db.answersDao()
 //
 //    @Singleton
 //    @Provides
@@ -94,5 +102,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(remoteDataSource: RemoteDataSource) = MainRepository(remoteDataSource)
+    fun provideRepository(
+        remoteDataSource: RemoteDataSource,
+        localQuestionsDataSource: QuestionsDao,
+        localAnswersDataSource: AnswersDao
+    ) = MainRepository(remoteDataSource,localQuestionsDataSource, localAnswersDataSource)
 }

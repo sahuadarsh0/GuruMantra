@@ -63,5 +63,15 @@
     <fragment
         android:id="@+id/testSeriesDetails"
         android:name="technited.minds.gurumantra.ui.test.TestSeriesDetails"
-        android:label="TestSeriesDetails" />
+        android:label="TestSeriesDetails"
+        tools:layout="@layout/fragment_test_series_details">
+        <action
+            android:id="@+id/action_testSeriesDetails_to_examActivity"
+            app:destination="@id/examActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/examActivity"
+        android:name="technited.minds.gurumantra.ui.test.ExamActivity"
+        android:label="ExamActivity"
+        tools:layout="@layout/activity_exam" />
 </navigation>

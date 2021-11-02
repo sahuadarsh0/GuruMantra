@@ -13,4 +13,19 @@
     <color name="colorTransparentBlack">#14000000</color>
     <color name="colorPrimaryTransparent">#6400bcd4</color>
     <color name="grey">#4D4D4D</color>
+
+
+
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="transparent">#00000000</color>
+    <color name="view">#D6D6D6</color>
+    <color name="primary">#43A047</color>
+    <color name="green_dark">#D4E157</color>
+    <color name="green_light">#8FC965</color>
+    <color name="secondary">#F9C811</color>
+    <color name="semi_transparent">#D5000000</color>
+    <color name="red">#EF5350</color>
+
 </resources>

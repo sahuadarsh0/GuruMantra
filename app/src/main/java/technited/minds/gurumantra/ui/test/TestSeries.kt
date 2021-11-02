@@ -59,11 +59,11 @@ class TestSeries : Fragment() {
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val batches = it.data
+                    val tests = it.data
 
-                    if (batches != null) {
+                    if (tests != null) {
 
-                        testSeriesAdapter.submitList(batches)
+                        testSeriesAdapter.submitList(tests)
                         binding.animationView.visibility = View.GONE
                         binding.testSeriesList.visibility = View.VISIBLE
 

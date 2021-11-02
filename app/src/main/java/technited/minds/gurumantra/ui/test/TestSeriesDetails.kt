@@ -1,22 +1,19 @@
 package technited.minds.gurumantra.ui.test
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import technited.minds.gurumantra.databinding.FragmentBatchDetailsBinding
 import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
-import technited.minds.gurumantra.model.MeetingDetailsItem
 import technited.minds.gurumantra.model.Ts
-import technited.minds.gurumantra.ui.adapters.MeetingsAdapter
+import technited.minds.gurumantra.ui.MainActivity
 import technited.minds.gurumantra.ui.adapters.TestsAdapter
-import technited.minds.gurumantra.ui.batch.BatchDetailsViewModel
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -41,7 +38,7 @@ class TestSeriesDetails : Fragment() {
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
-        arguments?.getString("id")?.let { testSeriesViewModel.getTestSeriesDetails(it,userSharedPreferences["id"]!!) }
+        arguments?.getString("id")?.let { testSeriesViewModel.getTestSeriesDetails(it, userSharedPreferences["id"]!!) }
         arguments?.getString("id")?.let { testSeriesViewModel.getListTests(it) }
 
         return root
@@ -114,7 +111,13 @@ class TestSeriesDetails : Fragment() {
     }
 
     private fun onItemClicked(ts: Ts) {
-//        userSharedPreferences["member_id_temp"] = batchDetailsItem.memberId
-//        findNavController().navigate(R.id.action_navigation_home_to_navigation_account)
+//        findNavController().navigate(
+//            R.id.action_testSeriesDetails_to_examActivity,
+//            bundleOf("id" to ts.tsId.toString())
+//        )
+        val i = Intent(activity, ExamActivity::class.java)
+        i.putExtra("id", ts.tId.toString())
+        startActivity(i)
     }
+
 }

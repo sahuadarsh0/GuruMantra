@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.data.remote
 
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import technited.minds.gurumantra.model.*
@@ -57,5 +58,16 @@ interface ApiService {
 
     @GET("listTests/{tsId}")
     suspend fun getListTests(@Path("tsId") tsId: String): Response<ListTests>
+
+
+    @GET("startTest")
+    suspend fun getStartTest(
+        @Query("testId") testId: String,
+        @Query("userId") userId: String
+    ): Response<StartTest>
+
+    @Headers("Content-Type: application/json")
+    @POST("submitTest")
+    suspend fun submitTest(@Body endTest: EndTest): Response<Result>
 
 }

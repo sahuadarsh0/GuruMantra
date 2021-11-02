@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.data.remote
 
+import technited.minds.gurumantra.model.EndTest
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) : BaseDataSource() {
@@ -10,8 +11,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
-    suspend fun getTestSeriesDetails(tsId: String, uId: String) = getResult { apiService.getTestSeriesDetails(tsId, uId) }
-    suspend fun getListTests(tsId: String) = getResult { apiService.getListTests(tsId) }
+    suspend fun getTestSeriesDetails(testId: String, userId: String) = getResult { apiService.getTestSeriesDetails(testId, userId) }
+    suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
+    suspend fun getStartTest(testId: String, userId: String) = getResult { apiService.getStartTest(testId, userId) }
+    suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
 
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }

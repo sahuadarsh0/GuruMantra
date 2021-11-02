@@ -57,33 +57,18 @@
                 android:id="@+id/name"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:visibility="gone"
                 android:layout_marginEnd="8dp"
-                tools:text="@string/zm_config_account_name_validator"
                 android:htmlText="@{test.description}"
                 android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/test_name" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/purple_500"
-                android:padding="5dp"
-                android:text="@string/zm_btn_start"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:cornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintWidth_percent=".2" />
+                app:layout_constraintStart_toEndOf="@+id/photo"
+                app:layout_constraintTop_toBottomOf="@+id/test_name"
+                tools:text="@string/zm_config_account_name_validator" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
