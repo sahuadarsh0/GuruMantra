@@ -5,7 +5,6 @@
 
     <data>
 
-        <import type="technited.minds.gurumantra.utils.Constants" />
 
         <variable
             name="details"
@@ -26,7 +25,7 @@
                 android:id="@+id/test_series_image"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
-                android:setImageUrl="@{Constants.URL + details.thumbnail}"
+                android:setImageUrl="@{details.thumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

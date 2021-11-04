@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import technited.minds.gurumantra.R
+import technited.minds.gurumantra.utils.Constants
 
 object BindingAdapters {
 
@@ -14,7 +15,7 @@ object BindingAdapters {
     @JvmStatic
     fun loadImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
-            .load(imageUrl).apply(RequestOptions().circleCrop())
+            .load(Constants.URL.toString()+imageUrl).apply(RequestOptions().circleCrop())
             .error(R.drawable.splash)
             .into(view)
     }
@@ -23,7 +24,7 @@ object BindingAdapters {
     @JvmStatic
     fun setImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
-            .load(imageUrl)
+            .load(Constants.URL.toString()+imageUrl)
             .error(R.drawable.splash)
             .into(view)
     }

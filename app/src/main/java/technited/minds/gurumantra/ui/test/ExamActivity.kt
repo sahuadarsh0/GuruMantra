@@ -156,7 +156,7 @@ class ExamActivity : AppCompatActivity() {
                 val sec = millisUntilFinished / 1000 % 60
                 binding.timer.text =
                     f.format(hour).toString() + ":" + f.format(min) + ":" + f.format(sec)
-                if (min <= 15.toLong()) {
+                if (hour == 0.toLong() && min <= 15.toLong()) {
                     binding.paperBar.background = (getDrawable(R.color.red))
                 }
             }
@@ -165,7 +165,7 @@ class ExamActivity : AppCompatActivity() {
                 endExam()
             }
         }.start()
-        Toast.makeText(this@ExamActivity, "Exam is Started", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@ExamActivity, "Test is Started", Toast.LENGTH_SHORT).show()
 
 
     }
@@ -238,7 +238,7 @@ class ExamActivity : AppCompatActivity() {
     private fun endExam() {
         isExamRunning = false
         binding.timer.text = "Exam Over"
-        Toast.makeText(this@ExamActivity, "Exam Over", Toast.LENGTH_SHORT)
+        Toast.makeText(this@ExamActivity, "Test Over", Toast.LENGTH_SHORT)
             .show()
 
         localAnswers.getAnswersList().observe(this, {
@@ -264,7 +264,7 @@ class ExamActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (isExamRunning)
-            Toast.makeText(this@ExamActivity, "Disabled", Toast.LENGTH_SHORT)
+            Toast.makeText(this@ExamActivity, "Disabled during Test", Toast.LENGTH_SHORT)
                 .show()
         else
             super.onBackPressed()

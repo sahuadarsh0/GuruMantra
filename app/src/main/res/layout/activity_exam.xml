@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="technited.minds.gurumantra.utils.Constants" />
-
         <variable
             name="Questions"
             type="technited.minds.gurumantra.model.QuestionsItem" />
@@ -296,9 +294,8 @@
             android:padding="5dp"
             android:text="Next"
             android:textAllCaps="false"
-
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
             app:cornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -314,7 +311,7 @@
             android:text="Previous"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
             app:cornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

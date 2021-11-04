@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
         <data>
-            <import type="technited.minds.gurumantra.utils.Constants" />
-            <variable
+             <variable
                 name="batch"
                 type="technited.minds.gurumantra.model.BatchDetailsItem" />
         </data>
@@ -25,7 +24,7 @@
                 android:id="@+id/batch_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:setImageUrl="@{Constants.URL + batch.batchImage}"
+                android:setImageUrl="@{batch.batchImage}"
                 android:src="@drawable/notebook"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="16:9"

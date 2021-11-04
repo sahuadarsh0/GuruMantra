@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="technited.minds.gurumantra.utils.Constants" />
-
         <variable
             name="test"
             type="technited.minds.gurumantra.model.Ts" />
@@ -30,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:setImageUrl="@{Constants.URL+test.tImage}"
+                android:setImageUrl="@{test.tImage}"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="h,1:1"

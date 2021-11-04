@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="technited.minds.gurumantra.utils.Constants" />
-
         <variable
             name="details"
             type="technited.minds.gurumantra.model.MeetingDetailsItem" />
@@ -30,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:setImage="@{Constants.URL+details.thumbnail}"
+                android:setImage="@{details.thumbnail}"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="h,1:1"

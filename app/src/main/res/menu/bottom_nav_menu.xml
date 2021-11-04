@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/notebook"
+        android:icon="@drawable/graduation_hat"
         android:title="@string/title_home" />
 
     <item
@@ -12,9 +12,9 @@
         android:title="@string/title_test_series" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/schoolbell"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_blogs"
+        android:icon="@drawable/notebook"
+        android:title="@string/title_blogs" />
 
     <item
         android:id="@+id/logout"
