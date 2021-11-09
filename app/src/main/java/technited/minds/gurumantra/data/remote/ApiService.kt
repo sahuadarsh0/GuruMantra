@@ -87,5 +87,14 @@ interface ApiService {
         comment: String?
     ): Response<CommentResponse>
 
+    // Others
+    @GET("Gallery")
+    suspend fun getGallery(): Response<Gallery>
+
+
+    @GET("Packages")
+    suspend fun getPackages(): Response<Packages>
+
+
 
 }

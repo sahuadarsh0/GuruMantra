@@ -1,8 +1,7 @@
 package technited.minds.gurumantra.data.repository
 
-import technited.minds.gurumantra.data.local.AnswersDao
 import technited.minds.gurumantra.data.local.BlogsDao
-import technited.minds.gurumantra.data.local.QuestionsDao
+import technited.minds.gurumantra.data.local.GalleryDao
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.model.EndTest
 import technited.minds.gurumantra.model.QuestionsItem
@@ -11,7 +10,7 @@ import javax.inject.Inject
 
 class MainRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localQuestionsDataSource: QuestionsDao,
+    private val localGalleryDataSource: GalleryDao,
     private val localBlogsDataSource: BlogsDao
 ) {
 //    fun getMembersList() = performGetOperation(
@@ -45,4 +44,13 @@ class MainRepository @Inject constructor(
     suspend fun getComments(blogId: String) = remoteDataSource.getComments(blogId)
     suspend fun postComment(userId: Int, blogId: Int, comment: String) =
         remoteDataSource.postComment(userId, blogId, comment)
+
+    // Others
+    fun getGallery() = performGetOperation(
+        databaseQuery = { localGalleryDataSource.getGallery() },
+        networkCall = { remoteDataSource.getGallery() },
+        saveCallResult = { localGalleryDataSource.insertAll(it.gals) }
+    )
+    suspend fun getPackages() = remoteDataSource.getPackages()
+
 }

@@ -2,7 +2,6 @@ package technited.minds.gurumantra.di
 
 import android.content.Context
 import android.util.Log
-import technited.minds.gurumantra.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,9 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import technited.minds.gurumantra.BuildConfig
-import technited.minds.gurumantra.data.local.AnswersDao
-import technited.minds.gurumantra.data.local.BlogsDao
-import technited.minds.gurumantra.data.local.QuestionsDao
+import technited.minds.gurumantra.data.local.*
 import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.data.repository.MainRepository
@@ -84,16 +81,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideQuestionsSao(db : AppDatabase) = db.questionsDao()
+    fun provideQuestionsDao(db : AppDatabase) = db.questionsDao()
 
 
     @Singleton
     @Provides
-    fun provideAnswersSao(db : AppDatabase) = db.answersDao()
+    fun provideAnswersDao(db : AppDatabase) = db.answersDao()
 
     @Singleton
     @Provides
-    fun provideBlogsSao(db : AppDatabase) = db.blogsDao()
+    fun provideBlogsDao(db : AppDatabase) = db.blogsDao()
+
+    @Singleton
+    @Provides
+    fun provideGalleryDao(db : AppDatabase) = db.galleryDao()
 //
 //    @Singleton
 //    @Provides
@@ -109,7 +110,7 @@ object AppModule {
     @Provides
     fun provideRepository(
         remoteDataSource: RemoteDataSource,
-        localQuestionsDataSource: QuestionsDao,
+        localGalleryDataSource: GalleryDao,
         localBlogsDataSource: BlogsDao
-    ) = MainRepository(remoteDataSource,localQuestionsDataSource, localBlogsDataSource)
+    ) = MainRepository(remoteDataSource,localGalleryDataSource, localBlogsDataSource)
 }

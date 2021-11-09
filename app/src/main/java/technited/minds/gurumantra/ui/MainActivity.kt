@@ -75,43 +75,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
-//
-//    private fun getMeetings() {
-//        val apiService = ApiService.create().getMeetings()
-//        apiService.enqueue(object : Callback<MeetingDetails?>{
-//            override fun onResponse(call: Call<MeetingDetails?>, response: Response<MeetingDetails?>) {
-//                if (response.body()?.details!!.isNotEmpty()) {
-//                   val meeting  = response.body()!!
-//                    meeting.details.apply {
-//                        if (this[0].meetingId.isNotEmpty() && this[0].mPassword.isNotEmpty() ) {
-//                            Log.d("asa", "onResponse: ${this[0].meetingId} and ,${this[0].mPassword}")
-//                            joinMeeting(this@MainActivity,this[0].meetingId,this[0].mPassword)
-//                        }
-//                    }
-//                }else{
-//                    MaterialDialog(this@MainActivity).show {
-//                        title(text = "PACKAGE ERROR")
-//                        message(text = "Unable to Retrieve package details")
-//                        cornerRadius(16f)
-//                        positiveButton(text = "OK") { dialog ->
-//                            dialog.dismiss()
-//                        }
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MeetingDetails?>, t: Throwable) {
-//                MaterialDialog(this@MainActivity).show {
-//                    title(text = "API ERROR")
-//                    message(text = "")
-//                    cornerRadius(16f)
-//                    positiveButton(text = "OK") { dialog ->
-//                        dialog.dismiss()
-//                    }
-//                }
-//            }
-//        })
-//    }
 
     private fun initializeSdk(context: Context) {
         val sdk = ZoomSDK.getInstance()
