@@ -21,3 +21,10 @@ data class Comment(
     @SerializedName("userType")
     val userType: String
 )
+
+data class CommentResponse(
+    @SerializedName("msg")
+    val msg: String,
+    @SerializedName("data")
+    val data: Int
+)

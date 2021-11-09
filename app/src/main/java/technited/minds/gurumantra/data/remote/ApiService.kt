@@ -76,5 +76,16 @@ interface ApiService {
     @GET("getComments/{blogId}")
     suspend fun getComments(@Path("blogId") blogId: String): Response<List<Comment>>
 
+    @FormUrlEncoded
+    @POST("postComment")
+    suspend fun postComment(
+        @Field("userId")
+        userId: Int?,
+        @Field("blogId")
+        blogId: Int?,
+        @Field("comment")
+        comment: String?
+    ): Response<CommentResponse>
+
 
 }

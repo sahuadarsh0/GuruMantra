@@ -31,15 +31,18 @@ class MainRepository @Inject constructor(
     suspend fun getTestSeries() = remoteDataSource.getTestSeries()
     suspend fun getTestSeriesDetails(tsId: String, uId: String) = remoteDataSource.getTestSeriesDetails(tsId, uId)
     suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
-    suspend fun getStartTest(tId: String, uId: String) =  remoteDataSource.getStartTest(tId, uId)
-    suspend fun submitTest(endTest: EndTest) =  remoteDataSource.submitTest(endTest)
+    suspend fun getStartTest(tId: String, uId: String) = remoteDataSource.getStartTest(tId, uId)
+    suspend fun submitTest(endTest: EndTest) = remoteDataSource.submitTest(endTest)
 
 
-//    Blogs
+    //    Blogs
     fun getBlogs() = performGetOperation(
         databaseQuery = { localBlogsDataSource.getBlogs() },
-        networkCall = { remoteDataSource.getBlogs()  },
-        saveCallResult = { localBlogsDataSource.insertAll(it.blogs)}
+        networkCall = { remoteDataSource.getBlogs() },
+        saveCallResult = { localBlogsDataSource.insertAll(it.blogs) }
     )
-    suspend fun getComments(blogId: String) =  remoteDataSource.getComments(blogId)
+
+    suspend fun getComments(blogId: String) = remoteDataSource.getComments(blogId)
+    suspend fun postComment(userId: Int, blogId: Int, comment: String) =
+        remoteDataSource.postComment(userId, blogId, comment)
 }

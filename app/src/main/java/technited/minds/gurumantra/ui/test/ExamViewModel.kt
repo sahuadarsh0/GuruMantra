@@ -23,11 +23,6 @@ class ExamViewModel @Inject constructor(private val repository: MainRepository) 
 
     fun getStartTest(tId: String, uId: String) = viewModelScope.launch {
         testStart.postValue(repository.getStartTest(tId, uId))
-//        performGetOperation(
-//            databaseQuery = { localQuestionsDataSource.getQuestionsList() },
-//            networkCall = { repository.getStartTest(tsId, uId) },
-//            saveCallResult = { localQuestionsDataSource.insertAll(it.ques) }
-//        )
     }
 
     fun submitTest(endTest: EndTest) = viewModelScope.launch {

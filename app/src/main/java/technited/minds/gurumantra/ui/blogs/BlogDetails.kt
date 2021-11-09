@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import technited.minds.gurumantra.model.Blog
 import technited.minds.gurumantra.model.Comment
 import technited.minds.gurumantra.ui.adapters.CommentsAdapter
 import technited.minds.gurumantra.utils.Resource
+import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,6 +30,10 @@ class BlogDetails : Fragment() {
     private val commentsAdapter = CommentsAdapter(this::onItemClicked)
 
     private val blogsViewModel: BlogsViewModel by viewModels()
+    private lateinit var blogId: String
+
+    @Inject
+    lateinit var userSharedPreferences: SharedPrefs
 
 
     @Inject
@@ -42,6 +48,15 @@ class BlogDetails : Fragment() {
         val root: View = binding.root
         setupObservers()
         setupRecyclerView()
+        binding.postButton.setOnClickListener {
+            if (binding.postComment.text.isNotEmpty()) {
+                blogsViewModel.postComment(
+                    userSharedPreferences["id"]!!.toInt(),
+                    blogId.toInt(),
+                    binding.postComment.text.toString()
+                )
+            }
+        }
         return root
     }
 
@@ -54,12 +69,12 @@ class BlogDetails : Fragment() {
         binding.animationView.visibility = VISIBLE
         val id = arguments?.getString("id")
         if (id != null) {
-            localBlogs.getBlog(id).observe(viewLifecycleOwner, {
+            blogId = id
+            localBlogs.getBlog(blogId).observe(viewLifecycleOwner, {
                 binding.blog = it
                 binding.animationView.visibility = GONE
             })
-
-            blogsViewModel.getComments(id)
+            blogsViewModel.getComments(blogId)
         }
         blogsViewModel.comment.observe(viewLifecycleOwner, {
             when (it.status) {
@@ -78,13 +93,22 @@ class BlogDetails : Fragment() {
 
                     }
                 }
-                    Resource.Status.ERROR -> {
-                        binding.animationView.visibility = GONE
+                Resource.Status.ERROR -> {
+                    binding.animationView.visibility = GONE
 
-                    }
                 }
-            })
+            }
+        })
 
+        blogsViewModel.response.observe(viewLifecycleOwner, {
+            if (it.data != null) {
+                if (it.data.data == 1) {
+                    Toast.makeText(requireContext(), "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
+                    binding.postComment.setText("")
+                    blogsViewModel.getComments(blogId)
+                }
+            }
+        })
 
     }
 

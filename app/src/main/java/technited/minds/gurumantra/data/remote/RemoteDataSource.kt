@@ -11,7 +11,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
-    suspend fun getTestSeriesDetails(testId: String, userId: String) = getResult { apiService.getTestSeriesDetails(testId, userId) }
+    suspend fun getTestSeriesDetails(testId: String, userId: String) =
+        getResult { apiService.getTestSeriesDetails(testId, userId) }
+
     suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
     suspend fun getStartTest(testId: String, userId: String) = getResult { apiService.getStartTest(testId, userId) }
     suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
@@ -19,6 +21,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     //Blogs
     suspend fun getBlogs() = getResult { apiService.getBlogs() }
     suspend fun getComments(blogId: String) = getResult { apiService.getComments(blogId) }
+    suspend fun postComment(userId: Int, blogId: Int, comment: String) = getResult {
+        apiService.postComment(userId,blogId, comment)
+    }
 
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
