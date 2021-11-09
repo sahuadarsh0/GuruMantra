@@ -1,6 +1,7 @@
 package technited.minds.gurumantra.data.repository
 
 import technited.minds.gurumantra.data.local.AnswersDao
+import technited.minds.gurumantra.data.local.BlogsDao
 import technited.minds.gurumantra.data.local.QuestionsDao
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.model.EndTest
@@ -11,7 +12,7 @@ import javax.inject.Inject
 class MainRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localQuestionsDataSource: QuestionsDao,
-    private val localAnswersDataSource: AnswersDao
+    private val localBlogsDataSource: BlogsDao
 ) {
 //    fun getMembersList() = performGetOperation(
 //        databaseQuery = { localDataSource.getMembersList() },
@@ -32,9 +33,13 @@ class MainRepository @Inject constructor(
     suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
     suspend fun getStartTest(tId: String, uId: String) =  remoteDataSource.getStartTest(tId, uId)
     suspend fun submitTest(endTest: EndTest) =  remoteDataSource.submitTest(endTest)
-//    fun getStartTest(tsId: String, uId: String) = performGetOperation(
-//        databaseQuery = { localQuestionsDataSource.getQuestionsList() },
-//        networkCall = { remoteDataSource.getStartTest(tsId, uId) },
-//        saveCallResult = { localQuestionsDataSource.insertAll(it.ques) }
-//    )
+
+
+//    Blogs
+    fun getBlogs() = performGetOperation(
+        databaseQuery = { localBlogsDataSource.getBlogs() },
+        networkCall = { remoteDataSource.getBlogs()  },
+        saveCallResult = { localBlogsDataSource.insertAll(it.blogs)}
+    )
+    suspend fun getComments(blogId: String) =  remoteDataSource.getComments(blogId)
 }

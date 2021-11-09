@@ -6,15 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import technited.minds.gurumantra.model.AnswersItem
+import technited.minds.gurumantra.model.Blog
 import technited.minds.gurumantra.model.QuestionsItem
 
 
-@Database(entities = [QuestionsItem::class, AnswersItem::class], version = 1, exportSchema = false)
+@Database(entities = [QuestionsItem::class, AnswersItem::class, Blog::class], version = 2, exportSchema = false)
 @TypeConverters(OptionsTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun questionsDao(): QuestionsDao
     abstract fun answersDao(): AnswersDao
+    abstract fun blogsDao(): BlogsDao
 
     companion object {
         @Volatile
@@ -24,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
             instance ?: synchronized(this) { instance ?: buildDatabase(context).also { instance = it } }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "AICP")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, "Gurumantra")
                 .fallbackToDestructiveMigration()
                 .build()
     }

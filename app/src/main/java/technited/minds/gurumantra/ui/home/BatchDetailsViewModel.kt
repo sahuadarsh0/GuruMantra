@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.batch
+package technited.minds.gurumantra.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

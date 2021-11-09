@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.navigation_test_series)
                     return@setOnItemSelectedListener true
                 }
-                R.id.navigation_notifications -> {
-                    navController.navigate(R.id.navigation_notifications)
+                R.id.navigation_blogs -> {
+                    navController.navigate(R.id.navigation_blogs)
                     return@setOnItemSelectedListener true
                 }
 

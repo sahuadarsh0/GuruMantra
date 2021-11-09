@@ -16,6 +16,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getStartTest(testId: String, userId: String) = getResult { apiService.getStartTest(testId, userId) }
     suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
 
+    //Blogs
+    suspend fun getBlogs() = getResult { apiService.getBlogs() }
+    suspend fun getComments(blogId: String) = getResult { apiService.getComments(blogId) }
+
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
 }

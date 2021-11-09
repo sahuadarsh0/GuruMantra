@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="technited.minds.gurumantra.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_batchDetails"
             app:destination="@id/batchDetails"
@@ -23,7 +23,7 @@
         android:id="@+id/navigation_test_series"
         android:name="technited.minds.gurumantra.ui.test.TestSeries"
         android:label="@string/title_test_series"
-        tools:layout="@layout/fragment_test_series" >
+        tools:layout="@layout/fragment_test_series">
         <action
             android:id="@+id/action_navigation_test_series_to_testSeriesDetails"
             app:destination="@id/testSeriesDetails"
@@ -34,15 +34,23 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="technited.minds.gurumantra.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_blogs"
+        android:name="technited.minds.gurumantra.ui.blogs.BlogsFragment"
+        android:label="@string/title_blogs"
+        tools:layout="@layout/fragment_blogs">
+        <action
+            android:id="@+id/action_navigation_blogs_to_blogDetails"
+            app:destination="@id/blogDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
     <fragment
         android:id="@+id/batchDetails"
-        android:name="technited.minds.gurumantra.ui.batch.BatchDetails"
+        android:name="technited.minds.gurumantra.ui.home.BatchDetails"
         android:label="BatchDetails"
-        tools:layout="@layout/fragment_batch_details" >
+        tools:layout="@layout/fragment_batch_details">
         <action
             android:id="@+id/action_batchDetails_to_zoomActivity"
             app:destination="@id/zoomActivity"
@@ -55,7 +63,7 @@
         android:id="@+id/zoomActivity"
         android:name="technited.minds.gurumantra.ui.ZoomActivity"
         android:label="activity_zoom"
-        tools:layout="@layout/activity_zoom" >
+        tools:layout="@layout/activity_zoom">
         <argument
             android:name="classNo"
             app:argType="string" />
@@ -74,4 +82,9 @@
         android:name="technited.minds.gurumantra.ui.test.ExamActivity"
         android:label="ExamActivity"
         tools:layout="@layout/activity_exam" />
+    <fragment
+        android:id="@+id/blogDetails"
+        android:name="technited.minds.gurumantra.ui.blogs.BlogDetails"
+        android:label="BlogDetails"
+        tools:layout="@layout/fragment_blog_details" />
 </navigation>

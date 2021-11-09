@@ -41,7 +41,6 @@ class ExamActivity : AppCompatActivity() {
     private var currentQuestion: QuestionsItem? = null
     private var answered = false
     private lateinit var url: String
-    private lateinit var questionsBasket: ArrayList<String>
     private var testTime: Int = 1
     private var testId: Int = 0
 

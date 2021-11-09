@@ -15,4 +15,6 @@
     <string name="instructions">Instructions</string>
     <string name="exam">Exam</string>
     <string name="time">60 min</string>
+    <string name="post_comment">Post Comment</string>
+    <string name="post">Post</string>
 </resources>

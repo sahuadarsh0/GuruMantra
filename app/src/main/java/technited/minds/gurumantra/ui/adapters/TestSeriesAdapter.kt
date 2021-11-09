@@ -9,10 +9,10 @@ import technited.minds.gurumantra.databinding.ItemListTestSeriesBinding
 import technited.minds.gurumantra.model.TestSeriesItem
 
 class TestSeriesAdapter(private val onItemClicked: (TestSeriesItem) -> Unit) : ListAdapter<TestSeriesItem, TestSeriesAdapter
-.BatchesViewHolder>(DIFFUTIL_CALLBACK) {
+.TestSeriesViewHolder>(DIFFUTIL_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BatchesViewHolder =
-        BatchesViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestSeriesViewHolder =
+        TestSeriesViewHolder(
             ItemListTestSeriesBinding
                 .inflate(LayoutInflater.from(parent.context), parent, false)
         )
@@ -30,10 +30,10 @@ class TestSeriesAdapter(private val onItemClicked: (TestSeriesItem) -> Unit) : L
         }
     }
 
-    override fun onBindViewHolder(holder: BatchesViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: TestSeriesViewHolder, position: Int) =
         holder.bind(getItem(position), onItemClicked)
 
-    inner class BatchesViewHolder(private val binding: ItemListTestSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TestSeriesViewHolder(private val binding: ItemListTestSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(TestSeriesItem: TestSeriesItem, onItemClicked: (TestSeriesItem) -> Unit) {
             binding.testSeries = TestSeriesItem
             binding.root.setOnClickListener { onItemClicked(TestSeriesItem) }

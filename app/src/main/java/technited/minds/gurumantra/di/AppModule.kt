@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import technited.minds.gurumantra.BuildConfig
 import technited.minds.gurumantra.data.local.AnswersDao
+import technited.minds.gurumantra.data.local.BlogsDao
 import technited.minds.gurumantra.data.local.QuestionsDao
 import technited.minds.gurumantra.data.remote.ApiService
 import technited.minds.gurumantra.data.remote.RemoteDataSource
@@ -89,6 +90,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAnswersSao(db : AppDatabase) = db.answersDao()
+
+    @Singleton
+    @Provides
+    fun provideBlogsSao(db : AppDatabase) = db.blogsDao()
 //
 //    @Singleton
 //    @Provides
@@ -105,6 +110,6 @@ object AppModule {
     fun provideRepository(
         remoteDataSource: RemoteDataSource,
         localQuestionsDataSource: QuestionsDao,
-        localAnswersDataSource: AnswersDao
-    ) = MainRepository(remoteDataSource,localQuestionsDataSource, localAnswersDataSource)
+        localBlogsDataSource: BlogsDao
+    ) = MainRepository(remoteDataSource,localQuestionsDataSource, localBlogsDataSource)
 }
