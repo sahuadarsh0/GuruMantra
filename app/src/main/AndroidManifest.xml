@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity
+            android:name=".ui.WebPage"
+            android:exported="true" />
+        <activity
             android:name=".ui.test.ExamActivity"
             android:exported="true" />
         <activity

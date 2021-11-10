@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,7 @@ import technited.minds.gurumantra.model.AnswersItem
 import technited.minds.gurumantra.model.EndTest
 import technited.minds.gurumantra.model.QuestionsItem
 import technited.minds.gurumantra.model.Tsd
+import technited.minds.gurumantra.ui.WebPage
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import java.text.DecimalFormat
@@ -68,7 +70,6 @@ class ExamActivity : AppCompatActivity() {
             btnPrev.setOnClickListener {
                 showPreviousQuestion()
             }
-
             answerGroup.setOnCheckedChangeListener { radioGroup: RadioGroup, i: Int ->
 
                 when {
@@ -90,12 +91,10 @@ class ExamActivity : AppCompatActivity() {
                 }
 
             }
-
         }
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         testId = intent.getStringExtra("id")?.toInt() ?: 0
         examViewModel.getStartTest(testId.toString(), userSharedPreferences["id"]!!)
-
         setUpObservers()
     }
 
@@ -126,15 +125,15 @@ class ExamActivity : AppCompatActivity() {
 //                    binding.animationView.visibility = View.GONE
 
                 }
-
             }
         })
         examViewModel.testResultUrl.observe(this, {
             Log.d("asa", "setUpObservers: ${it?.data!!.resultUrl}")
             when {
-                it.status == Resource.Status.SUCCESS && !it.data.resultUrl.isEmpty() -> {
-                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.data.resultUrl))
-                    startActivity(browserIntent)
+                it.status == Resource.Status.SUCCESS && it.data.resultUrl.isNotEmpty() -> {
+                    val intent = Intent(this@ExamActivity, WebPage::class.java)
+                    intent.putExtra("url",it.data.resultUrl)
+                    startActivity(intent)
                     finish()
                 }
             }
