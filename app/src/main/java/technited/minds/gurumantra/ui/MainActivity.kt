@@ -3,14 +3,22 @@ package technited.minds.gurumantra.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.SyncStateContract
+import android.view.Gravity
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.BuildConfig
 import technited.minds.gurumantra.R
@@ -23,21 +31,30 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_GuruMantra)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val bottomNavigationView: BottomNavigationView = binding.navView
+        val bottomNavigationView: BottomNavigationView = binding.appBarMain.navView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
-        bottomNavigationView.setupWithNavController(navController)
 
+
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.mainNavView
+
+        bottomNavigationView.setupWithNavController(navController)
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.itemBackground = null
+        navView.itemIconTintList = null
+        navView.itemBackground = null
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.navigation_menu -> {
+                    drawerLayout.openDrawer(Gravity.LEFT)
+                    return@setOnItemSelectedListener true
+                }
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home)
                     return@setOnItemSelectedListener true
@@ -71,50 +88,24 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> Toast.makeText(this, "Select an item", Toast.LENGTH_SHORT).show()
             }
-
             false
         }
-    }
 
-    private fun initializeSdk(context: Context) {
-        val sdk = ZoomSDK.getInstance()
 
-        // TODO: Do not use hard-coded values for your key/secret in your app in production!
-        val params = ZoomSDKInitParams().apply {
-            appKey = BuildConfig.SDK_KEY
-            appSecret = BuildConfig.SDK_SECRET
-            domain = "zoom.us"
-            enableLog = true // Optional: enable logging for debugging
-        }
-        // TODO (optional): Add functionality to this listener (e.g. logs for debugging)
-        val listener = object : ZoomSDKInitializeListener {
-            /**
-             * If the [errorCode] is [ZoomError.ZOOM_ERROR_SUCCESS], the SDK was initialized and can
-             * now be used to join/start a meeting.
-             */
-            override fun onZoomSDKInitializeResult(errorCode: Int, internalErrorCode: Int) {
-                if (errorCode == ZoomError.ZOOM_ERROR_SUCCESS) {
-//                    getMeetings()
+//        navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener {
+            drawerLayout.closeDrawers()
+            when (it.itemId) {
+                R.id.navigation_gallery -> {
+                    navController.navigate(R.id.navigation_gallery)
                 }
             }
-
-            override fun onZoomAuthIdentityExpired() = Unit
+            true
         }
 
-        sdk.initialize(context, listener, params)
-
+        val headerView = navView.getHeaderView(0)
+        headerView.findViewById<TextView>(R.id.name).text  = userSharedPreferences["name"]
+        headerView.findViewById<TextView>(R.id.email).text = userSharedPreferences["email"]
     }
-
-    private fun joinMeeting(context: Context, meetingNumber: String, pw: String) {
-        val meetingService = ZoomSDK.getInstance().meetingService
-        val options = JoinMeetingOptions()
-        val params = JoinMeetingParams().apply {
-            displayName = "Asa" // TODO: Enter your name
-            meetingNo = meetingNumber
-            password = pw
-        }
-        meetingService.joinMeetingWithParams(context, params, options)
-    }
-
 
 }

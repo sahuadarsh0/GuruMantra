@@ -17,4 +17,8 @@
     <string name="time">60 min</string>
     <string name="post_comment">Post Comment</string>
     <string name="post">Post</string>
+    <string name="menu">Menu</string>
+    <string name="gallery">Gallery</string>
+    <string name="packages">Packages</string>
+    <string name="notes">Notes</string>
 </resources>

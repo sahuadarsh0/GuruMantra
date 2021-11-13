@@ -87,4 +87,9 @@
         android:name="technited.minds.gurumantra.ui.blogs.BlogDetails"
         android:label="BlogDetails"
         tools:layout="@layout/fragment_blog_details" />
+    <fragment
+        android:id="@+id/navigation_gallery"
+        android:name="technited.minds.gurumantra.ui.gallery.GalleryFragment"
+        android:label="GalleryFragment"
+        tools:layout="@layout/fragment_gallery"/>
 </navigation>

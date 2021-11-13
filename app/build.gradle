@@ -48,26 +48,23 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
 //  Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
 //  LifeCycle
-
-    def lifecycle_version = "2.4.0-alpha03"
+    def lifecycle_version = "2.4.0"
 
 //  ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
@@ -78,10 +75,12 @@ dependencies {
 
 
     // Other Library
-    implementation "com.airbnb.android:lottie:3.7.0"
+    implementation "com.airbnb.android:lottie:4.2.0"
     implementation 'com.eightbitlab:blurview:1.6.6'
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.razorpay:checkout:1.6.12'
 //    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
 //  Coroutines

@@ -6,22 +6,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.blogs.BlogsFragment">
+        tools:context=".ui.gallery.GalleryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/blogs_list"
+            android:id="@+id/gallery_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:layout_marginTop="32dp"
+            app:spanCount="3"
             android:paddingBottom="32dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="8"
-            tools:listitem="@layout/item_list_blog" />
+            tools:itemCount="18"
+            tools:listitem="@layout/item_list_gallery" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"

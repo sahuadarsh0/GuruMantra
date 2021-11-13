@@ -88,11 +88,11 @@ interface ApiService {
     ): Response<CommentResponse>
 
     // Others
-    @GET("Gallery")
+    @GET("gallery")
     suspend fun getGallery(): Response<Gallery>
 
 
-    @GET("Packages")
+    @GET("packages")
     suspend fun getPackages(): Response<Packages>
 
 

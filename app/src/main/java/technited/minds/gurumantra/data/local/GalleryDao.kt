@@ -8,7 +8,7 @@ import technited.minds.gurumantra.model.*
 interface GalleryDao {
 
     @Query("SELECT * FROM gallery")
-    fun getGallery(): LiveData<Gallery>
+    fun getGallery(): LiveData<List<Gal>>
 
     @Query("SELECT * FROM gallery WHERE gId = :id")
     fun getGalleryOne(id: String): LiveData<Gal>
