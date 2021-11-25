@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,8 +29,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var userSharedPreferences: SharedPrefs
     private lateinit var loginData: LoginDetails
     private val loginViewModel: LoginViewModel by viewModels()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_GuruMantra)
@@ -100,36 +99,36 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-        private fun openMain() {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()
-        }
+    private fun openMain() {
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
+        finish()
+    }
 
-        private fun send(username: String, password: String) {
-            binding.animationView.visibility = VISIBLE
-            binding.items.visibility = GONE
-            loginViewModel.login(username, password)
-        }
+    private fun send(username: String, password: String) {
+        binding.animationView.visibility = VISIBLE
+        binding.items.visibility = GONE
+        loginViewModel.login(username, password)
+    }
 
-        private fun initBlur() {
-            val radius = 20f
+    private fun initBlur() {
+        val radius = 20f
 
-            val decorView = window.decorView;
-            //ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
-            val rootView = decorView.findViewById<ViewGroup>(android.R.id.content);
-            //Set drawable to draw in the beginning of each blurred frame (Optional).
-            //Can be used in case your layout has a lot of transparent space and your content
-            //gets kinda lost after after blur is applied.
-            val windowBackground = decorView.background;
+        val decorView = window.decorView;
+        //ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
+        val rootView = decorView.findViewById<ViewGroup>(android.R.id.content);
+        //Set drawable to draw in the beginning of each blurred frame (Optional).
+        //Can be used in case your layout has a lot of transparent space and your content
+        //gets kinda lost after after blur is applied.
+        val windowBackground = decorView.background;
 
-            binding.blurView.setupWith(rootView)
-                .setFrameClearDrawable(windowBackground)
-                .setBlurAlgorithm(RenderScriptBlur(this))
-                .setBlurRadius(radius)
-                .setBlurAutoUpdate(true)
-                .setHasFixedTransformationMatrix(true)
-        }
+        binding.blurView.setupWith(rootView)
+            .setFrameClearDrawable(windowBackground)
+            .setBlurAlgorithm(RenderScriptBlur(this))
+            .setBlurRadius(radius)
+            .setBlurAutoUpdate(true)
+            .setHasFixedTransformationMatrix(true)
+    }
 
 
 }

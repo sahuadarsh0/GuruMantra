@@ -11,16 +11,25 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@drawable/bg1</item>
         <!-- Customize your theme here. -->
     </style>
 
 
-    <style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:statusBarColor">@color/white</item>
-    </style>
 
+    <style name="Theme.SplashScreenTheme" parent="Theme.SplashScreen">
+        // Set the splash screen background, animated icon, and animation duration.
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+
+        // Use windowSplashScreenAnimatedIcon to add either a drawable or an
+        // animated drawable. One of these is required.
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>  # Required for
+        // animated icons
+<!--        <item name="android:windowSplashScreenBrandingImage">@drawable/bottom_text</item>-->
+
+        // Set the theme of the Activity that directly follows your splash screen.
+        <item name="postSplashScreenTheme">@style/Theme.GuruMantra</item>  # Required.
+    </style>
 
     <style name="TextGrey">
         <item name="android:textColor">@color/grey</item>
@@ -85,17 +94,17 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="SplashScreenTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+<!--    <style name="SplashScreenTheme.NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
 
-    <style name="SplashScreenTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light" >
-        <item name="colorPrimary">@color/white</item>
+<!--    <style name="SplashScreenTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light" >-->
+<!--        <item name="colorPrimary">@color/white</item>-->
 
-    </style>
+<!--    </style>-->
 
-    <style name="SplashScreenTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" >
-        <item name="titleTextColor">@color/purple_500</item>
-    </style>
+<!--    <style name="SplashScreenTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" >-->
+<!--        <item name="titleTextColor">@color/purple_500</item>-->
+<!--    </style>-->
 </resources>

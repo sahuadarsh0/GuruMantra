@@ -95,16 +95,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideGalleryDao(db : AppDatabase) = db.galleryDao()
-//
-//    @Singleton
-//    @Provides
-//    fun provideGalleryDao(db: AppDatabase) = db.galleryDao()
-//
-//    @Singleton
-//    @Provides
-//    fun provideRepository(remoteDataSource: RemoteDataSource,localDataSource: MembersDao,galleryDataSource: GalleryDao)
-//            = MainRepository(remoteDataSource,localDataSource,galleryDataSource)
-//
 
     @Singleton
     @Provides

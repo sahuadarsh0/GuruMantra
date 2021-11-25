@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.databinding.ActivityMainBinding
 import technited.minds.gurumantra.databinding.ActivityWebPageBinding
 
 class WebPage : AppCompatActivity() {

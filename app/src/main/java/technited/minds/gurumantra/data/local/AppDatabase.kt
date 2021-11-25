@@ -11,7 +11,7 @@ import technited.minds.gurumantra.model.Gal
 import technited.minds.gurumantra.model.QuestionsItem
 
 
-@Database(entities = [QuestionsItem::class, AnswersItem::class, Blog::class, Gal::class], version = 3,exportSchema = false)
+@Database(entities = [QuestionsItem::class, AnswersItem::class, Blog::class, Gal::class], version = 4,exportSchema = false)
 @TypeConverters(OptionsTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
