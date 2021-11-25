@@ -49,7 +49,7 @@
     <fragment
         android:id="@+id/batchDetails"
         android:name="technited.minds.gurumantra.ui.home.BatchDetails"
-        android:label="BatchDetails"
+        android:label="Batch Details"
         tools:layout="@layout/fragment_batch_details">
         <action
             android:id="@+id/action_batchDetails_to_zoomActivity"
@@ -62,7 +62,7 @@
     <activity
         android:id="@+id/zoomActivity"
         android:name="technited.minds.gurumantra.ui.ZoomActivity"
-        android:label="activity_zoom"
+        android:label="Zoom"
         tools:layout="@layout/activity_zoom">
         <argument
             android:name="classNo"
@@ -71,25 +71,22 @@
     <fragment
         android:id="@+id/testSeriesDetails"
         android:name="technited.minds.gurumantra.ui.test.TestSeriesDetails"
-        android:label="TestSeriesDetails"
+        android:label="Test Series Details"
         tools:layout="@layout/fragment_test_series_details">
-        <action
-            android:id="@+id/action_testSeriesDetails_to_examActivity"
-            app:destination="@id/examActivity" />
     </fragment>
-    <activity
-        android:id="@+id/examActivity"
-        android:name="technited.minds.gurumantra.ui.test.ExamActivity"
-        android:label="ExamActivity"
-        tools:layout="@layout/activity_exam" />
     <fragment
         android:id="@+id/blogDetails"
         android:name="technited.minds.gurumantra.ui.blogs.BlogDetails"
-        android:label="BlogDetails"
+        android:label="Blog Details"
         tools:layout="@layout/fragment_blog_details" />
     <fragment
         android:id="@+id/navigation_gallery"
         android:name="technited.minds.gurumantra.ui.gallery.GalleryFragment"
-        android:label="GalleryFragment"
+        android:label="Gallery"
         tools:layout="@layout/fragment_gallery"/>
+    <fragment
+        android:id="@+id/navigation_packages"
+        android:name="technited.minds.gurumantra.ui.packages.PackagesFragment"
+        android:label="Packages"
+        tools:layout="@layout/fragment_packages"/>
 </navigation>

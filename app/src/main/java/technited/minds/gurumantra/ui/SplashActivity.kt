@@ -1,17 +1,15 @@
-package technited.minds.gurumantra
+package technited.minds.gurumantra.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.annotation.ColorInt
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import technited.minds.gurumantra.ui.LoginActivity
-import technited.minds.gurumantra.ui.MainActivity
+import technited.minds.gurumantra.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

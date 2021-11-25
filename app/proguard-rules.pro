@@ -26,3 +26,11 @@
 -keep class  us.google.protobuf.**{*;}
 -keep class  com.google.crypto.tink.**{*;}
 -keep class  androidx.security.crypto.**{*;}
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-dontwarn com.razorpay.**
+-keep class com.razorpay.** {*;}
+-optimizations !method/inlining/*

@@ -57,14 +57,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:visibility="gone"
                 android:layout_marginEnd="8dp"
-                tools:text="@string/zm_config_account_name_validator"
                 android:htmlText="@{details.classDescription}"
                 android:textStyle="normal"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/class_name" />
+                app:layout_constraintTop_toBottomOf="@+id/class_name"
+                tools:text="@string/zm_config_account_name_validator" />
 
             <Button
                 android:id="@+id/button"

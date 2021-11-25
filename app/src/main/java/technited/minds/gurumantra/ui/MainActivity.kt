@@ -99,6 +99,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_gallery -> {
                     navController.navigate(R.id.navigation_gallery)
                 }
+                R.id.navigation_packages -> {
+                    navController.navigate(R.id.navigation_packages)
+                }
             }
             true
         }

@@ -6,69 +6,72 @@
     <data>
 
         <variable
-            name="test"
-            type="technited.minds.gurumantra.model.Ts" />
+            name="packages"
+            type="technited.minds.gurumantra.model.Pck" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="24dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:minHeight="350dp"
+        app:cardBackgroundColor="@color/off_white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="2dp">
+        app:cardElevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/photo"
-                android:layout_width="80dp"
+                android:id="@+id/package_image"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:setImageUrl="@{test.tImage}"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintDimensionRatio="1.1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/test_name"
+                android:id="@+id/package_title"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{test.TName}"
+                android:gravity="center"
+                android:paddingStart="2dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="2dp"
+                android:splitText="@{packages.pckName}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/photo"
-                app:layout_constraintTop_toTopOf="@+id/photo"
-                tools:text="@string/app_name" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_image"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Bla Bla Tests" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/package_desc"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:htmlText="@{test.description}"
-                android:textSize="10sp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:splitText="@{packages.keyFeatures}"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/test_name"
-                tools:text="@string/zm_config_account_name_validator" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_title"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Bla Bla Tests \ntesting\ntesting" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

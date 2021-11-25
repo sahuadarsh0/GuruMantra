@@ -15,7 +15,7 @@ object BindingAdapters {
     @JvmStatic
     fun loadImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
-            .load(Constants.URL.toString()+imageUrl).apply(RequestOptions().circleCrop())
+            .load(Constants.URL.toString() + imageUrl).apply(RequestOptions().circleCrop())
             .error(R.drawable.splash)
             .into(view)
     }
@@ -24,7 +24,7 @@ object BindingAdapters {
     @JvmStatic
     fun setImage(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
-            .load(Constants.URL.toString()+imageUrl)
+            .load(Constants.URL.toString() + imageUrl)
             .error(R.drawable.splash)
             .into(view)
     }
@@ -35,6 +35,15 @@ object BindingAdapters {
     fun setMobile(view: TextView, text: String?) {
         val output = "XXXXX" + (text?.substring(5))
         view.text = output
+    }
+
+    @BindingAdapter("android:splitText")
+    @JvmStatic
+    fun setSplitText(view: TextView, text: String?) {
+        val input = text?.split(",")
+        var output = ""
+        input?.forEach { s -> output+= "$s\n" }
+        view.text =output
     }
 
     @BindingAdapter("android:htmlText")

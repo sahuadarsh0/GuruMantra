@@ -25,6 +25,8 @@ data class Pck(
     val pckOffPercent: Int,
     @SerializedName("pckValidity")
     val pckValidity: Int,
+    @SerializedName("keyfetaures")
+    val keyFeatures: String,
     @SerializedName("pckStatus")
     val pckStatus: Int,
     @SerializedName("expired_at")

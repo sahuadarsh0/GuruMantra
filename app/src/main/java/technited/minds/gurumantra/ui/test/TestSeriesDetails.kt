@@ -111,10 +111,6 @@ class TestSeriesDetails : Fragment() {
     }
 
     private fun onItemClicked(ts: Ts) {
-//        findNavController().navigate(
-//            R.id.action_testSeriesDetails_to_examActivity,
-//            bundleOf("id" to ts.tsId.toString())
-//        )
         val i = Intent(activity, ExamActivity::class.java)
         i.putExtra("id", ts.tId.toString())
         startActivity(i)
