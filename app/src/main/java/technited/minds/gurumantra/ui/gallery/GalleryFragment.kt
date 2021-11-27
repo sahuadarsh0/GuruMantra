@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
@@ -80,6 +81,14 @@ class GalleryFragment : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     binding.animationView.visibility = View.GONE
                     binding.galleryList.visibility = View.VISIBLE
 

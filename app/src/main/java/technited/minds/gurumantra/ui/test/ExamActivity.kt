@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -122,6 +123,14 @@ class ExamActivity : AppCompatActivity() {
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(this).show {
+                    title(text = "API ERROR")
+                    message(text = it.message)
+                    cornerRadius(16f)
+                    positiveButton(text = "OK") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
 //                    binding.animationView.visibility = View.GONE
 
                 }

@@ -25,9 +25,5 @@ data class BatchDetailsItem(
     @SerializedName("createdBy")
     val createdBy: Int,
     @SerializedName("batchStatus")
-    val batchStatus: Int,
-    @SerializedName("created_at")
-    val createdAt: String,
-    @SerializedName("updated_at")
-    val updatedAt: String
+    val batchStatus: Int
 )

@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.databinding.FragmentBatchDetailsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
@@ -65,6 +66,14 @@ class BatchDetails : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     binding.animationView.visibility = GONE
                     binding.meetingsList.visibility = VISIBLE
                 }
