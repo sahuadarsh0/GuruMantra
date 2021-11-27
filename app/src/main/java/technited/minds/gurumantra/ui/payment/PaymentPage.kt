@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui
+package technited.minds.gurumantra.ui.payment
 
 import android.app.Activity
 import android.os.Bundle
@@ -15,9 +15,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PaymentPage : AppCompatActivity(), PaymentResultListener {
-    private lateinit var packId: String
-    private lateinit var packPrice: String
-    private lateinit var packTitle: String
+
+    private lateinit var price: String
+    private lateinit var title: String
+    private lateinit var orderId: String
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -26,11 +27,10 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         setTheme(R.style.Theme_GuruMantra)
         setContentView(R.layout.activity_payment_page)
 
-        packId = intent.getStringExtra("id").toString()
-        packPrice = intent.getStringExtra("price").toString()
-        packTitle = intent.getStringExtra("title").toString()
-        Checkout.preload(applicationContext)
-        startPayment(packPrice+"00")
+        price = intent.getStringExtra("price").toString()
+        title = intent.getStringExtra("title").toString()
+        orderId = intent.getStringExtra("orderId").toString()
+        startPayment(price+"00")
     }
 
     private fun startPayment(amount: String) {
@@ -41,12 +41,13 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         try {
             val options = JSONObject()
             options.put("name", "Gurumantra.online")
-            options.put("description", packTitle)
+            options.put("description", title)
             //You can omit the image option to fetch the image from dashboard
 //            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
             options.put("currency", "INR")
             options.put("amount", amount)
-            options.put("send_sms_hash", true);
+            options.put("order_id", orderId)
+            options.put("send_sms_hash", true)
 
             val prefill = JSONObject()
             prefill.put("email", userSharedPreferences["email"])
@@ -63,9 +64,10 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
 
     override fun onPaymentError(errorCode: Int, response: String?) {
         try {
-            Toast.makeText(this, "Payment failed $errorCode \n $response", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Payment failed", Toast.LENGTH_LONG).show()
+            Log.d("asa", "onPaymentError  $errorCode \n $response")
         } catch (e: Exception) {
-            Log.e("asa", "Exception in onPaymentSuccess", e)
+            Log.e("asa", "Exception in onPaymentError  $errorCode \n $response", e)
         }
         finally {
             finish()
@@ -74,7 +76,8 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
 
     override fun onPaymentSuccess(razorpayPaymentId: String?) {
         try {
-            Toast.makeText(this, "Payment Successful $razorpayPaymentId", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Payment Successful", Toast.LENGTH_LONG).show()
+            Log.d("asa", "onPaymentSuccess $razorpayPaymentId")
         } catch (e: Exception) {
             Log.e("asa", "Exception in onPaymentSuccess", e)
         }

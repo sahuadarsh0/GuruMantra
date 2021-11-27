@@ -31,13 +31,13 @@
             android:name=".ui.ZoomActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true"/>
         <activity
             android:name=".ui.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.PaymentPage"
+            android:name=".ui.payment.PaymentPage"
             android:exported="true" />
 
         <receiver
@@ -64,7 +64,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_live_ILgsfZCZoFIKMb" />
+            android:value="rzp_test_dyVpuHdnxD7B11" />
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
