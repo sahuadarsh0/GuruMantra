@@ -5,6 +5,7 @@ import technited.minds.gurumantra.data.local.GalleryDao
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.model.EndTest
 import technited.minds.gurumantra.model.QuestionsItem
+import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.performGetOperation
 import javax.inject.Inject
 
@@ -31,6 +32,7 @@ class MainRepository @Inject constructor(
         password: String
     ) = remoteDataSource.register(name, email, contact, password)
 
+    suspend fun getEnrolled(tsId: String, userId: String) = remoteDataSource.getEnrolled(tsId, userId)
 
     //Test Series
     suspend fun getTestSeries() = remoteDataSource.getTestSeries()
@@ -38,7 +40,6 @@ class MainRepository @Inject constructor(
     suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
     suspend fun getStartTest(tId: String, uId: String) = remoteDataSource.getStartTest(tId, uId)
     suspend fun submitTest(endTest: EndTest) = remoteDataSource.submitTest(endTest)
-
 
 
     //Practice Sets
@@ -69,5 +70,15 @@ class MainRepository @Inject constructor(
 
     suspend fun getPackages() = remoteDataSource.getPackages()
     suspend fun getPaymentData(userId: String, pckId: String) = remoteDataSource.getPaymentData(userId, pckId)
+    suspend fun purchase(
+        userId: String,
+        orderId: String,
+        paymentId: String,
+        type: String
+    ) = when (type) {
+        "package" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
+        "package2" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
+        else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
+    }
 
 }

@@ -48,14 +48,12 @@ interface ApiService {
     @GET("getBatches")
     suspend fun getBatches(): Response<BatchDetails>
 
-//    @GET("rider/sendOTP/{mobile}/{otp}")
-//    fun sendOtp(
-//        @Path("mobile")
-//        mobile: String,
-//        @Path("otp")
-//        otp: String?
-//    ): Call<ResponseBody>
-
+//    enroll
+    @GET("enrollTs")
+    suspend fun getEnrolled(
+        @Query("tsId") tsId: String,
+        @Query("userId") userId: String
+    ): Response<Enrolled>
 
     //    Test Series
     @GET("getTs")
@@ -118,5 +116,16 @@ interface ApiService {
         @Query("userId") uId: String,
         @Query("pckId") pckId: String
     ): Response<PaymentOrder>
+
+    @FormUrlEncoded
+    @POST("purchasePackage")
+    suspend fun purchasePackage(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
 
 }

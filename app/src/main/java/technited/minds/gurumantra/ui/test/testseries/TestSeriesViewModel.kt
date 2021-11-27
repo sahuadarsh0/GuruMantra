@@ -7,10 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import technited.minds.gurumantra.data.repository.MainRepository
-import technited.minds.gurumantra.model.BatchDetailsItem
-import technited.minds.gurumantra.model.ListTests
-import technited.minds.gurumantra.model.MeetingDetails
-import technited.minds.gurumantra.model.TestDetails
+import technited.minds.gurumantra.model.*
 import technited.minds.gurumantra.utils.Resource
 import javax.inject.Inject
 
@@ -22,6 +19,7 @@ class TestSeriesViewModel @Inject constructor(private val repository: MainReposi
 
     val tests: MutableLiveData<Resource<ListTests>> = MutableLiveData()
     val testSeriesDetails: MutableLiveData<Resource<TestDetails>> = MutableLiveData()
+    val enroll: MutableLiveData<Resource<Enrolled>> = MutableLiveData()
 
     fun getListTests(tsId: String) = viewModelScope.launch {
         tests.postValue(repository.getListTests(tsId))
@@ -29,5 +27,9 @@ class TestSeriesViewModel @Inject constructor(private val repository: MainReposi
 
     fun getTestSeriesDetails(tsId: String, uId: String) = viewModelScope.launch {
         testSeriesDetails.postValue(repository.getTestSeriesDetails(tsId, uId))
+    }
+
+    fun getEnrolled(tsId: String, userId: String) = viewModelScope.launch {
+        enroll.postValue(repository.getEnrolled(tsId, userId))
     }
 }

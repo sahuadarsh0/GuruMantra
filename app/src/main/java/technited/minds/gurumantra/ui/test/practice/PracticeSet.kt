@@ -95,4 +95,5 @@ class PracticeSet : Fragment() {
             bundleOf("id" to testSeriesItem.tsId.toString())
         )
     }
+
 }

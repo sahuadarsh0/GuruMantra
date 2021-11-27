@@ -3,13 +3,17 @@ package technited.minds.gurumantra.ui.payment
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 import technited.minds.gurumantra.R
+import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
 
@@ -19,6 +23,9 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
     private lateinit var price: String
     private lateinit var title: String
     private lateinit var orderId: String
+    private lateinit var type: String
+
+    private val paymentsViewModel: PaymentViewModel by viewModels()
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -30,6 +37,7 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         price = intent.getStringExtra("price").toString()
         title = intent.getStringExtra("title").toString()
         orderId = intent.getStringExtra("orderId").toString()
+        type = intent.getStringExtra("type").toString()
         startPayment(price+"00")
     }
 
@@ -78,8 +86,33 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         try {
             Toast.makeText(this, "Payment Successful", Toast.LENGTH_LONG).show()
             Log.d("asa", "onPaymentSuccess $razorpayPaymentId")
+            paymentsViewModel.purchase(userSharedPreferences["id"]!!,orderId,razorpayPaymentId!!,type)
         } catch (e: Exception) {
             Log.e("asa", "Exception in onPaymentSuccess", e)
+        }
+        finally {
+            paymentsViewModel.purchase.observe(this,{
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+
+                    }
+                    Resource.Status.SUCCESS -> {
+                        val purchase = it.data
+
+                        if (purchase != null) {
+
+//                            packagesAdapter.submitList(packages.pcks)
+
+                        }
+
+                    }
+                    Resource.Status.ERROR -> {
+
+                    }
+
+                }
+            })
+            finish()
         }
     }
 

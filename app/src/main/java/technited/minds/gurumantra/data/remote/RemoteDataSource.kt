@@ -10,6 +10,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getFetchMeeting(classNo: String) = getResult { apiService.getFetchMeeting(classNo) }
     suspend fun getBatches() = getResult { apiService.getBatches() }
 
+    //    Enroll
+    suspend fun getEnrolled(tsId: String, userId: String) =
+        getResult { apiService.getEnrolled(tsId, userId) }
+
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
     suspend fun getTestSeriesDetails(testId: String, userId: String) =
@@ -42,6 +46,11 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     //    Payment
     suspend fun getPackages() = getResult { apiService.getPackages() }
     suspend fun getPaymentData(userId: String, pckId: String) = getResult { apiService.getPaymentData(userId, pckId) }
+    suspend fun purchasePackage(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchasePackage(userId, orderId, paymentId) }
 
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }

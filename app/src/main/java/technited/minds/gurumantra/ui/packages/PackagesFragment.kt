@@ -74,6 +74,14 @@ class PackagesFragment : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     binding.animationView.visibility = View.GONE
                     binding.packageList.visibility = View.VISIBLE
 
@@ -102,6 +110,10 @@ class PackagesFragment : Fragment() {
                     val payment = it.data
                     if (payment != null) {
                         i.putExtra("orderId", payment.data.orderId)
+                        i.putExtra("type", "purchase")
+                        Log.d("Asa", "before PaymentPage :  ${pck.pckPrice}")
+                        Log.d("Asa", "before PaymentPage : ${pck.pckName}")
+                        Log.d("Asa", "before PaymentPage : ${payment.data.orderId}")
                         startActivity(i)
                     }
                 }

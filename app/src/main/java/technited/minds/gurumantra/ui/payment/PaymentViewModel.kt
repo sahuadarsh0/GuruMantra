@@ -15,9 +15,19 @@ import javax.inject.Inject
 class PaymentViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
     val payment: MutableLiveData<Resource<PaymentOrder>> = MutableLiveData()
+    val purchase: MutableLiveData<Resource<String>> = MutableLiveData()
 
     fun getPaymentData(userId: String, pckId: String) = viewModelScope.launch {
         payment.postValue(repository.getPaymentData(userId, pckId))
+    }
+
+    fun purchase(
+        userId: String,
+        orderId: String,
+        paymentId: String,
+        type: String
+    ) = viewModelScope.launch {
+        purchase.postValue(repository.purchase(userId, orderId, paymentId, type))
     }
 
 }

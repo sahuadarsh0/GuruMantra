@@ -93,16 +93,6 @@ class TestSeriesDetails : Fragment() {
                     if (details != null) {
 
                         binding.details = details.tss
-                        if(details.tsEnrols==0){
-                            MaterialDialog(requireContext()).show {
-                                title(text = "Not Enrolled")
-                                message(R.string.enroll_message)
-                                cornerRadius(16f)
-                                positiveButton(text = "OK") { dialog ->
-                                    dialog.dismiss()
-                                }
-                            }
-                        }
                         binding.animationView.visibility = GONE
 
                     }
@@ -110,13 +100,13 @@ class TestSeriesDetails : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     MaterialDialog(requireContext()).show {
-                    title(text = "API ERROR")
-                    message(text = it.message)
-                    cornerRadius(16f)
-                    positiveButton(text = "OK") { dialog ->
-                        dialog.dismiss()
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
                     }
-                }
                     binding.animationView.visibility = GONE
 
                 }
@@ -133,6 +123,16 @@ class TestSeriesDetails : Fragment() {
     private fun onItemClicked(ts: Ts) {
         val i = Intent(activity, ExamActivity::class.java)
         i.putExtra("id", ts.tId.toString())
+        if (binding.details?.tsEnrolls == 0 || binding.details?.packageX == 0) {
+            MaterialDialog(requireContext()).show {
+                title(text = "Not Enrolled")
+                message(R.string.enroll_message)
+                cornerRadius(16f)
+                positiveButton(text = "OK") { dialog ->
+                    dialog.dismiss()
+                }
+            }
+        }
         startActivity(i)
     }
 
