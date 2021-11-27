@@ -33,9 +33,11 @@ class TestSeries : Fragment() {
     ): View {
         _binding = FragmentTestSeriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        arguments?.getString("type")?.let { testSeriesViewModel.getTestSeries(it) }
+
         setupRecyclerView()
         setupObservers()
-
         return root
     }
 

@@ -2,14 +2,12 @@ package technited.minds.gurumantra.ui.test.testseries
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -34,6 +32,7 @@ class TestSeriesDetails : Fragment() {
     private var _binding: FragmentTestSeriesDetailsBinding? = null
     private val testsAdapter = TestsAdapter(this::onItemClicked)
     private val binding get() = _binding!!
+    private lateinit var type: String
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -47,8 +46,12 @@ class TestSeriesDetails : Fragment() {
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
-        arguments?.getString("id")?.let { testSeriesViewModel.getTestSeriesDetails(it, userSharedPreferences["id"]!!) }
-        arguments?.getString("id")?.let { testSeriesViewModel.getListTests(it) }
+        arguments?.getString("type")?.let { type = it }
+
+        arguments?.getString("id")?.let {
+            testSeriesViewModel.getTestSeriesDetails(userSharedPreferences["id"]!!, it,type)
+            testSeriesViewModel.getListTests(it,type)
+        }
 
         return root
     }
@@ -205,7 +208,7 @@ class TestSeriesDetails : Fragment() {
     private fun onItemClicked(ts: Ts) {
         val i = Intent(activity, ExamActivity::class.java)
         i.putExtra("id", ts.tId.toString())
-
+        // TODO: 28-Nov-21 may ask for type == practice
         if (binding.details?.tsEnrolls == 1) {
             startActivity(i)
         } else {

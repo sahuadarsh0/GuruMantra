@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -61,7 +62,10 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_test_series -> {
-                    navController.navigate(R.id.navigation_test_series)
+                    navController.navigate(
+                        R.id.navigation_test_series,
+                        bundleOf("type" to "test")
+                    )
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_blogs -> {
@@ -102,7 +106,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.navigation_packages)
                 }
                 R.id.navigation_practice -> {
-                    navController.navigate(R.id.navigation_practice)
+                    navController.navigate(
+                        R.id.navigation_test_series,
+                        bundleOf("type" to "practice")
+                    )
                 }
             }
             true

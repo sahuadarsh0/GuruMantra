@@ -1,7 +1,6 @@
 package technited.minds.gurumantra.ui.test
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -12,7 +11,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -43,9 +41,9 @@ class ExamActivity : AppCompatActivity() {
     private var questionCountTotal = 0
     private var currentQuestion: QuestionsItem? = null
     private var answered = false
-    private lateinit var url: String
     private var testTime: Int = 1
     private var testId: Int = 0
+    private lateinit var type: String
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -95,7 +93,8 @@ class ExamActivity : AppCompatActivity() {
         }
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         testId = intent.getStringExtra("id")?.toInt() ?: 0
-        examViewModel.getStartTest(testId.toString(), userSharedPreferences["id"]!!)
+        type = intent.getStringExtra("type")!!
+        examViewModel.getStartTest(userSharedPreferences["id"]!!,testId.toString(),type)
         setUpObservers()
     }
 

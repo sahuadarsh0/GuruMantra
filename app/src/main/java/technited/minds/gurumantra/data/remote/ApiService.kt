@@ -29,12 +29,7 @@ interface ApiService {
         password: String?
     ): Response<RegisterDetails>
 
-//    @FormUrlEncoded
-//    @POST("customer/cancelOrderStatus")
-//    fun cancelOrderStatus(
-//        @Field("order_id")
-//        order_id: String?
-//    ): Call<ResponseBody?>
+
 
     @GET("getMeetings/{batchNo}")
     suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
@@ -48,12 +43,16 @@ interface ApiService {
     @GET("getBatches")
     suspend fun getBatches(): Response<BatchDetails>
 
+
+
     //    enroll
     @GET("enrollTs")
     suspend fun getEnrolled(
         @Query("userId") userId: String,
         @Query("tsId") tsId: String
     ): Response<Enrolled>
+
+
 
     //    Test Series
     @GET("getTs")
@@ -65,10 +64,8 @@ interface ApiService {
         @Query("tsId") tsId: String
     ): Response<TestDetails>
 
-
     @GET("listTests/{tsId}")
     suspend fun getListTests(@Path("tsId") tsId: String): Response<ListTests>
-
 
     @GET("startTest")
     suspend fun getStartTest(
@@ -80,9 +77,36 @@ interface ApiService {
     @POST("submitTest")
     suspend fun submitTest(@Body endTest: EndTest): Response<Result>
 
+
+
+
     //    Practice Sets
     @GET("getSetSeries")
     suspend fun getSetSeries(): Response<TestSeries>
+
+    @GET("getSetSeriesDetails")
+    suspend fun getSetSeriesDetails(
+        @Query("userId") uId: String,
+        @Query("pssId") pssId: String
+    ): Response<TestDetails>
+
+    @GET("listSets/{pssId}")
+    suspend fun getListSets(@Path("pssId") pssId: String): Response<ListTests>
+
+
+    @GET("startSet")
+    suspend fun getStartSet(
+        @Query("userId") userId: String,
+        @Query("psId") psId: String
+    ): Response<StartTest>
+
+
+    //    PDF Tests
+    @GET("getPDFts")
+    suspend fun getPDF(): Response<TestSeries>
+
+
+
 
 
     //    getBlogs
@@ -102,6 +126,8 @@ interface ApiService {
         @Field("comment")
         comment: String?
     ): Response<CommentResponse>
+
+
 
     // Others
     @GET("gallery")

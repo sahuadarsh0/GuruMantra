@@ -12,25 +12,28 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //    Enroll
     suspend fun getEnrolled(tsId: String, userId: String) =
-        getResult { apiService.getEnrolled(userId,tsId) }
+        getResult { apiService.getEnrolled(userId, tsId) }
 
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
-    suspend fun getTestSeriesDetails(testId: String, userId: String) =
+    suspend fun getTestSeriesDetails(userId: String, testId: String) =
         getResult { apiService.getTestSeriesDetails(userId, testId) }
 
     suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
-    suspend fun getStartTest(testId: String, userId: String) = getResult { apiService.getStartTest(userId, testId) }
+    suspend fun getStartTest(userId: String,testId: String) = getResult { apiService.getStartTest(userId, testId) }
     suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
 
     //Practice Sets
     suspend fun getSetSeries() = getResult { apiService.getSetSeries() }
-//    suspend fun getTestSeriesDetails(testId: String, userId: String) =
-//        getResult { apiService.getTestSeriesDetails(testId, userId) }
-//
-//    suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
-//    suspend fun getStartTest(testId: String, userId: String) = getResult { apiService.getStartTest(testId, userId) }
+    suspend fun getSetSeriesDetails(userId: String, pssId: String) =
+        getResult { apiService.getSetSeriesDetails(userId, pssId) }
+    suspend fun getListSets(pssId: String) = getResult { apiService.getListSets(pssId) }
+    suspend fun getStartSet(userId: String,psId: String)  = getResult { apiService.getStartSet(userId, psId) }
 //    suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
+
+
+    //    PDF Tests
+    suspend fun getPDF() = getResult { apiService.getPDF() }
 
     //Blogs
     suspend fun getBlogs() = getResult { apiService.getBlogs() }
@@ -45,19 +48,24 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //    Payment
     suspend fun getPackages() = getResult { apiService.getPackages() }
-    suspend fun getPaymentDataPackage(userId: String, pckId: String) = getResult { apiService.getPaymentDataPackage(userId, pckId) }
-    suspend fun getPaymentDataSeries(userId: String, tsId: String) = getResult { apiService.getPaymentDataSeries(userId, tsId) }
+    suspend fun getPaymentDataPackage(userId: String, pckId: String) =
+        getResult { apiService.getPaymentDataPackage(userId, pckId) }
+
+    suspend fun getPaymentDataSeries(userId: String, tsId: String) =
+        getResult { apiService.getPaymentDataSeries(userId, tsId) }
+
     suspend fun purchasePackage(
         userId: String,
         orderId: String,
         paymentId: String
     ) = getResult { apiService.purchasePackage(userId, orderId, paymentId) }
+
     suspend fun purchaseSeries(
         userId: String,
         orderId: String,
         paymentId: String,
         tsId: String
-    ) = getResult { apiService.purchaseSeries(userId, orderId, paymentId,ts) }
+    ) = getResult { apiService.purchaseSeries(userId, orderId, paymentId, tsId) }
 
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }

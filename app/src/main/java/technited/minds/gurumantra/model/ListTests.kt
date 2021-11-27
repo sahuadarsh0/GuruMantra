@@ -11,11 +11,11 @@ data class ListTests(
 )
 
 data class Ts(
-    @SerializedName("tId")
+    @SerializedName(value = "tId", alternate = ["pratId"])
     val tId: Int,
-    @SerializedName("tsId")
+    @SerializedName(value = "tsId", alternate = ["pratsId"])
     val tsId: Int,
-    @SerializedName("tName")
+    @SerializedName(value = "tName", alternate = ["pratName"])
     val tName: String,
     @SerializedName("ipId")
     val ipId: Int,
@@ -27,7 +27,7 @@ data class Ts(
     val validity: Any,
     @SerializedName("total_marks")
     val totalMarks: String,
-    @SerializedName("description")
+    @SerializedName(value = "description", alternate = ["pratDescription"])
     val description: String,
     @SerializedName("total_questions")
     val totalQuestions: Int,
@@ -35,12 +35,12 @@ data class Ts(
     val startDate: String,
     @SerializedName("end_date")
     val endDate: String,
-    @SerializedName("tImage")
+    @SerializedName(value = "tImage", alternate = ["thumbnail"])
     val tImage: String,
     @SerializedName("created_by")
     val createdBy: Int,
     @SerializedName("attempts")
     val attempts: Int,
-    @SerializedName("tStatus")
+    @SerializedName(value = "tStatus", alternate = ["pratStatus"])
     val tStatus: Int
 )

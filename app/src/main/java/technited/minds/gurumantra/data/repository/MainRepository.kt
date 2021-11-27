@@ -32,21 +32,36 @@ class MainRepository @Inject constructor(
 
     suspend fun getEnrolled(tsId: String, userId: String) = remoteDataSource.getEnrolled(tsId, userId)
 
-    //Test Series
-    suspend fun getTestSeries() = remoteDataSource.getTestSeries()
-    suspend fun getTestSeriesDetails(tsId: String, uId: String) = remoteDataSource.getTestSeriesDetails(tsId, uId)
-    suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
-    suspend fun getStartTest(tId: String, uId: String) = remoteDataSource.getStartTest(tId, uId)
+    //Test Series & Practice Sets
+    suspend fun getTestSeries(type: String) = when (type) {
+        "test" -> remoteDataSource.getTestSeries()
+        "practice" -> remoteDataSource.getSetSeries()
+        else -> remoteDataSource.getTestSeries()
+    }
+
+    suspend fun getTestSeriesDetails(userId: String, id: String, type: String) = when (type) {
+        "test" -> remoteDataSource.getTestSeriesDetails(userId, id)
+        "practice" -> remoteDataSource.getSetSeriesDetails(userId, id)
+        else -> remoteDataSource.getTestSeriesDetails(userId, id)
+    }
+
+    suspend fun getListTests(id: String, type: String) = when (type) {
+        "test" -> remoteDataSource.getListTests(id)
+        "practice" -> remoteDataSource.getListSets(id)
+        else -> remoteDataSource.getListTests(id)
+    }
+
+    suspend fun getStartTest(uId: String, id: String, type: String) = when (type) {
+        "test" -> remoteDataSource.getStartTest(uId, id)
+        "practice" -> remoteDataSource.getStartSet(uId, id)
+        else -> remoteDataSource.getStartTest(uId, id)
+    }
+
     suspend fun submitTest(endTest: EndTest) = remoteDataSource.submitTest(endTest)
 
 
-    //Practice Sets
-    suspend fun getSetSeries() = remoteDataSource.getSetSeries()
-//    suspend fun getTestSeriesDetails(tsId: String, uId: String) = remoteDataSource.getTestSeriesDetails(tsId, uId)
-//    suspend fun getListTests(tsId: String) = remoteDataSource.getListTests(tsId)
-//    suspend fun getStartTest(tId: String, uId: String) = remoteDataSource.getStartTest(tId, uId)
-//    suspend fun submitTest(endTest: EndTest) = remoteDataSource.submitTest(endTest)
-
+    //    PDF Tests
+    suspend fun getPDF() = remoteDataSource.getPDF()
 
     //    Blogs
     fun getBlogs() = performGetOperation(
