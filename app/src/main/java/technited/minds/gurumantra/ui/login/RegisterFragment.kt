@@ -1,76 +1,91 @@
-package technited.minds.gurumantra.ui
+package technited.minds.gurumantra.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import eightbitlab.com.blurview.RenderScriptBlur
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.databinding.ActivityLoginBinding
-import technited.minds.gurumantra.model.LoginDetails
+import technited.minds.gurumantra.databinding.FragmentRegisterBinding
+import technited.minds.gurumantra.model.RegisterDetails
+import technited.minds.gurumantra.ui.MainActivity
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class RegisterFragment : Fragment() {
+
+    private var _binding: FragmentRegisterBinding? = null
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
-    private lateinit var loginData: LoginDetails
+    private lateinit var registerDetails: RegisterDetails
     private val loginViewModel: LoginViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_GuruMantra)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.animationView.visibility = GONE
-        if (!userSharedPreferences["name"].isNullOrEmpty()) {
-            openMain()
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        initBlur()
+        setup()
+        binding.loginText.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_register_to_navigation_login)
         }
+        return root
+    }
+
+
+    private fun setup() {
+
         binding.apply {
-            loginButton.setOnClickListener {
-                if (username.text.isNotEmpty() || password.text.isNotEmpty()) {
-                    send(username.text.toString(), password.text.toString())
+            registerButton.setOnClickListener {
+                if (name.text.isNotEmpty() || email.text.isNotEmpty() || contact.text.isNotEmpty() || password.text.isNotEmpty()) {
+                    send(name.text.toString(), email.text.toString(), contact.text.toString(), password.text.toString())
                 } else {
-                    Toast.makeText(this@LoginActivity, "Enter Username and Password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "All fields are mandatory", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            loginViewModel.details.observe(this@LoginActivity, {
+            loginViewModel.registerDetails.observe(viewLifecycleOwner, {
                 when (it.status) {
                     Resource.Status.LOADING -> {
                         animationView.visibility = VISIBLE
                         items.visibility = GONE
                     }
                     Resource.Status.SUCCESS -> {
-                        Log.d("asa", "onCreate: SUCCESS")
-                        if (it.data?.msg.equals("Login Success")) {
-                            loginData = it.data!!
-                            loginData.loginData.apply {
+                        if (it.data?.message.equals("OTP Send to Your Phone")) {
+                            registerDetails = it.data!!
+                            registerDetails.users?.apply {
                                 userSharedPreferences["name"] = name
                                 userSharedPreferences["email"] = email
                                 userSharedPreferences["contact"] = contact
                                 userSharedPreferences["type"] = type
                                 userSharedPreferences["image"] = image
                                 userSharedPreferences["package"] = packageX.toString()
+                                userSharedPreferences["phoneVerified"] = phoneVerified.toString()
                                 userSharedPreferences["id"] = id.toString()
                                 userSharedPreferences.apply()
                             }
                             openMain()
                         } else {
-                            MaterialDialog(this@LoginActivity).show {
-                                title(text = "LOGIN ERROR")
-                                message(text = "username or password incorrect")
+                            MaterialDialog(requireContext()).show {
+                                title(text = "Message")
+                                message(text = it.data?.message)
                                 cornerRadius(16f)
                                 positiveButton(text = "OK") { dialog ->
                                     dialog.dismiss()
@@ -81,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                         items.visibility = VISIBLE
                     }
                     Resource.Status.ERROR -> {
-                        MaterialDialog(this@LoginActivity).show {
+                        MaterialDialog(requireContext()).show {
                             title(text = "API ERROR")
                             message(text = it.message)
                             cornerRadius(16f)
@@ -95,26 +110,26 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             })
-            initBlur()
+
         }
     }
 
     private fun openMain() {
-        val i = Intent(this, MainActivity::class.java)
-        startActivity(i)
-        finish()
+        val i = Intent(requireContext(), MainActivity::class.java)
+        activity?.startActivity(i)
+        activity?.finish()
     }
 
-    private fun send(username: String, password: String) {
+    private fun send(name: String, email: String, contact: String, password: String) {
         binding.animationView.visibility = VISIBLE
         binding.items.visibility = GONE
-        loginViewModel.login(username, password)
+        loginViewModel.register(name, email, contact, password)
     }
 
     private fun initBlur() {
         val radius = 20f
 
-        val decorView = window.decorView;
+        val decorView = activity?.window?.decorView!!
         //ViewGroup you want to start blur from. Choose root as close to BlurView in hierarchy as possible.
         val rootView = decorView.findViewById<ViewGroup>(android.R.id.content);
         //Set drawable to draw in the beginning of each blurred frame (Optional).
@@ -124,11 +139,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.blurView.setupWith(rootView)
             .setFrameClearDrawable(windowBackground)
-            .setBlurAlgorithm(RenderScriptBlur(this))
+            .setBlurAlgorithm(RenderScriptBlur(requireContext()))
             .setBlurRadius(radius)
             .setBlurAutoUpdate(true)
             .setHasFixedTransformationMatrix(true)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
