@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class TestSeries : ArrayList<TestSeriesItem>()
 
 data class TestSeriesItem(
-    @SerializedName("tsId")
+    @SerializedName(value = "tsId", alternate = ["praId"])
     val tsId: Int,
     @SerializedName("cId")
     val cId: Int,
@@ -14,30 +14,24 @@ data class TestSeriesItem(
     val scId: Int,
     @SerializedName("package")
     val packageX: Int,
-    @SerializedName("tsName")
+    @SerializedName(value = "tsName", alternate = ["praName"])
     val tsName: String,
-    @SerializedName("tsDescription")
+    @SerializedName(value = "tsDescription", alternate = ["praDescription"])
     val tsDescription: String,
     @SerializedName("totalTests")
     val totalTests: Int,
     @SerializedName("price")
-    val price: Int,
+    val price: Any,
     @SerializedName("thumbnail")
     val thumbnail: String,
-    @SerializedName("tsStatus")
+    @SerializedName(value = "tsStatus", alternate = ["praStatus"])
     val tsStatus: Int,
-    @SerializedName("tsCreatedBy")
-    val tsCreatedBy: Int,
-    @SerializedName("tsEnrolls")
+    @SerializedName(value = "tsEnrolls", alternate = ["praEnrolls"])
     val tsEnrolls: Int,
-    @SerializedName("tsMetaKey")
-    val tsMetaKey: String,
-    @SerializedName("tsMetaDesc")
-    val tsMetaDesc: String,
-    @SerializedName("created_at")
-    val createdAt: String,
-    @SerializedName("updated_at")
-    val updatedAt: String,
+    @SerializedName("cName")
+    val cName: String,
+    @SerializedName("scName")
+    val scName: String,
     @SerializedName("packageName")
     val packageName: String
 )

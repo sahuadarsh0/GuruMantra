@@ -9,7 +9,9 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
+import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
 import technited.minds.gurumantra.model.Ts
 import technited.minds.gurumantra.ui.MainActivity
@@ -91,12 +93,30 @@ class TestSeriesDetails : Fragment() {
                     if (details != null) {
 
                         binding.details = details.tss
+                        if(details.tsEnrols==0){
+                            MaterialDialog(requireContext()).show {
+                                title(text = "Not Enrolled")
+                                message(R.string.enroll_message)
+                                cornerRadius(16f)
+                                positiveButton(text = "OK") { dialog ->
+                                    dialog.dismiss()
+                                }
+                            }
+                        }
                         binding.animationView.visibility = GONE
 
                     }
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                    title(text = "API ERROR")
+                    message(text = it.message)
+                    cornerRadius(16f)
+                    positiveButton(text = "OK") { dialog ->
+                        dialog.dismiss()
+                    }
+                }
                     binding.animationView.visibility = GONE
 
                 }

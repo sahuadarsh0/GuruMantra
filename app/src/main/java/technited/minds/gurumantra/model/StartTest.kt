@@ -81,29 +81,6 @@ data class Tsec(
     @SerializedName("totalQuestions")
     val totalQuestions: Int,
     @SerializedName("tsecStatus")
-    val tsecStatus: Int,
-    @SerializedName("updated_at")
-    val updatedAt: String,
-    @SerializedName("created_at")
-    val createdAt: String
+    val tsecStatus: Int
 )
-
-//data class Que(
-//    @SerializedName("qId")
-//    val qId: Int,
-//    @SerializedName("qTitle")
-//    val qTitle: String,
-//    @SerializedName("marks")
-//    val marks: String,
-//    @SerializedName("negMarks")
-//    val negMarks: String,
-//    @SerializedName("tsecId")
-//    val tsecId: Int,
-//    @SerializedName("qOptions")
-//    val qOptions: QOptions,
-//    @SerializedName("totalOptions")
-//    val totalOptions: Int,
-//    @SerializedName("qType")
-//    val qType: String
-//)
 
