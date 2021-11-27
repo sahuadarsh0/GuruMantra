@@ -13,28 +13,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="8dp"
         app:cardElevation="3dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/blog_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:setImageUrl="@{blog.blogThumbnail}"
-                android:src="@drawable/notebook"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="16:9"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/blog_title"
@@ -42,33 +31,51 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:paddingTop="4dp"
                 android:maxLines="1"
                 android:paddingStart="4dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="2dp"
                 android:text="@{blog.blogTitle}"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_image"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Bla Bla Tests" />
+
+
+            <ImageView
+                android:id="@+id/blog_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:setImageUrl="@{blog.blogThumbnail}"
+                android:src="@drawable/notebook"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="h,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/blog_title"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent=".3" />
 
             <TextView
                 android:id="@+id/blog_short"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
-                android:maxLines="2"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:gravity="start"
-                android:paddingBottom="4dp"
+                android:maxLines="4"
                 android:paddingStart="4dp"
                 android:paddingEnd="2dp"
-                android:textStyle="normal"
+                android:paddingBottom="4dp"
                 android:text="@{blog.blogShortContent}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/blog_image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/blog_image"
                 app:layout_constraintTop_toBottomOf="@+id/blog_title"
                 tools:text="Bla Bla bla description" />
 

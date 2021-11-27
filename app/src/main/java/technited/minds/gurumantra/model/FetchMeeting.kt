@@ -7,5 +7,5 @@ data class FetchMeeting(
     @SerializedName("cls")
     val cls: MeetingDetailsItem,
     @SerializedName("notices")
-    val notices: List<Any>
+    val notices: List<String>
 )

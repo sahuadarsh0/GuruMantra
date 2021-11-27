@@ -1,11 +1,12 @@
 package technited.minds.gurumantra.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SyncStateContract
+import android.os.Handler
 import android.view.Gravity
-import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +14,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import technited.minds.gurumantra.BuildConfig
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityMainBinding
+import technited.minds.gurumantra.ui.login.LoginActivity
 import technited.minds.gurumantra.utils.SharedPrefs
 import us.zoom.sdk.*
 import javax.inject.Inject
@@ -31,8 +30,10 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
+    private var backPressedOnce = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_GuruMantra)
@@ -91,8 +92,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
-
-//        navView.setupWithNavController(navController)
         navView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawers()
             when (it.itemId) {
@@ -107,8 +106,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         val headerView = navView.getHeaderView(0)
-        headerView.findViewById<TextView>(R.id.name).text  = userSharedPreferences["name"]
+        headerView.findViewById<TextView>(R.id.name).text = userSharedPreferences["name"]
+        headerView.findViewById<TextView>(R.id.contact).text = userSharedPreferences["contact"]
         headerView.findViewById<TextView>(R.id.email).text = userSharedPreferences["email"]
+        if (userSharedPreferences["phoneVerified"]?.toInt() == 1)
+            headerView.findViewById<ImageView>(R.id.verified).visibility = VISIBLE
+        else
+            headerView.findViewById<ImageView>(R.id.verified).visibility = GONE
+    }
+
+    override fun onBackPressed() {
+        if (navController.graph.startDestination == navController.currentDestination!!.id) {
+            if (backPressedOnce) {
+//                super.onBackPressed()
+                finish()
+            }
+            backPressedOnce = true
+            Toast.makeText(this, "Please Back again to exit", Toast.LENGTH_SHORT).show()
+
+            val handler = Handler()
+            handler.postDelayed({ backPressedOnce = false }, 2000)
+        } else {
+            super.onBackPressed()
+        }
     }
 
 }

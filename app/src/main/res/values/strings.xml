@@ -2,6 +2,13 @@
     <string name="app_name">GuruMantra</string>
     <string name="welcome">Welcome</string>
     <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="contact">Contact</string>
+    <string name="register_text">New Registration? Click Here</string>
+    <string name="login_text">Already Registered? Login Here</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_home">Home</string>
     <string name="title_test_series">Test Series</string>
@@ -21,4 +28,5 @@
     <string name="gallery">Gallery</string>
     <string name="packages">Packages</string>
     <string name="notes">Notes</string>
+    <string name="enroll_message">"Want to Enroll Now"</string>
 </resources>

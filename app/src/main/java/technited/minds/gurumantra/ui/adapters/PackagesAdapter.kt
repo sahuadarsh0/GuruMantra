@@ -20,7 +20,7 @@ class PackagesAdapter(private val onItemClicked: (Pck) -> Unit) : ListAdapter<Pc
     companion object {
         private val DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Pck>() {
             override fun areItemsTheSame(oldItem: Pck, newItem: Pck): Boolean =
-                oldItem.pId == newItem.pId
+                oldItem.pckId == newItem.pckId
 
 
             override fun areContentsTheSame(oldItem: Pck, newItem: Pck): Boolean =

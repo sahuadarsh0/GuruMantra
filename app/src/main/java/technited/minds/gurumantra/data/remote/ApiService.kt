@@ -16,6 +16,19 @@ interface ApiService {
         password: String?
     ): Response<LoginDetails>
 
+    @FormUrlEncoded
+    @POST("registration")
+    suspend fun register(
+        @Field("name")
+        name: String?,
+        @Field("email")
+        email: String?,
+        @Field("contact")
+        contact: String?,
+        @Field("password")
+        password: String?
+    ): Response<RegisterDetails>
+
 //    @FormUrlEncoded
 //    @POST("customer/cancelOrderStatus")
 //    fun cancelOrderStatus(
@@ -69,6 +82,11 @@ interface ApiService {
     @POST("submitTest")
     suspend fun submitTest(@Body endTest: EndTest): Response<Result>
 
+    //    Practice Sets
+    @GET("getSetSeries")
+    suspend fun getSetSeries(): Response<TestSeries>
+
+
     //    getBlogs
     @GET("getBlogs")
     suspend fun getBlogs(): Response<GetBlogs>
@@ -95,6 +113,10 @@ interface ApiService {
     @GET("packages")
     suspend fun getPackages(): Response<Packages>
 
-
+    @GET("getPackageOrderId")
+    suspend fun getPaymentData(
+        @Query("userId") uId: String,
+        @Query("pckId") pckId: String
+    ): Response<PaymentOrder>
 
 }

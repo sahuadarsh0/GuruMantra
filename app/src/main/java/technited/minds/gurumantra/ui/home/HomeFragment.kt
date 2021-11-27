@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentHomeBinding
@@ -66,6 +67,14 @@ class HomeFragment : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     binding.animationView.visibility = GONE
                     binding.batchesList.visibility = VISIBLE
 

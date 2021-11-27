@@ -8,7 +8,7 @@
 
         <variable
             name="details"
-            type="technited.minds.gurumantra.model.Tss" />
+            type="technited.minds.gurumantra.model.TestSeriesItem" />
     </data>
 
     <ScrollView
