@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.test
+package technited.minds.gurumantra.ui.test.testseries
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
 import technited.minds.gurumantra.model.Ts
-import technited.minds.gurumantra.ui.MainActivity
 import technited.minds.gurumantra.ui.adapters.TestsAdapter
+import technited.minds.gurumantra.ui.test.ExamActivity
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject

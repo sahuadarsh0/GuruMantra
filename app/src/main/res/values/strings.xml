@@ -29,4 +29,6 @@
     <string name="packages">Packages</string>
     <string name="notes">Notes</string>
     <string name="enroll_message">"Want to Enroll Now"</string>
+    <string name="practice">Practice Sets</string>
+    <string name="pdf">PDF Test</string>
 </resources>

@@ -101,6 +101,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_packages -> {
                     navController.navigate(R.id.navigation_packages)
                 }
+                R.id.navigation_practice -> {
+                    navController.navigate(R.id.navigation_practice)
+                }
             }
             true
         }

@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/navigation_test_series"
-        android:name="technited.minds.gurumantra.ui.test.TestSeries"
+        android:name="technited.minds.gurumantra.ui.test.testseries.TestSeries"
         android:label="@string/title_test_series"
         tools:layout="@layout/fragment_test_series">
         <action
@@ -70,7 +70,7 @@
     </activity>
     <fragment
         android:id="@+id/testSeriesDetails"
-        android:name="technited.minds.gurumantra.ui.test.TestSeriesDetails"
+        android:name="technited.minds.gurumantra.ui.test.testseries.TestSeriesDetails"
         android:label="Test Series Details"
         tools:layout="@layout/fragment_test_series_details">
     </fragment>
@@ -82,11 +82,16 @@
     <fragment
         android:id="@+id/navigation_gallery"
         android:name="technited.minds.gurumantra.ui.gallery.GalleryFragment"
-        android:label="Gallery"
+        android:label="@string/gallery"
         tools:layout="@layout/fragment_gallery"/>
     <fragment
         android:id="@+id/navigation_packages"
         android:name="technited.minds.gurumantra.ui.packages.PackagesFragment"
-        android:label="Packages"
+        android:label="@string/packages"
         tools:layout="@layout/fragment_packages"/>
+    <fragment
+        android:id="@+id/navigation_practice"
+        android:name="technited.minds.gurumantra.ui.test.practice.PracticeSet"
+        android:label="@string/practice"
+        tools:layout="@layout/fragment_test_series" />
 </navigation>

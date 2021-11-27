@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.test.TestSeries">
+    tools:context=".ui.test.testseries.TestSeries">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/test_series_list"

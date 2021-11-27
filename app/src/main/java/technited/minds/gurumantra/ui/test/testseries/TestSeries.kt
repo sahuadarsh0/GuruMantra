@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.test
+package technited.minds.gurumantra.ui.test.testseries
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,18 +7,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.databinding.FragmentHomeBinding
 import technited.minds.gurumantra.databinding.FragmentTestSeriesBinding
-import technited.minds.gurumantra.model.BatchDetailsItem
 import technited.minds.gurumantra.model.TestSeriesItem
-import technited.minds.gurumantra.ui.adapters.BatchesAdapter
 import technited.minds.gurumantra.ui.adapters.TestSeriesAdapter
-import technited.minds.gurumantra.ui.home.HomeViewModel
 import technited.minds.gurumantra.utils.Resource
 
 

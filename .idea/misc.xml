@@ -7,6 +7,7 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg1.xml" value="0.3435185185185185" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_edit_text.xml" value="0.31851851851851853" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_account.xml" value="0.2722222222222222" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_call.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_email.xml" value="0.32788559754851887" />
@@ -56,6 +57,8 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30092592592592593" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/example.xml" value="0.32037037037037036" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/side_nav_menu.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/commonlib/build/.transforms/bb882a7577c4dce080cf8f646caf11ad/transformed/jetified-commonlib/res/drawable/zm_ic_filetype_pdf.xml" value="0.32788559754851887" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/mobilertc/build/.transforms/e047e87719c426e4f7e4bc301b89b481/transformed/jetified-mobilertc/res/drawable/zm_ic_sip_verified.xml" value="0.32788559754851887" />
       </map>
     </option>
   </component>

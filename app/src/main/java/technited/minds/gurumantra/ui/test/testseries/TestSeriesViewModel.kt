@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.test
+package technited.minds.gurumantra.ui.test.testseries
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
