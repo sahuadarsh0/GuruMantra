@@ -3,11 +3,9 @@ package technited.minds.gurumantra.ui.payment
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +18,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PaymentPage : AppCompatActivity(), PaymentResultListener {
 
+    private lateinit var id: String
     private lateinit var price: String
     private lateinit var title: String
     private lateinit var orderId: String
@@ -34,6 +33,7 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         setTheme(R.style.Theme_GuruMantra)
         setContentView(R.layout.activity_payment_page)
 
+        id = intent.getStringExtra("id").toString()
         price = intent.getStringExtra("price").toString()
         title = intent.getStringExtra("title").toString()
         orderId = intent.getStringExtra("orderId").toString()
@@ -86,7 +86,7 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
         try {
             Toast.makeText(this, "Payment Successful", Toast.LENGTH_LONG).show()
             Log.d("asa", "onPaymentSuccess $razorpayPaymentId")
-            paymentsViewModel.purchase(userSharedPreferences["id"]!!,orderId,razorpayPaymentId!!,type)
+            paymentsViewModel.purchase(userSharedPreferences["id"]!!,orderId,razorpayPaymentId!!,id,type)
         } catch (e: Exception) {
             Log.e("asa", "Exception in onPaymentSuccess", e)
         }

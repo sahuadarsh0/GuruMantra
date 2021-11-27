@@ -48,11 +48,11 @@ interface ApiService {
     @GET("getBatches")
     suspend fun getBatches(): Response<BatchDetails>
 
-//    enroll
+    //    enroll
     @GET("enrollTs")
     suspend fun getEnrolled(
-        @Query("tsId") tsId: String,
-        @Query("userId") userId: String
+        @Query("userId") userId: String,
+        @Query("tsId") tsId: String
     ): Response<Enrolled>
 
     //    Test Series
@@ -61,8 +61,8 @@ interface ApiService {
 
     @GET("tsDetails")
     suspend fun getTestSeriesDetails(
-        @Query("tsId") tsId: String,
-        @Query("uId") uId: String
+        @Query("uId") uId: String,
+        @Query("tsId") tsId: String
     ): Response<TestDetails>
 
 
@@ -72,8 +72,8 @@ interface ApiService {
 
     @GET("startTest")
     suspend fun getStartTest(
-        @Query("testId") testId: String,
-        @Query("userId") userId: String
+        @Query("userId") userId: String,
+        @Query("testId") testId: String
     ): Response<StartTest>
 
     @Headers("Content-Type: application/json")
@@ -112,9 +112,15 @@ interface ApiService {
     suspend fun getPackages(): Response<Packages>
 
     @GET("getPackageOrderId")
-    suspend fun getPaymentData(
-        @Query("userId") uId: String,
+    suspend fun getPaymentDataPackage(
+        @Query("userId") userId: String,
         @Query("pckId") pckId: String
+    ): Response<PaymentOrder>
+
+    @GET("getOrderIdTseries")
+    suspend fun getPaymentDataSeries(
+        @Query("userId") userId: String,
+        @Query("tsId") tsId: String
     ): Response<PaymentOrder>
 
     @FormUrlEncoded
@@ -126,6 +132,19 @@ interface ApiService {
         orderId: String?,
         @Field("paymentId")
         paymentId: String?
+    ): Response<String>
+
+    @FormUrlEncoded
+    @POST("purchaseSeries")
+    suspend fun purchaseSeries(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?,
+        @Field("tsId")
+        tsId: String?
     ): Response<String>
 
 }

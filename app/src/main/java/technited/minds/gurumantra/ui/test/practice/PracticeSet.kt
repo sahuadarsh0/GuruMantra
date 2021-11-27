@@ -91,7 +91,7 @@ class PracticeSet : Fragment() {
 
     private fun onItemClicked(testSeriesItem: TestSeriesItem) {
         findNavController().navigate(
-            R.id.action_navigation_test_series_to_testSeriesDetails,
+            R.id.action_navigation_practice_to_testSeriesDetails,
             bundleOf("id" to testSeriesItem.tsId.toString())
         )
     }

@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.utils.Resource
@@ -27,7 +27,7 @@ class PackagesFragment : Fragment() {
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
     private val packagesViewModel: PackagesViewModel by viewModels()
-    private val paymentsViewModel: PaymentViewModel by viewModels()
+    private val paymentViewModel: PaymentViewModel by viewModels()
     private val packagesAdapter = PackagesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
 
@@ -100,8 +100,8 @@ class PackagesFragment : Fragment() {
         val i = Intent(activity, PaymentPage::class.java)
         i.putExtra("price", pck.pckPrice.toString())
         i.putExtra("title", pck.pckName)
-        paymentsViewModel.getPaymentData(userSharedPreferences["id"]!!, pck.pckId.toString())
-        paymentsViewModel.payment.observe(viewLifecycleOwner, {
+        paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, pck.pckId.toString(), "package")
+        paymentViewModel.payment.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
 //                    binding.animationView.visibility = View.VISIBLE
@@ -109,12 +109,16 @@ class PackagesFragment : Fragment() {
                 Resource.Status.SUCCESS -> {
                     val payment = it.data
                     if (payment != null) {
-                        i.putExtra("orderId", payment.data.orderId)
-                        i.putExtra("type", "purchase")
-                        Log.d("Asa", "before PaymentPage :  ${pck.pckPrice}")
-                        Log.d("Asa", "before PaymentPage : ${pck.pckName}")
-                        Log.d("Asa", "before PaymentPage : ${payment.data.orderId}")
-                        startActivity(i)
+                        if (payment.status == 2)
+                            Toast.makeText(requireContext(), payment.message, Toast.LENGTH_SHORT).show()
+                        else {
+                            i.putExtra("orderId", payment.data.orderId)
+                            i.putExtra("type", "package")
+                            Log.d("Asa", "before PaymentPage :  ${pck.pckPrice}")
+                            Log.d("Asa", "before PaymentPage : ${pck.pckName}")
+                            Log.d("Asa", "before PaymentPage : ${payment.data.orderId}")
+                            startActivity(i)
+                        }
                     }
                 }
                 Resource.Status.ERROR -> {

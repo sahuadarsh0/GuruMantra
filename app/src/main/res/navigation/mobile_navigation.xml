@@ -73,6 +73,13 @@
         android:name="technited.minds.gurumantra.ui.test.testseries.TestSeriesDetails"
         android:label="Test Series Details"
         tools:layout="@layout/fragment_test_series_details">
+        <action
+            android:id="@+id/action_testSeriesDetails_to_navigation_packages"
+            app:destination="@id/navigation_packages"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/blogDetails"
@@ -83,15 +90,23 @@
         android:id="@+id/navigation_gallery"
         android:name="technited.minds.gurumantra.ui.gallery.GalleryFragment"
         android:label="@string/gallery"
-        tools:layout="@layout/fragment_gallery"/>
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/navigation_packages"
         android:name="technited.minds.gurumantra.ui.packages.PackagesFragment"
         android:label="@string/packages"
-        tools:layout="@layout/fragment_packages"/>
+        tools:layout="@layout/fragment_packages" />
     <fragment
         android:id="@+id/navigation_practice"
         android:name="technited.minds.gurumantra.ui.test.practice.PracticeSet"
         android:label="@string/practice"
-        tools:layout="@layout/fragment_test_series" />
+        tools:layout="@layout/fragment_test_series">
+        <action
+            android:id="@+id/action_navigation_practice_to_testSeriesDetails"
+            app:destination="@id/testSeriesDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 </navigation>
