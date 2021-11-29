@@ -8,6 +8,6 @@ data class Enrolled(
     val status: Int,
     @SerializedName("message")
     val message: String,
-    @SerializedName("tsId")
+    @SerializedName(value = "tsId", alternate = ["pssId"])
     val tsId: String
 )

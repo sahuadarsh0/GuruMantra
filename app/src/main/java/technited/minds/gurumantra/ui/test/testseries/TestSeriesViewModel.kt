@@ -35,7 +35,7 @@ class TestSeriesViewModel @Inject constructor(private val repository: MainReposi
         testSeriesDetails.postValue(repository.getTestSeriesDetails(userId, tsId, type))
     }
 
-    fun getEnrolled(tsId: String, userId: String) = viewModelScope.launch {
-        enroll.postValue(repository.getEnrolled(tsId, userId))
+    fun getEnrolled(userId: String, tsId: String, type: String) = viewModelScope.launch {
+        enroll.postValue(repository.getEnrolled(userId, tsId, type))
     }
 }

@@ -25,6 +25,7 @@ class TestSeries : Fragment() {
     private val testSeriesViewModel: TestSeriesViewModel by viewModels()
     private val testSeriesAdapter = TestSeriesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
+    private lateinit var type: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +35,8 @@ class TestSeries : Fragment() {
         _binding = FragmentTestSeriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        arguments?.getString("type")?.let { testSeriesViewModel.getTestSeries(it) }
-
+        arguments?.getString("type")?.let { type = it }
+        testSeriesViewModel.getTestSeries(type)
         setupRecyclerView()
         setupObservers()
         return root
@@ -70,13 +71,13 @@ class TestSeries : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     MaterialDialog(requireContext()).show {
-                    title(text = "API ERROR")
-                    message(text = it.message)
-                    cornerRadius(16f)
-                    positiveButton(text = "OK") { dialog ->
-                        dialog.dismiss()
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
                     }
-                }
                     binding.animationView.visibility = View.GONE
                     binding.testSeriesList.visibility = View.VISIBLE
 
@@ -94,7 +95,10 @@ class TestSeries : Fragment() {
     private fun onItemClicked(testSeriesItem: TestSeriesItem) {
         findNavController().navigate(
             R.id.action_navigation_test_series_to_testSeriesDetails,
-            bundleOf("id" to testSeriesItem.tsId.toString())
+            bundleOf(
+                "id" to testSeriesItem.tsId.toString(),
+                "type" to type
+            )
         )
     }
 }

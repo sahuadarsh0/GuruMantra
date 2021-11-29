@@ -30,7 +30,6 @@ interface ApiService {
     ): Response<RegisterDetails>
 
 
-
     @GET("getMeetings/{batchNo}")
     suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
 
@@ -44,16 +43,6 @@ interface ApiService {
     suspend fun getBatches(): Response<BatchDetails>
 
 
-
-    //    enroll
-    @GET("enrollTs")
-    suspend fun getEnrolled(
-        @Query("userId") userId: String,
-        @Query("tsId") tsId: String
-    ): Response<Enrolled>
-
-
-
     //    Test Series
     @GET("getTs")
     suspend fun getTestSeries(): Response<TestSeries>
@@ -64,8 +53,8 @@ interface ApiService {
         @Query("tsId") tsId: String
     ): Response<TestDetails>
 
-    @GET("listTests/{tsId}")
-    suspend fun getListTests(@Path("tsId") tsId: String): Response<ListTests>
+    @GET("listTests")
+    suspend fun getListTests(@Query("tsId") tsId: String): Response<ListTests>
 
     @GET("startTest")
     suspend fun getStartTest(
@@ -77,7 +66,12 @@ interface ApiService {
     @POST("submitTest")
     suspend fun submitTest(@Body endTest: EndTest): Response<Result>
 
-
+    //    enroll
+    @GET("enrollTs")
+    suspend fun getEnrolled(
+        @Query("userId") userId: String,
+        @Query("tsId") tsId: String
+    ): Response<Enrolled>
 
 
     //    Practice Sets
@@ -90,8 +84,8 @@ interface ApiService {
         @Query("pssId") pssId: String
     ): Response<TestDetails>
 
-    @GET("listSets/{pssId}")
-    suspend fun getListSets(@Path("pssId") pssId: String): Response<ListTests>
+    @GET("listSets")
+    suspend fun getListSets(@Query("pssId") pssId: String): Response<ListTests>
 
 
     @GET("startSet")
@@ -100,13 +94,18 @@ interface ApiService {
         @Query("psId") psId: String
     ): Response<StartTest>
 
+    //    enroll
+
+    @GET("enrollPracSet")
+    suspend fun getEnrolledSet(
+        @Query("userId") userId: String,
+        @Query("pssId") pssId: String
+    ): Response<Enrolled>
+
 
     //    PDF Tests
     @GET("getPDFts")
     suspend fun getPDF(): Response<TestSeries>
-
-
-
 
 
     //    getBlogs
@@ -126,7 +125,6 @@ interface ApiService {
         @Field("comment")
         comment: String?
     ): Response<CommentResponse>
-
 
 
     // Others
@@ -161,16 +159,14 @@ interface ApiService {
     ): Response<String>
 
     @FormUrlEncoded
-    @POST("purchaseSeries")
+    @POST("purchaseTseries")
     suspend fun purchaseSeries(
         @Field("userId")
         userId: String?,
         @Field("orderId")
         orderId: String?,
         @Field("paymentId")
-        paymentId: String?,
-        @Field("tsId")
-        tsId: String?
+        paymentId: String?
     ): Response<String>
 
 }

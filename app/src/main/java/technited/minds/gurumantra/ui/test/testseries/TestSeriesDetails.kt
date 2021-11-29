@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.test.testseries
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -33,6 +34,7 @@ class TestSeriesDetails : Fragment() {
     private val testsAdapter = TestsAdapter(this::onItemClicked)
     private val binding get() = _binding!!
     private lateinit var type: String
+    private var tsEnrolls: Int = 0
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -49,8 +51,8 @@ class TestSeriesDetails : Fragment() {
         arguments?.getString("type")?.let { type = it }
 
         arguments?.getString("id")?.let {
-            testSeriesViewModel.getTestSeriesDetails(userSharedPreferences["id"]!!, it,type)
-            testSeriesViewModel.getListTests(it,type)
+            testSeriesViewModel.getTestSeriesDetails(userSharedPreferences["id"]!!, it, type)
+            testSeriesViewModel.getListTests(it, type)
         }
 
         return root
@@ -103,8 +105,9 @@ class TestSeriesDetails : Fragment() {
                     if (details != null) {
 
                         binding.details = details.tss
-//                        userSharedPreferences["package"] = details.user.packageX.toString()
+                        userSharedPreferences["package"] = details.user?.packageX.toString()
                         binding.animationView.visibility = GONE
+                        tsEnrolls = details.tsEnrols
 
                     }
 
@@ -172,7 +175,6 @@ class TestSeriesDetails : Fragment() {
                             Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
 
                             val i = Intent(activity, PaymentPage::class.java)
-                            i.putExtra("id", details.tss.tsId)
                             i.putExtra("price", details.tss.price.toString())
                             i.putExtra("title", details.data.name)
                             i.putExtra("orderId", details.data.orderId)
@@ -208,18 +210,19 @@ class TestSeriesDetails : Fragment() {
     private fun onItemClicked(ts: Ts) {
         val i = Intent(activity, ExamActivity::class.java)
         i.putExtra("id", ts.tId.toString())
+        i.putExtra("type", type)
         // TODO: 28-Nov-21 may ask for type == practice
-        if (binding.details?.tsEnrolls == 1) {
+        if (tsEnrolls == 1) {
             startActivity(i)
         } else {
             when (binding.details?.packageX) {
                 1 -> {
-                    testSeriesViewModel.getEnrolled(ts.tsId.toString(), userSharedPreferences["id"]!!)
+                    testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(),type)
                     startActivity(i)
                 }
                 2 -> {
                     if (userSharedPreferences["package"]!!.toInt() == 2) {
-                        testSeriesViewModel.getEnrolled(ts.tsId.toString(), userSharedPreferences["id"]!!)
+                        testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(),type)
                         Toast.makeText(requireActivity(), "Enrolling to this course", Toast.LENGTH_SHORT).show()
                     } else
                         MaterialDialog(requireContext()).show {

@@ -30,7 +30,11 @@ class MainRepository @Inject constructor(
         password: String
     ) = remoteDataSource.register(name, email, contact, password)
 
-    suspend fun getEnrolled(tsId: String, userId: String) = remoteDataSource.getEnrolled(tsId, userId)
+    suspend fun getEnrolled(userId: String, id: String, type: String) = when (type) {
+        "test" -> remoteDataSource.getEnrolled(userId,id)
+        "practice" -> remoteDataSource.getEnrolledSet(userId,id)
+        else -> remoteDataSource.getEnrolled(userId,id)
+    }
 
     //Test Series & Practice Sets
     suspend fun getTestSeries(type: String) = when (type) {
@@ -92,11 +96,10 @@ class MainRepository @Inject constructor(
         userId: String,
         orderId: String,
         paymentId: String,
-        id: String,
         type: String
     ) = when (type) {
         "package" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
-        "series" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId, id)
+        "series" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
     }
 

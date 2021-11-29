@@ -1,10 +1,13 @@
 package technited.minds.gurumantra.ui.test
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -73,19 +76,19 @@ class ExamActivity : AppCompatActivity() {
 
                 when {
                     option1.isChecked -> {
-                        checkAnswer(1)
+                        checkAnswer("1",option1)
                     }
                     option2.isChecked -> {
-                        checkAnswer(2)
+                        checkAnswer("2",option2)
                     }
                     option3.isChecked -> {
-                        checkAnswer(3)
+                        checkAnswer("3",option3)
                     }
                     option4.isChecked -> {
-                        checkAnswer(4)
+                        checkAnswer("4",option4)
                     }
                     option5.isChecked -> {
-                        checkAnswer(5)
+                        checkAnswer("5",option5)
                     }
                 }
 
@@ -94,7 +97,7 @@ class ExamActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         testId = intent.getStringExtra("id")?.toInt() ?: 0
         type = intent.getStringExtra("type")!!
-        examViewModel.getStartTest(userSharedPreferences["id"]!!,testId.toString(),type)
+        examViewModel.getStartTest(userSharedPreferences["id"]!!, testId.toString(), type)
         setUpObservers()
     }
 
@@ -114,22 +117,25 @@ class ExamActivity : AppCompatActivity() {
                     if (tests != null) {
 
                         binding.exam = tests.tsts
-                        testTime = tests.tsts.duration *  1000 * 60
                         binding.studentName.text = userSharedPreferences["name"]
                         questionList = tests.ques
                         questionCountTotal = questionList?.size!!
+                        if (type == "test") {
+                            testTime = tests.tsts.duration * 1000 * 60
+                            binding.timeGroup.visibility = View.VISIBLE
+                        }
                     }
 
                 }
                 Resource.Status.ERROR -> {
                     MaterialDialog(this).show {
-                    title(text = "API ERROR")
-                    message(text = it.message)
-                    cornerRadius(16f)
-                    positiveButton(text = "OK") { dialog ->
-                        dialog.dismiss()
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
                     }
-                }
 //                    binding.animationView.visibility = View.GONE
 
                 }
@@ -139,8 +145,9 @@ class ExamActivity : AppCompatActivity() {
             Log.d("asa", "setUpObservers: ${it?.data!!.resultUrl}")
             when {
                 it.status == Resource.Status.SUCCESS && it.data.resultUrl.isNotEmpty() -> {
+                    localAnswers.clearAll()
                     val intent = Intent(this@ExamActivity, WebPage::class.java)
-                    intent.putExtra("url",it.data.resultUrl)
+                    intent.putExtra("url", it.data.resultUrl)
                     startActivity(intent)
                     finish()
                 }
@@ -153,24 +160,26 @@ class ExamActivity : AppCompatActivity() {
         showNextQuestion()
         binding.startStopButton.visibility = View.GONE
         binding.questionGroup.visibility = View.VISIBLE
-        object : CountDownTimer(testTime.toLong(), 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                // Used for formatting digit to be in 2 digits only
-                val f: NumberFormat = DecimalFormat("00")
-                val hour = millisUntilFinished / 3600000 % 24
-                val min = millisUntilFinished / 60000 % 60
-                val sec = millisUntilFinished / 1000 % 60
-                binding.timer.text =
-                    f.format(hour).toString() + ":" + f.format(min) + ":" + f.format(sec)
-                if (hour == 0.toLong() && min <= 15.toLong()) {
-                    binding.paperBar.background = (getDrawable(R.color.red))
+        if (type == "test") {
+            object : CountDownTimer(testTime.toLong(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    // Used for formatting digit to be in 2 digits only
+                    val f: NumberFormat = DecimalFormat("00")
+                    val hour = millisUntilFinished / 3600000 % 24
+                    val min = millisUntilFinished / 60000 % 60
+                    val sec = millisUntilFinished / 1000 % 60
+                    binding.timer.text =
+                        f.format(hour).toString() + ":" + f.format(min) + ":" + f.format(sec)
+                    if (hour == 0.toLong() && min <= 15.toLong()) {
+                        binding.paperBar.background = (getDrawable(R.color.red))
+                    }
                 }
-            }
 
-            override fun onFinish() {
-                endExam()
-            }
-        }.start()
+                override fun onFinish() {
+                    endExam()
+                }
+            }.start()
+        }
         Toast.makeText(this@ExamActivity, "Test is Started", Toast.LENGTH_SHORT).show()
 
 
@@ -178,8 +187,8 @@ class ExamActivity : AppCompatActivity() {
 
     private fun showNextQuestion() {
         binding.apply {
-            answerGroup.clearCheck()
             questionView.smoothScrollTo(0, 0)
+            optionReset()
             when {
                 questionCounter < questionCountTotal -> {
                     currentQuestion = questionList?.get(questionCounter)
@@ -199,8 +208,8 @@ class ExamActivity : AppCompatActivity() {
 
     private fun showPreviousQuestion() {
         binding.apply {
-            questionView.smoothScrollTo(0, 0);
-            answerGroup.clearCheck()
+            questionView.smoothScrollTo(0, 0)
+            optionReset()
             questionCounter--
             when {
                 questionCounter > -1 -> {
@@ -224,21 +233,39 @@ class ExamActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkAnswer(answer: Int) {
+    private fun checkAnswer(answer: String, button: RadioButton) {
 
         val answersItem = AnswersItem(
             currentQuestion?.qId!!,
-            currentQuestion?.tsecId!!,
-            answer
+            currentQuestion?.tsecId ?: 0,
+            answer.toInt()
         )
         CoroutineScope(Dispatchers.IO).launch {
             localAnswers.insert(answersItem)
         }
-        Log.d(
-            "asa",
-            "checkedAnswer: $answer "
-        )
+        Log.d("asa", "checkedAnswer: $answer ")
         answered = true
+        if (type != "test") {
+            when (currentQuestion?.correctOptions==answer) {
+                true -> button.buttonTintList = ColorStateList.valueOf(Color.parseColor("#8FC965"))
+                false -> button.buttonTintList = ColorStateList.valueOf(Color.RED)
+//                "3" -> option3.buttonTintList = ColorStateList.valueOf(Color.GREEN)
+//                "4" -> option4.buttonTintList = ColorStateList.valueOf(Color.GREEN)
+//                "5" -> option5.buttonTintList = ColorStateList.valueOf(Color.GREEN)
+            }
+        }
+    }
+
+    private fun optionReset() {
+        with(binding) {
+            answerGroup.clearCheck()
+            option1.buttonTintList = ColorStateList.valueOf(Color.BLACK)
+            option2.buttonTintList = ColorStateList.valueOf(Color.BLACK)
+            option3.buttonTintList = ColorStateList.valueOf(Color.BLACK)
+            option4.buttonTintList = ColorStateList.valueOf(Color.BLACK)
+            option5.buttonTintList = ColorStateList.valueOf(Color.BLACK)
+
+        }
     }
 
     private fun endExam() {
@@ -256,6 +283,9 @@ class ExamActivity : AppCompatActivity() {
 
     //
     private fun submitTest(answers: List<AnswersItem>) {
+        if (type != "test")
+            finish()
+
         examViewModel.submitTest(
             EndTest(
                 Tsd(

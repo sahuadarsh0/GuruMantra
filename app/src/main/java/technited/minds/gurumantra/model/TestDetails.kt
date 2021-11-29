@@ -9,5 +9,5 @@ data class TestDetails(
     @SerializedName("tss")
     val tss: TestSeriesItem,
     @SerializedName("users")
-    val user: Users
+    val user: Users? = null
 )

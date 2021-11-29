@@ -154,6 +154,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView21" />
 
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/time_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:constraint_referenced_ids="total_time,textView22,textView211,timer" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -221,10 +227,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:htmlText="@{Questions.QTitle}"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="8dp"
+                            android:htmlText="@{Questions.QTitle}"
                             app:layout_constraintBottom_toTopOf="@+id/answer_group"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -243,37 +249,38 @@
 
                             <RadioButton
                                 android:id="@+id/option1"
-                                android:htmlText="@{Questions.QOptions.option1}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:htmlText="@{Questions.QOptions.option1}"
                                 android:textColor="@color/black" />
 
                             <RadioButton
                                 android:id="@+id/option2"
-                                android:htmlText="@{Questions.QOptions.option2}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:htmlText="@{Questions.QOptions.option2}"
                                 android:textColor="@color/black" />
 
                             <RadioButton
                                 android:id="@+id/option3"
-                                android:htmlText="@{Questions.QOptions.option3}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:htmlText="@{Questions.QOptions.option3}"
                                 android:textColor="@color/black" />
 
 
                             <RadioButton
                                 android:id="@+id/option4"
-                                android:htmlText="@{Questions.QOptions.option4}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:htmlText="@{Questions.QOptions.option4}"
                                 android:textColor="@color/black" />
+
                             <RadioButton
                                 android:id="@+id/option5"
-                                android:htmlText="@{Questions.QOptions.option5}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:htmlText="@{Questions.QOptions.option5}"
                                 android:textColor="@color/black" />
 
                         </RadioGroup>

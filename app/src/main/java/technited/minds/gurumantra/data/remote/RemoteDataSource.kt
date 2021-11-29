@@ -10,9 +10,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getFetchMeeting(classNo: String) = getResult { apiService.getFetchMeeting(classNo) }
     suspend fun getBatches() = getResult { apiService.getBatches() }
 
-    //    Enroll
-    suspend fun getEnrolled(tsId: String, userId: String) =
-        getResult { apiService.getEnrolled(userId, tsId) }
+
 
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
@@ -22,7 +20,8 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
     suspend fun getStartTest(userId: String,testId: String) = getResult { apiService.getStartTest(userId, testId) }
     suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
-
+    suspend fun getEnrolled(userId: String, tsId: String) =
+        getResult { apiService.getEnrolled(userId, tsId) }
     //Practice Sets
     suspend fun getSetSeries() = getResult { apiService.getSetSeries() }
     suspend fun getSetSeriesDetails(userId: String, pssId: String) =
@@ -30,6 +29,8 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getListSets(pssId: String) = getResult { apiService.getListSets(pssId) }
     suspend fun getStartSet(userId: String,psId: String)  = getResult { apiService.getStartSet(userId, psId) }
 //    suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
+    suspend fun getEnrolledSet(userId: String, pssId: String) =
+        getResult { apiService.getEnrolledSet(userId, pssId) }
 
 
     //    PDF Tests
@@ -63,9 +64,8 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun purchaseSeries(
         userId: String,
         orderId: String,
-        paymentId: String,
-        tsId: String
-    ) = getResult { apiService.purchaseSeries(userId, orderId, paymentId, tsId) }
+        paymentId: String
+    ) = getResult { apiService.purchaseSeries(userId, orderId, paymentId) }
 
     //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }

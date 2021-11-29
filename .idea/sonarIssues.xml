@@ -243,6 +243,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/Enrolled.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/FetchMeeting.kt">
           <value>
             <set />

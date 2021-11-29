@@ -21,7 +21,7 @@ interface AnswersDao {
     suspend fun insert(answersItem: AnswersItem)
 
     @Query("DELETE FROM answers")
-    suspend fun clearAll()
+    fun clearAll()
 
 
 }

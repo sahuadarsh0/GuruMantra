@@ -24,10 +24,9 @@ class PaymentViewModel @Inject constructor(private val repository: MainRepositor
         userId: String,
         orderId: String,
         paymentId: String,
-        id: String,
         type: String
     ) = viewModelScope.launch {
-        purchase.postValue(repository.purchase(userId, orderId, paymentId,id, type))
+        purchase.postValue(repository.purchase(userId, orderId, paymentId,type))
     }
 
 }
