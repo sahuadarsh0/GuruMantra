@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.afollestad.materialdialogs.MaterialDialog
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -99,14 +100,21 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
                         val purchase = it.data
 
                         if (purchase != null) {
-
+                            Log.d("asa", "onPaymentSuccess: $purchase")
 //                            packagesAdapter.submitList(packages.pcks)
 
                         }
 
                     }
                     Resource.Status.ERROR -> {
-
+                        MaterialDialog(this@PaymentPage).show {
+                            title(text = "API ERROR")
+                            message(text = it.message)
+                            cornerRadius(16f)
+                            positiveButton(text = "OK") { dialog ->
+                                dialog.dismiss()
+                            }
+                        }
                     }
 
                 }

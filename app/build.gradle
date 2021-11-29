@@ -82,6 +82,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.razorpay:checkout:1.6.12'
+    implementation 'com.github.afreakyelf:Pdf-Viewer:1.0.7'
 
 //  Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"

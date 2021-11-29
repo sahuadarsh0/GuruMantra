@@ -147,6 +147,13 @@ interface ApiService {
         @Query("tsId") tsId: String
     ): Response<PaymentOrder>
 
+
+    @GET("getOrderIdPracseries")
+    suspend fun getPaymentDataPractice(
+        @Query("userId") userId: String,
+        @Query("pssId") pssId: String
+    ): Response<PaymentOrder>
+
     @FormUrlEncoded
     @POST("purchasePackage")
     suspend fun purchasePackage(
@@ -161,6 +168,17 @@ interface ApiService {
     @FormUrlEncoded
     @POST("purchaseTseries")
     suspend fun purchaseSeries(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
+
+    @FormUrlEncoded
+    @POST("purchasePracseries")
+    suspend fun purchasePractice(
         @Field("userId")
         userId: String?,
         @Field("orderId")

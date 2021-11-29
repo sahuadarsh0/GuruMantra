@@ -178,7 +178,7 @@ class TestSeriesDetails : Fragment() {
                             i.putExtra("price", details.tss.price.toString())
                             i.putExtra("title", details.data.name)
                             i.putExtra("orderId", details.data.orderId)
-                            i.putExtra("type", "series")
+                            i.putExtra("type", type)
                             startActivity(i)
                         }
                     }
@@ -237,7 +237,7 @@ class TestSeriesDetails : Fragment() {
 
                 }
                 3 -> {
-                    paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, ts.tsId.toString(), "series")
+                    paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
                 }
             }
         }

@@ -20,7 +20,7 @@ interface QuestionsDao {
     suspend fun insert(questionsItem: QuestionsItem)
 
     @Query("DELETE FROM questions")
-    suspend fun clearAll()
+    fun clearAll()
 
 
 }

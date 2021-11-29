@@ -62,7 +62,9 @@ class ExamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_GuruMantra)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_exam)
+        clearAll()
         binding.apply {
+            startStopButton.visibility = View.GONE
             btnNext.setOnClickListener {
                 showNextQuestion()
             }
@@ -101,6 +103,15 @@ class ExamActivity : AppCompatActivity() {
         setUpObservers()
     }
 
+    private fun clearAll() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            localQuestions.clearAll()
+            localAnswers.clearAll()
+
+        }
+    }
+
     private fun setUpObservers() {
         examViewModel.testStart.observe(this, {
             when (it.status) {
@@ -116,6 +127,8 @@ class ExamActivity : AppCompatActivity() {
                     }
                     if (tests != null) {
 
+                        binding.startStopButton.visibility = View.VISIBLE
+                        binding.animationView.visibility = View.GONE
                         binding.exam = tests.tsts
                         binding.studentName.text = userSharedPreferences["name"]
                         questionList = tests.ques
@@ -145,7 +158,6 @@ class ExamActivity : AppCompatActivity() {
             Log.d("asa", "setUpObservers: ${it?.data!!.resultUrl}")
             when {
                 it.status == Resource.Status.SUCCESS && it.data.resultUrl.isNotEmpty() -> {
-                    localAnswers.clearAll()
                     val intent = Intent(this@ExamActivity, WebPage::class.java)
                     intent.putExtra("url", it.data.resultUrl)
                     startActivity(intent)

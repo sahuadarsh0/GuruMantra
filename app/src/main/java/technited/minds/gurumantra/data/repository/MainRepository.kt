@@ -12,11 +12,6 @@ class MainRepository @Inject constructor(
     private val localGalleryDataSource: GalleryDao,
     private val localBlogsDataSource: BlogsDao
 ) {
-//    fun getMembersList() = performGetOperation(
-//        databaseQuery = { localDataSource.getMembersList() },
-//        networkCall = { remoteDataSource.getMembersList() },
-//        saveCallResult = { localDataSource.insertAll(it) })
-
     suspend fun getBatches() = remoteDataSource.getBatches()
     suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
     suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
@@ -88,7 +83,8 @@ class MainRepository @Inject constructor(
     suspend fun getPackages() = remoteDataSource.getPackages()
     suspend fun getPaymentData(userId: String, id: String, type: String) = when (type) {
         "package" -> remoteDataSource.getPaymentDataPackage(userId, id)
-        "series" -> remoteDataSource.getPaymentDataSeries(userId, id)
+        "test" -> remoteDataSource.getPaymentDataSeries(userId, id)
+        "practice" -> remoteDataSource.getPaymentDataPractice(userId, id)
         else -> remoteDataSource.getPaymentDataPackage(userId, id)
     }
 
@@ -99,7 +95,8 @@ class MainRepository @Inject constructor(
         type: String
     ) = when (type) {
         "package" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
-        "series" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
+        "test" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
+        "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
     }
 
