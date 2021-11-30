@@ -4,6 +4,7 @@ import technited.minds.gurumantra.data.local.BlogsDao
 import technited.minds.gurumantra.data.local.GalleryDao
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.model.EndTest
+import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.performGetOperation
 import javax.inject.Inject
 
@@ -28,26 +29,29 @@ class MainRepository @Inject constructor(
     suspend fun getEnrolled(userId: String, id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getEnrolled(userId,id)
         "practice" -> remoteDataSource.getEnrolledSet(userId,id)
-        else -> remoteDataSource.getEnrolled(userId,id)
+        else -> Resource(Resource.Status.SUCCESS,null,null)
     }
 
     //Test Series & Practice Sets
     suspend fun getTestSeries(type: String) = when (type) {
         "test" -> remoteDataSource.getTestSeries()
         "practice" -> remoteDataSource.getSetSeries()
+        "pdf" -> remoteDataSource.getPDF()
         else -> remoteDataSource.getTestSeries()
     }
 
     suspend fun getTestSeriesDetails(userId: String, id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getTestSeriesDetails(userId, id)
         "practice" -> remoteDataSource.getSetSeriesDetails(userId, id)
-        else -> remoteDataSource.getTestSeriesDetails(userId, id)
+//        "pdf" -> remoteDataSource.getPDFDetails(id)
+        else -> Resource(Resource.Status.SUCCESS,null,null)
     }
 
     suspend fun getListTests(id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getListTests(id)
         "practice" -> remoteDataSource.getListSets(id)
-        else -> remoteDataSource.getListTests(id)
+        "pdf" -> remoteDataSource.getPDFDetails(id)
+        else -> Resource(Resource.Status.SUCCESS,null,null)
     }
 
     suspend fun getStartTest(uId: String, id: String, type: String) = when (type) {

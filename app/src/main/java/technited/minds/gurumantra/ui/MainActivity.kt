@@ -111,6 +111,12 @@ class MainActivity : AppCompatActivity() {
                         bundleOf("type" to "practice")
                     )
                 }
+                R.id.navigation_pdf -> {
+                    navController.navigate(
+                        R.id.navigation_test_series,
+                        bundleOf("type" to "pdf")
+                    )
+                }
             }
             true
         }

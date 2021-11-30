@@ -4,27 +4,25 @@ package technited.minds.gurumantra.model
 import com.google.gson.annotations.SerializedName
 
 data class ListTests(
-    @SerializedName("tss")
+    @SerializedName("tss", alternate = ["pts"])
     val tss: TestSeriesItem,
-    @SerializedName("ts")
-    val ts: List<Ts>
+    @SerializedName("ts", alternate = ["tts"])
+    val ts: List<Ts>?= null
 )
 
 data class Ts(
-    @SerializedName(value = "tId", alternate = ["pratId"])
+    @SerializedName(value = "tId", alternate = ["pratId", "ptId"])
     val tId: Int,
-    @SerializedName(value = "tsId", alternate = ["pratsId"])
+    @SerializedName(value = "tsId", alternate = ["pratsId", "ptsId"])
     val tsId: Int,
-    @SerializedName(value = "tName", alternate = ["pratName"])
+    @SerializedName(value = "tName", alternate = ["pratName", "ptName"])
     val tName: String,
     @SerializedName("ipId")
     val ipId: Int,
     @SerializedName("duration")
     val duration: Int,
     @SerializedName("cost")
-    val cost: Any,
-    @SerializedName("validity")
-    val validity: Any,
+    val cost: Int,
     @SerializedName("total_marks")
     val totalMarks: String,
     @SerializedName(value = "description", alternate = ["pratDescription"])
@@ -35,12 +33,16 @@ data class Ts(
     val startDate: String,
     @SerializedName("end_date")
     val endDate: String,
-    @SerializedName(value = "tImage", alternate = ["thumbnail"])
+    @SerializedName(value = "tImage", alternate = ["thumbnail","ptsImage"])
     val tImage: String,
     @SerializedName("created_by")
     val createdBy: Int,
     @SerializedName("attempts")
     val attempts: Int,
-    @SerializedName(value = "tStatus", alternate = ["pratStatus"])
-    val tStatus: Int
+    @SerializedName(value = "tStatus", alternate = ["pratStatus", "ptStatus"])
+    val tStatus: Int,
+    @SerializedName("ptQuestions")
+    val ptQuestions: String? = null,
+    @SerializedName("ptAnswers")
+    val ptAnswers: String? = null
 )

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
+import com.rajat.pdfviewer.PdfViewerActivity
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
@@ -21,6 +22,7 @@ import technited.minds.gurumantra.ui.adapters.TestsAdapter
 import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.ui.payment.PaymentViewModel
 import technited.minds.gurumantra.ui.test.ExamActivity
+import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -79,6 +81,7 @@ class TestSeriesDetails : Fragment() {
                     if (tests != null) {
 
                         testsAdapter.submitList(tests.ts)
+                        binding.details = tests.tss
                         binding.animationView.visibility = GONE
                         binding.testSeriesList.visibility = VISIBLE
 
@@ -103,8 +106,8 @@ class TestSeriesDetails : Fragment() {
                     val details = it.data
 
                     if (details != null) {
-
-                        binding.details = details.tss
+                        if (type != "pdf")
+                            binding.details = details.tss
                         userSharedPreferences["package"] = details.user?.packageX.toString()
                         binding.animationView.visibility = GONE
                         tsEnrolls = details.tsEnrols
@@ -212,17 +215,27 @@ class TestSeriesDetails : Fragment() {
         i.putExtra("id", ts.tId.toString())
         i.putExtra("type", type)
         // TODO: 28-Nov-21 may ask for type == practice
+        if (type == "pdf")
+            startActivity(
+                PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                    context,
+                    Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
+                    ts.tName,                        // PDF Name/Title in String format
+                    "",                  // If nothing specific, Put "" it will save to Downloads
+                    enableDownload = false                    // This param is true by defualt.
+                )
+            )
         if (tsEnrolls == 1) {
             startActivity(i)
         } else {
             when (binding.details?.packageX) {
                 1 -> {
-                    testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(),type)
+                    testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
                     startActivity(i)
                 }
                 2 -> {
                     if (userSharedPreferences["package"]!!.toInt() == 2) {
-                        testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(),type)
+                        testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
                         Toast.makeText(requireActivity(), "Enrolling to this course", Toast.LENGTH_SHORT).show()
                     } else
                         MaterialDialog(requireContext()).show {

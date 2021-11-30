@@ -31,4 +31,5 @@
     <string name="enroll_message">"Want to Enroll Now"</string>
     <string name="practice">Practice Sets</string>
     <string name="pdf">PDF Test</string>
+    <string name="answers">Answers</string>
 </resources>

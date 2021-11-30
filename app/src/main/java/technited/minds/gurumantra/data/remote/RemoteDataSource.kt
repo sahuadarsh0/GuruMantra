@@ -11,30 +11,33 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getBatches() = getResult { apiService.getBatches() }
 
 
-
     //Test Series
     suspend fun getTestSeries() = getResult { apiService.getTestSeries() }
     suspend fun getTestSeriesDetails(userId: String, testId: String) =
         getResult { apiService.getTestSeriesDetails(userId, testId) }
 
     suspend fun getListTests(testId: String) = getResult { apiService.getListTests(testId) }
-    suspend fun getStartTest(userId: String,testId: String) = getResult { apiService.getStartTest(userId, testId) }
+    suspend fun getStartTest(userId: String, testId: String) = getResult { apiService.getStartTest(userId, testId) }
     suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
     suspend fun getEnrolled(userId: String, tsId: String) =
         getResult { apiService.getEnrolled(userId, tsId) }
+
     //Practice Sets
     suspend fun getSetSeries() = getResult { apiService.getSetSeries() }
     suspend fun getSetSeriesDetails(userId: String, pssId: String) =
         getResult { apiService.getSetSeriesDetails(userId, pssId) }
+
     suspend fun getListSets(pssId: String) = getResult { apiService.getListSets(pssId) }
-    suspend fun getStartSet(userId: String,psId: String)  = getResult { apiService.getStartSet(userId, psId) }
-//    suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
+    suspend fun getStartSet(userId: String, psId: String) = getResult { apiService.getStartSet(userId, psId) }
+
+    //    suspend fun submitTest(endTest: EndTest) = getResult { apiService.submitTest(endTest) }
     suspend fun getEnrolledSet(userId: String, pssId: String) =
         getResult { apiService.getEnrolledSet(userId, pssId) }
 
 
     //    PDF Tests
     suspend fun getPDF() = getResult { apiService.getPDF() }
+    suspend fun getPDFDetails(ptsId: String) = getResult { apiService.getPDFDetails(ptsId) }
 
     //Blogs
     suspend fun getBlogs() = getResult { apiService.getBlogs() }
@@ -76,7 +79,6 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         paymentId: String
     ) = getResult { apiService.purchasePractice(userId, orderId, paymentId) }
 
-    //    suspend fun getMemberProfile(memberId: String) = getResult { apiService.getMemberProfile(memberId) }
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
     suspend fun register(
         name: String,

@@ -20,7 +20,7 @@ data class TestSeriesItem(
     val tsDescription: String,
     @SerializedName("totalTests")
     val totalTests: Int,
-    @SerializedName("price")
+    @SerializedName("price", alternate = ["ptsPrice"])
     val price: Int,
     @SerializedName(value = "thumbnail", alternate = ["ptsImage"])
     val thumbnail: String,
