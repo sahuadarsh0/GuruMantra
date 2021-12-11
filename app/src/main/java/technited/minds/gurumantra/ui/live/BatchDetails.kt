@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.home
+package technited.minds.gurumantra.ui.live
 
 import android.os.Bundle
 import android.view.LayoutInflater

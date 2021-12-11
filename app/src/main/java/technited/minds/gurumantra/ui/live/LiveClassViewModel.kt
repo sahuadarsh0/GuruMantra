@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.home
+package technited.minds.gurumantra.ui.live
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -7,7 +7,7 @@ import technited.minds.gurumantra.data.repository.MainRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
+class LiveClassViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
 
     val batches = liveData { emit(repository.getBatches()) }

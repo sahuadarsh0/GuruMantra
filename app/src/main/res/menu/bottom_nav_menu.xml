@@ -11,9 +11,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_test_series"
+        android:id="@+id/navigation_test_series_type"
         android:icon="@drawable/exam"
-        android:title="@string/title_test_series" />
+        android:title="@string/title_tests" />
 
     <item
         android:id="@+id/navigation_blogs"

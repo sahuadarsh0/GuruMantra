@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -58,13 +57,12 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_home -> {
-                    navController.navigate(R.id.navigation_home)
+                    navController.navigate(R.id.navigation_live_class)
                     return@setOnItemSelectedListener true
                 }
-                R.id.navigation_test_series -> {
+                R.id.navigation_test_series_type -> {
                     navController.navigate(
-                        R.id.navigation_test_series,
-                        bundleOf("type" to "test")
+                        R.id.navigation_test_series_type
                     )
                     return@setOnItemSelectedListener true
                 }
@@ -99,24 +97,33 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawers()
             when (it.itemId) {
-                R.id.navigation_gallery -> {
-                    navController.navigate(R.id.navigation_gallery)
+//                R.id.navigation_about_us -> {
+//                    navController.navigate(R.id.navigation_about_us)
+//                }
+//                R.id.navigation_courses -> {
+//                    navController.navigate(R.id.navigation_courses)
+//                }
+                R.id.navigation_live_class -> {
+                    navController.navigate(R.id.navigation_live_class)
+                }
+//                R.id.navigation_notes -> {
+//                    navController.navigate(R.id.navigation_notes)
+//                }
+                R.id.navigation_test_series_type -> {
+                    navController.navigate(R.id.navigation_test_series_type)
                 }
                 R.id.navigation_packages -> {
                     navController.navigate(R.id.navigation_packages)
                 }
-                R.id.navigation_practice -> {
-                    navController.navigate(
-                        R.id.navigation_test_series,
-                        bundleOf("type" to "practice")
-                    )
+                R.id.navigation_blogs -> {
+                    navController.navigate(R.id.navigation_blogs)
                 }
-                R.id.navigation_pdf -> {
-                    navController.navigate(
-                        R.id.navigation_test_series,
-                        bundleOf("type" to "pdf")
-                    )
+                R.id.navigation_gallery -> {
+                    navController.navigate(R.id.navigation_gallery)
                 }
+//                R.id.navigation_contact_us -> {
+//                    navController.navigate(R.id.navigation_contact_us)
+//                }
             }
             true
         }

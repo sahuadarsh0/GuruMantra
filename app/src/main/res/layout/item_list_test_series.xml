@@ -5,7 +5,6 @@
 
     <data>
 
-
         <variable
             name="testSeries"
             type="technited.minds.gurumantra.model.TestSeriesItem" />

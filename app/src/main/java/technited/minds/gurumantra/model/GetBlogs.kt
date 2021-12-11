@@ -8,11 +8,6 @@ import com.google.gson.annotations.SerializedName
 data class GetBlogs(
     @SerializedName("blogs")
     val blogs: List<Blog>
-//    ,
-//    @SerializedName("dcs")
-//    val dcs: List<Dc>,
-//    @SerializedName("notices")
-//    val notices: List<Notice>
 )
 
 

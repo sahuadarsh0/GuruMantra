@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.ui.home
+package technited.minds.gurumantra.ui.live
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,16 +13,16 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.databinding.FragmentHomeBinding
+import technited.minds.gurumantra.databinding.FragmentLiveClassBinding
 import technited.minds.gurumantra.model.BatchDetailsItem
 import technited.minds.gurumantra.ui.adapters.BatchesAdapter
 import technited.minds.gurumantra.utils.Resource
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class LiveClassFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModels()
-    private var _binding: FragmentHomeBinding? = null
+    private val liveClassViewModel: LiveClassViewModel by viewModels()
+    private var _binding: FragmentLiveClassBinding? = null
     private val batchesAdapter = BatchesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
 
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentLiveClassBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.batchesList.visibility = GONE
 
-        homeViewModel.batches.observe(viewLifecycleOwner, {
+        liveClassViewModel.batches.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
 
     private fun onItemClicked(batchDetailsItem: BatchDetailsItem) {
         findNavController().navigate(
-            R.id.action_navigation_home_to_batchDetails,
+            R.id.action_navigation_live_class_to_batchDetails,
             bundleOf("id" to batchDetailsItem.batchId.toString())
         )
     }

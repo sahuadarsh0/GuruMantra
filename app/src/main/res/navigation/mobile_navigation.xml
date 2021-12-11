@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_live_class">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="technited.minds.gurumantra.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/navigation_live_class"
+        android:name="technited.minds.gurumantra.ui.live.LiveClassFragment"
+        android:label="@string/title_live_class"
+        tools:layout="@layout/fragment_live_class">
         <action
-            android:id="@+id/action_navigation_home_to_batchDetails"
+            android:id="@+id/action_navigation_live_class_to_batchDetails"
             app:destination="@id/batchDetails"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
@@ -20,12 +20,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_test_series"
+        android:id="@+id/testSeries"
         android:name="technited.minds.gurumantra.ui.test.testseries.TestSeries"
         android:label="@string/title_test_series"
         tools:layout="@layout/fragment_test_series">
         <action
-            android:id="@+id/action_navigation_test_series_to_testSeriesDetails"
+            android:id="@+id/action_testSeries_to_testSeriesDetails"
             app:destination="@id/testSeriesDetails"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/batchDetails"
-        android:name="technited.minds.gurumantra.ui.home.BatchDetails"
+        android:name="technited.minds.gurumantra.ui.live.BatchDetails"
         android:label="Batch Details"
         tools:layout="@layout/fragment_batch_details">
         <action
@@ -97,9 +97,12 @@
         android:label="@string/packages"
         tools:layout="@layout/fragment_packages" />
     <fragment
-        android:id="@+id/navigation_practice"
-        android:name="technited.minds.gurumantra.ui.test.testseries.TestSeries"
-        android:label="@string/practice"
+        android:id="@+id/navigation_test_series_type"
+        android:name="technited.minds.gurumantra.ui.test.testseries.TestSeriesType"
+        android:label="Test Series Type"
         tools:layout="@layout/fragment_test_series">
+        <action
+            android:id="@+id/action_navigation_test_series_type_to_testSeries"
+            app:destination="@id/testSeries" />
     </fragment>
 </navigation>

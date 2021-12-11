@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import technited.minds.gurumantra.databinding.ItemListMeetingsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
-import technited.minds.gurumantra.ui.home.BatchDetailsDirections
+import technited.minds.gurumantra.ui.live.BatchDetailsDirections
 import technited.minds.gurumantra.utils.SharedPrefs
 
 class MeetingsAdapter(private val onItemClicked: (MeetingDetailsItem) -> Unit) :

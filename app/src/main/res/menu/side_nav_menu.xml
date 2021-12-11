@@ -3,26 +3,48 @@
 
 
     <item
+        android:id="@+id/navigation_about_us"
+        android:icon="@drawable/medal"
+        android:title="@string/about_us" />
+
+    <item
+        android:id="@+id/navigation_courses"
+        android:icon="@drawable/medal"
+        android:title="@string/courses" />
+
+    <item
+        android:id="@+id/navigation_live_class"
+        android:icon="@drawable/zm_video_on"
+        android:title="@string/title_live_class" />
+
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/certificate"
+        android:title="@string/notes" />
+
+
+    <item
+        android:id="@+id/navigation_test_series_type"
+        android:icon="@drawable/exam"
+        android:title="@string/title_tests" />
+
+    <item
         android:id="@+id/navigation_packages"
         android:icon="@drawable/medal"
         android:title="@string/packages" />
 
     <item
-        android:id="@+id/navigation_practice"
-        android:icon="@drawable/schedule"
-        android:title="@string/practice" />
+        android:id="@+id/navigation_blogs"
+        android:icon="@drawable/notebook"
+        android:title="@string/title_blogs" />
 
-    <item
-        android:id="@+id/navigation_pdf"
-        android:icon="@drawable/zm_ic_filetype_pdf"
-        android:title="@string/pdf" />
     <item
         android:id="@+id/navigation_gallery"
         android:icon="@drawable/ic_gallery"
         android:title="@string/gallery" />
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_notes"-->
-<!--        android:icon="@drawable/certificate"-->
-<!--        android:title="@string/notes" />-->
+    <item
+        android:id="@+id/navigation_contact_us"
+        android:icon="@drawable/ic_call"
+        android:title="@string/contact_us" />
 </menu>
