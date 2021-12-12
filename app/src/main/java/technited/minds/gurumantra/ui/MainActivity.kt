@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_home -> {
-                    navController.navigate(R.id.navigation_live_class)
+                    navController.navigate(R.id.navigation_home)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_test_series_type -> {

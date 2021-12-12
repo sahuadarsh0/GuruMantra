@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_live_class">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_live_class"
@@ -104,5 +104,20 @@
         <action
             android:id="@+id/action_navigation_test_series_type_to_testSeries"
             app:destination="@id/testSeries" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="technited.minds.gurumantra.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_blogDetails"
+            app:destination="@id/blogDetails" />
+        <action
+            android:id="@+id/action_navigation_home_to_testSeriesDetails"
+            app:destination="@id/testSeriesDetails" />
+        <action
+            android:id="@+id/action_navigation_home_to_batchDetails"
+            app:destination="@id/batchDetails" />
     </fragment>
 </navigation>

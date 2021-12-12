@@ -29,7 +29,11 @@ interface ApiService {
         password: String?
     ): Response<RegisterDetails>
 
+    //    Home
+    @GET("home")
+    suspend fun getHome(): Response<Home>
 
+    //    Live Class
     @GET("getMeetings/{batchNo}")
     suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
 

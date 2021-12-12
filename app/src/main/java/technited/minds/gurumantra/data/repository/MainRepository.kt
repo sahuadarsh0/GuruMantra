@@ -13,6 +13,12 @@ class MainRepository @Inject constructor(
     private val localGalleryDataSource: GalleryDao,
     private val localBlogsDataSource: BlogsDao
 ) {
+
+    //  Home
+    suspend fun getHome() = remoteDataSource.getHome()
+
+
+    //    Live Class
     suspend fun getBatches() = remoteDataSource.getBatches()
     suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
     suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
@@ -26,10 +32,11 @@ class MainRepository @Inject constructor(
         password: String
     ) = remoteDataSource.register(name, email, contact, password)
 
+
     suspend fun getEnrolled(userId: String, id: String, type: String) = when (type) {
-        "test" -> remoteDataSource.getEnrolled(userId,id)
-        "practice" -> remoteDataSource.getEnrolledSet(userId,id)
-        else -> Resource(Resource.Status.SUCCESS,null,null)
+        "test" -> remoteDataSource.getEnrolled(userId, id)
+        "practice" -> remoteDataSource.getEnrolledSet(userId, id)
+        else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
     //Test Series & Practice Sets
@@ -44,14 +51,14 @@ class MainRepository @Inject constructor(
         "test" -> remoteDataSource.getTestSeriesDetails(userId, id)
         "practice" -> remoteDataSource.getSetSeriesDetails(userId, id)
 //        "pdf" -> remoteDataSource.getPDFDetails(id)
-        else -> Resource(Resource.Status.SUCCESS,null,null)
+        else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
     suspend fun getListTests(id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getListTests(id)
         "practice" -> remoteDataSource.getListSets(id)
         "pdf" -> remoteDataSource.getPDFDetails(id)
-        else -> Resource(Resource.Status.SUCCESS,null,null)
+        else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
     suspend fun getStartTest(uId: String, id: String, type: String) = when (type) {
