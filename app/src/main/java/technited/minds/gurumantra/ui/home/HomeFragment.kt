@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
     private val blogsAdapter = BlogsAdapter(this::onBlogClicked)
     private val testSeriesAdapter = TestSeriesAdapter(this::onTestClicked)
     private val practiceSetsAdapter = TestSeriesAdapter(this::onPracticeClicked)
+    private val pdfSetsAdapter = TestSeriesAdapter(this::onPdfClicked)
     private val batchesAdapter = BatchesAdapter(this::onBatchClicked)
     private val binding get() = _binding!!
 
@@ -51,6 +52,7 @@ class HomeFragment : Fragment() {
         binding.blogsList.adapter = blogsAdapter
         binding.testSeriesList.adapter = testSeriesAdapter
         binding.practiceSetsList.adapter = practiceSetsAdapter
+        binding.pdfSetsList.adapter = pdfSetsAdapter
         binding.batchesList.adapter = batchesAdapter
     }
 
@@ -83,7 +85,10 @@ class HomeFragment : Fragment() {
                         blogsAdapter.submitList(home.blogs.subList(0,3))
                         testSeriesAdapter.submitList(home.tss)
                         practiceSetsAdapter.submitList(home.practs)
+                        pdfSetsAdapter.submitList(home.pdfts)
                         batchesAdapter.submitList(home.batches)
+                        binding.marqueeText.text = home.notices.joinToString { notice ->"               * "+notice.content }
+                        binding.marqueeText.isSelected = true
                         binding.animationView.visibility = View.GONE
                         binding.group.visibility = View.VISIBLE
 
@@ -136,6 +141,15 @@ class HomeFragment : Fragment() {
             bundleOf(
                 "id" to testSeriesItem.tsId.toString(),
                 "type" to "practice"
+            )
+        )
+    }
+    private fun onPdfClicked(testSeriesItem: TestSeriesItem) {
+        findNavController().navigate(
+            R.id.action_navigation_home_to_testSeriesDetails,
+            bundleOf(
+                "id" to testSeriesItem.tsId.toString(),
+                "type" to "pdf"
             )
         )
     }

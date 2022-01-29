@@ -53,6 +53,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getGallery() = getResult { apiService.getGallery() }
 
 
+    //    notes
+    suspend fun getNotes() = getResult { apiService.getNotes() }
+
+
     //    Payment
     suspend fun getPackages() = getResult { apiService.getPackages() }
     suspend fun getPaymentDataPackage(userId: String, pckId: String) =
@@ -89,4 +93,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         contact: String,
         password: String
     ) = getResult { apiService.register(name, email, contact, password) }
+
+    //Courses
+    suspend fun getCourses() = getResult { apiService.getCourses() }
 }

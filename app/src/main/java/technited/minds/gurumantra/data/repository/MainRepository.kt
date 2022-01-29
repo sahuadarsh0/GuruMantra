@@ -91,6 +91,8 @@ class MainRepository @Inject constructor(
         saveCallResult = { localGalleryDataSource.insertAll(it.gals) }
     )
 
+    suspend fun getNotes() = remoteDataSource.getNotes()
+
     suspend fun getPackages() = remoteDataSource.getPackages()
     suspend fun getPaymentData(userId: String, id: String, type: String) = when (type) {
         "package" -> remoteDataSource.getPaymentDataPackage(userId, id)
@@ -110,5 +112,9 @@ class MainRepository @Inject constructor(
         "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
     }
+
+
+    // Courses
+    suspend fun getCourses() = remoteDataSource.getCourses()
 
 }

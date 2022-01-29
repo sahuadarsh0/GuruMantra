@@ -7,7 +7,7 @@
     <color name="red_500">#F44336</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="off_white">#F7F7F7</color>
+    <color name="off_white">#EFEFEF</color>
     <color name="colorOverlay">#78ffffff</color>
     <color name="colorAccentOverlay">#1400bcd4</color>
     <color name="colorTransparentBlack">#14000000</color>

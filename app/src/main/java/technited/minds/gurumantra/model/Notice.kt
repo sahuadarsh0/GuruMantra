@@ -1,4 +1,4 @@
-package technited.minds.gurumantra.model.test
+package technited.minds.gurumantra.model
 
 
 import com.google.gson.annotations.SerializedName

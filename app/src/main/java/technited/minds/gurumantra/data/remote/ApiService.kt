@@ -141,6 +141,10 @@ interface ApiService {
     suspend fun getGallery(): Response<Gallery>
 
 
+    @GET("getAllNotes")
+    suspend fun getNotes(): Response<GetNotes>
+
+
     @GET("packages")
     suspend fun getPackages(): Response<Packages>
 
@@ -195,5 +199,11 @@ interface ApiService {
         @Field("paymentId")
         paymentId: String?
     ): Response<String>
+
+
+//    getCourses
+    @GET("getCourses")
+    suspend fun getCourses(): Response<GetCourses>
+
 
 }

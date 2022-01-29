@@ -7,10 +7,18 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg1.xml" value="0.3435185185185185" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_edit_text.xml" value="0.31851851851851853" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/brush_bg.xml" value="0.3194444444444444" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_account.xml" value="0.2722222222222222" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_book_reader_solid.xml" value="0.33425925925925926" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_call.xml" value="0.3452502553626149" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_chalkboard_teacher_solid.xml" value="0.33425925925925926" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_clipboard_list_solid.xml" value="0.33425925925925926" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_email.xml" value="0.32788559754851887" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_file_alt_solid.xml" value="0.33425925925925926" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_gallery.xml" value="0.3333333333333333" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3333333333333333" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_home_solid.xml" value="0.33425925925925926" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_lock.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_logout.xml" value="0.32788559754851887" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/ic_menu.xml" value="0.3452502553626149" />
@@ -23,7 +31,8 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_dashboard.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_exam.xml" value="0.22" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_payment_page.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_splash.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_web_page.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/activity_zoom.xml" value="0.33177083333333335" />
@@ -31,34 +40,36 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/dailog_main.xml" value="0.25" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/dialog_zoom_image.xml" value="0.3079673135852911" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_batch_details.xml" value="0.33177083333333335" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_blog_details.xml" value="0.3140625" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_blog_details.xml" value="0.33" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_blogs.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_dashboard.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_gallery.xml" value="0.33177083333333335" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_home.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_live_class.xml" value="0.3140625" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_login.xml" value="0.3140625" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_login.xml" value="0.377008652657602" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_notes.xml" value="0.2" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_notifications.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_packages.xml" value="0.27685185185185185" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_register.xml" value="0.25" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_test_series.xml" value="0.18" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_test_series.xml" value="0.33" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_test_series_details.xml" value="0.3140625" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_test_series_type.xml" value="0.5" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_test_series_type.xml" value="0.67" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragments_web_page.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_batches.xml" value="0.25" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_blog.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_comments.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_gallery.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_meetings.xml" value="0.33177083333333335" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_package.xml" value="0.27685185185185185" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_notes.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_package.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_test_series.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_tests.xml" value="0.5377176015473888" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/nav_header_main.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/process_dialog.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/activity_main_drawer.xml" value="0.3140625" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30092592592592593" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/example.xml" value="0.32037037037037036" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/side_nav_menu.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/menu/side_nav_menu.xml" value="0.1" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/commonlib/build/.transforms/bb882a7577c4dce080cf8f646caf11ad/transformed/jetified-commonlib/res/drawable/zm_ic_filetype_pdf.xml" value="0.32788559754851887" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/mobilertc/build/.transforms/e047e87719c426e4f7e4bc301b89b481/transformed/jetified-mobilertc/res/drawable/zm_ic_sip_verified.xml" value="0.32788559754851887" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/mobilertc/build/.transforms/e047e87719c426e4f7e4bc301b89b481/transformed/jetified-mobilertc/res/drawable/zm_message_video.xml" value="0.3055555555555556" />

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_solid"
+        android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_about_us"
         android:icon="@drawable/medal"
         android:title="@string/about_us" />
 
-    <item
-        android:id="@+id/navigation_courses"
-        android:icon="@drawable/medal"
-        android:title="@string/courses" />
+    <!--    <item-->
+    <!--        android:id="@+id/navigation_courses"-->
+    <!--        android:icon="@drawable/medal"-->
+    <!--        android:title="@string/courses" />-->
 
     <item
         android:id="@+id/navigation_live_class"
@@ -19,13 +23,13 @@
 
     <item
         android:id="@+id/navigation_notes"
-        android:icon="@drawable/certificate"
+        android:icon="@drawable/ic_book_reader_solid"
         android:title="@string/notes" />
 
 
     <item
         android:id="@+id/navigation_test_series_type"
-        android:icon="@drawable/exam"
+        android:icon="@drawable/ic_clipboard_list_solid"
         android:title="@string/title_tests" />
 
     <item
@@ -35,7 +39,7 @@
 
     <item
         android:id="@+id/navigation_blogs"
-        android:icon="@drawable/notebook"
+        android:icon="@drawable/ic_file_alt_solid"
         android:title="@string/title_blogs" />
 
     <item
@@ -47,4 +51,9 @@
         android:id="@+id/navigation_contact_us"
         android:icon="@drawable/ic_call"
         android:title="@string/contact_us" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
+
 </menu>

@@ -35,7 +35,7 @@ class PackagesAdapter(private val onItemClicked: (Pck) -> Unit) : ListAdapter<Pc
     inner class PackagesViewHolder(private val binding: ItemListPackageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(pck: Pck, onItemClicked: (Pck) -> Unit) {
             binding.packages = pck
-            binding.root.setOnClickListener { onItemClicked(pck) }
+            binding.buy.setOnClickListener { onItemClicked(pck) }
         }
     }
 }

@@ -15,7 +15,8 @@
             android:id="@+id/app_bar_main"
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/main_nav_view"
@@ -23,6 +24,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
+            app:itemIconTint="@color/red_500"
             app:headerLayout="@layout/nav_header_main"
             app:menu="@menu/side_nav_menu" />
 

@@ -92,6 +92,11 @@
         android:label="@string/gallery"
         tools:layout="@layout/fragment_gallery" />
     <fragment
+        android:id="@+id/navigation_notes"
+        android:name="technited.minds.gurumantra.ui.notes.NotesFragment"
+        android:label="@string/notes"
+        tools:layout="@layout/fragment_notes" />
+    <fragment
         android:id="@+id/navigation_packages"
         android:name="technited.minds.gurumantra.ui.packages.PackagesFragment"
         android:label="@string/packages"
@@ -109,7 +114,7 @@
         android:id="@+id/navigation_home"
         android:name="technited.minds.gurumantra.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_blogDetails"
             app:destination="@id/blogDetails" />

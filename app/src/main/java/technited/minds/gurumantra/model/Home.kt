@@ -2,7 +2,6 @@ package technited.minds.gurumantra.model
 
 
 import com.google.gson.annotations.SerializedName
-import technited.minds.gurumantra.model.test.*
 
 data class Home(
     @SerializedName("blogs")

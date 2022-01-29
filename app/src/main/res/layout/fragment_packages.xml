@@ -8,6 +8,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.package.PackagesFragment">
 
+        <ImageView
+            android:id="@+id/bg2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b_bg"
+            android:layout_marginBottom="-32dp"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/package_list"
             android:layout_width="0dp"

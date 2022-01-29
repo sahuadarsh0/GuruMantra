@@ -17,11 +17,14 @@
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/slider"
                 android:layout_width="0dp"
-                android:layout_height="180dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_edit_text"
+                android:elevation="10dp"
                 app:iss_auto_cycle="true"
+                app:iss_corner_radius="18"
                 app:iss_delay="0"
                 app:iss_period="1000"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -29,28 +32,49 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/marquee_text"
+                style="@style/TextBlack.small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="5dp"
+                android:scrollHorizontally="true"
+                android:paddingHorizontal="16dp"
+                android:singleLine="true"
+                tools:text="Hello guys !! Welcome to Portal !!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider" />
+
+            <TextView
                 android:id="@+id/live_class_text"
                 style="@style/TextBlack.medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
                 android:text="@string/title_live_class"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slider" />
+                app:layout_constraintTop_toBottomOf="@+id/marquee_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/batches_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slider"
+                app:layout_constraintTop_toBottomOf="@+id/live_class_text"
                 app:spanCount="2"
                 tools:itemCount="2"
                 tools:listitem="@layout/item_list_batches" />
@@ -60,12 +84,14 @@
                 style="@style/TextBlack.medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_test_series"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Featured Test Series"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/batches_list" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/test_series_list"
@@ -80,17 +106,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/test_series_text"
                 app:spanCount="2"
-                tools:itemCount="4"
+                tools:itemCount="2"
                 tools:listitem="@layout/item_list_test_series" />
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/small_slider"
                 android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="190dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/bg_edit_text"
+                android:elevation="10dp"
                 app:iss_auto_cycle="true"
+                app:iss_corner_radius="18"
                 app:iss_delay="0"
                 app:iss_period="1000"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,12 +131,14 @@
                 style="@style/TextBlack.medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
                 android:text="@string/practice"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/small_slider" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/practice_sets_list"
@@ -126,22 +157,54 @@
                 tools:listitem="@layout/item_list_test_series" />
 
             <TextView
+                android:id="@+id/pdf_sets_text"
+                style="@style/TextBlack.medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Featured Pdf Test Series"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/practice_sets_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pdf_sets_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pdf_sets_text"
+                app:spanCount="2"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_list_test_series" />
+
+            <TextView
                 android:id="@+id/blogs_text"
                 style="@style/TextBlack.medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/title_blogs"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Latest News"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/practice_sets_list" />
-
+                app:layout_constraintTop_toBottomOf="@+id/pdf_sets_list" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/blogs_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="32dp"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
@@ -171,7 +234,7 @@
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider" />
+                app:constraint_referenced_ids="marquee_text,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

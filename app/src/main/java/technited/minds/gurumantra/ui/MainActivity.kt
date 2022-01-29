@@ -1,15 +1,18 @@
 package technited.minds.gurumantra.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.Gravity
+import android.os.Looper
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -40,37 +43,77 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val bottomNavigationView: BottomNavigationView = binding.appBarMain.navView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.mainNavView
 
-        bottomNavigationView.setupWithNavController(navController)
-        bottomNavigationView.itemIconTintList = null
-        bottomNavigationView.itemBackground = null
-        navView.itemIconTintList = null
-        navView.itemBackground = null
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_menu -> {
-                    drawerLayout.openDrawer(Gravity.LEFT)
-                    return@setOnItemSelectedListener true
+        setSupportActionBar(binding.appBarMain.toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        var toggle = ActionBarDrawerToggle(
+            this@MainActivity,
+            drawerLayout,
+            binding.appBarMain.toolBar,
+            R.string.nav_app_bar_open_drawer_description,
+            R.string.zm_bo_title_close
+        )
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            binding.appBarMain.toolBar.setNavigationOnClickListener {
+                if (supportFragmentManager.backStackEntryCount > 0) {
+                    super.onBackPressed()
+                } else {
+                    supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+                    drawerLayout.addDrawerListener(toggle)
+                    toggle.syncState()
+                    drawerLayout.openDrawer(GravityCompat.START)
                 }
+            }
+        } else {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            drawerLayout.addDrawerListener(toggle)
+            toggle.syncState()
+        }
+
+        bottomNavigationView.setupWithNavController(navController)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            bottomNavigationView.itemIconTintList = resources.getColorStateList(R.color.select_red, null)
+            navView.itemIconTintList = resources.getColorStateList(R.color.select_red, null)
+        }
+        bottomNavigationView.itemBackground = null
+        navView.itemBackground = null
+        navView.setNavigationItemSelectedListener {
+            drawerLayout.closeDrawers()
+            when (it.itemId) {
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home)
-                    return@setOnItemSelectedListener true
+                }
+                R.id.navigation_about_us -> {
+                    val intent = Intent(this@MainActivity, WebPage::class.java)
+                    intent.putExtra("url", "https://gurumantra.online/about")
+                    startActivity(intent)
+                }
+                R.id.navigation_live_class -> {
+                    navController.navigate(R.id.navigation_live_class)
+                }
+                R.id.navigation_notes -> {
+                    navController.navigate(R.id.navigation_notes)
                 }
                 R.id.navigation_test_series_type -> {
-                    navController.navigate(
-                        R.id.navigation_test_series_type
-                    )
-                    return@setOnItemSelectedListener true
+                    navController.navigate(R.id.navigation_test_series_type)
+                }
+                R.id.navigation_packages -> {
+                    navController.navigate(R.id.navigation_packages)
                 }
                 R.id.navigation_blogs -> {
                     navController.navigate(R.id.navigation_blogs)
-                    return@setOnItemSelectedListener true
                 }
-
+                R.id.navigation_gallery -> {
+                    navController.navigate(R.id.navigation_gallery)
+                }
+                R.id.navigation_contact_us -> {
+                    val intent = Intent(this@MainActivity, WebPage::class.java)
+                    intent.putExtra("url", "https://gurumantra.online/contact")
+                    startActivity(intent)
+                }
                 R.id.logout -> {
                     MaterialDialog(this).show {
                         title(text = "Logout?")
@@ -87,43 +130,7 @@ class MainActivity : AppCompatActivity() {
                             dialog.dismiss()
                         }
                     }
-                    return@setOnItemSelectedListener true
                 }
-                else -> Toast.makeText(this, "Select an item", Toast.LENGTH_SHORT).show()
-            }
-            false
-        }
-
-        navView.setNavigationItemSelectedListener {
-            drawerLayout.closeDrawers()
-            when (it.itemId) {
-//                R.id.navigation_about_us -> {
-//                    navController.navigate(R.id.navigation_about_us)
-//                }
-//                R.id.navigation_courses -> {
-//                    navController.navigate(R.id.navigation_courses)
-//                }
-                R.id.navigation_live_class -> {
-                    navController.navigate(R.id.navigation_live_class)
-                }
-//                R.id.navigation_notes -> {
-//                    navController.navigate(R.id.navigation_notes)
-//                }
-                R.id.navigation_test_series_type -> {
-                    navController.navigate(R.id.navigation_test_series_type)
-                }
-                R.id.navigation_packages -> {
-                    navController.navigate(R.id.navigation_packages)
-                }
-                R.id.navigation_blogs -> {
-                    navController.navigate(R.id.navigation_blogs)
-                }
-                R.id.navigation_gallery -> {
-                    navController.navigate(R.id.navigation_gallery)
-                }
-//                R.id.navigation_contact_us -> {
-//                    navController.navigate(R.id.navigation_contact_us)
-//                }
             }
             true
         }
@@ -141,14 +148,13 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (navController.graph.startDestination == navController.currentDestination!!.id) {
             if (backPressedOnce) {
-//                super.onBackPressed()
                 finish()
             }
             backPressedOnce = true
             Toast.makeText(this, "Please Back again to exit", Toast.LENGTH_SHORT).show()
-
-            val handler = Handler()
-            handler.postDelayed({ backPressedOnce = false }, 2000)
+            Handler(Looper.getMainLooper()).postDelayed({
+                backPressedOnce = false
+            }, 2000)
         } else {
             super.onBackPressed()
         }

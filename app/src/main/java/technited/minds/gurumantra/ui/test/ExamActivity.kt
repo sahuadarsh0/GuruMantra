@@ -78,19 +78,19 @@ class ExamActivity : AppCompatActivity() {
 
                 when {
                     option1.isChecked -> {
-                        checkAnswer("1",option1)
+                        checkAnswer("1", option1)
                     }
                     option2.isChecked -> {
-                        checkAnswer("2",option2)
+                        checkAnswer("2", option2)
                     }
                     option3.isChecked -> {
-                        checkAnswer("3",option3)
+                        checkAnswer("3", option3)
                     }
                     option4.isChecked -> {
-                        checkAnswer("4",option4)
+                        checkAnswer("4", option4)
                     }
                     option5.isChecked -> {
-                        checkAnswer("5",option5)
+                        checkAnswer("5", option5)
                     }
                 }
 
@@ -149,7 +149,6 @@ class ExamActivity : AppCompatActivity() {
                             dialog.dismiss()
                         }
                     }
-//                    binding.animationView.visibility = View.GONE
 
                 }
             }
@@ -258,13 +257,13 @@ class ExamActivity : AppCompatActivity() {
         Log.d("asa", "checkedAnswer: $answer ")
         answered = true
         if (type != "test") {
-            when (currentQuestion?.correctOptions==answer) {
+            when (currentQuestion?.correctOptions == answer) {
                 true -> button.buttonTintList = ColorStateList.valueOf(Color.parseColor("#8FC965"))
                 false -> button.buttonTintList = ColorStateList.valueOf(Color.RED)
-//                "3" -> option3.buttonTintList = ColorStateList.valueOf(Color.GREEN)
-//                "4" -> option4.buttonTintList = ColorStateList.valueOf(Color.GREEN)
-//                "5" -> option5.buttonTintList = ColorStateList.valueOf(Color.GREEN)
             }
+            (binding.answerGroup.getChildAt(currentQuestion?.correctOptions!!.toInt()-1) as RadioButton).isChecked = true
+            (binding.answerGroup.getChildAt(currentQuestion?.correctOptions!!.toInt()-1) as RadioButton).buttonTintList =
+                ColorStateList.valueOf(Color.parseColor("#8FC965"))
         }
     }
 

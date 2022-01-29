@@ -8,6 +8,17 @@
         android:layout_height="match_parent"
         tools:context=".ui.test.testseries.TestSeriesType">
 
+        <ImageView
+            android:id="@+id/bg2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b_bg"
+            android:layout_marginBottom="-32dp"
+            android:rotation="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/test"
@@ -37,6 +48,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/exam"
+                    app:tint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="16:9"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +99,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/schedule"
+                    app:tint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="16:9"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +150,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    app:tint="@color/purple_500"
                     android:src="@drawable/zm_ic_filetype_pdf"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="w,16:9"

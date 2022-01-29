@@ -14,7 +14,7 @@
     <string name="title_test_series">Test Series</string>
     <string name="title_tests">Tests</string>
     <string name="title_blogs">Blogs</string>
-    <string name="logout">logout</string>
+    <string name="logout">Logout</string>
     <string name="join">Join</string>
     <string name="online_test">Online Test</string>
     <string name="information">Information</string>
@@ -28,7 +28,7 @@
     <string name="menu">Menu</string>
     <string name="gallery">Gallery</string>
     <string name="packages">Packages</string>
-    <string name="notes">Notes</string>
+    <string name="notes">Library</string>
     <string name="enroll_message">"Want to Enroll Now"</string>
     <string name="practice">Practice Sets</string>
     <string name="pdf">PDF Test</string>
@@ -37,4 +37,5 @@
     <string name="contact_us">Contact Us</string>
     <string name="courses">Courses</string>
     <string name="title_live_class">Live Class</string>
+    <string name="buy_now">Buy Now</string>
 </resources>

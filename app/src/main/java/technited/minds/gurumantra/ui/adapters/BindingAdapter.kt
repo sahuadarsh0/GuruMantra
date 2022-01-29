@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.ui.adapters
 
+import android.graphics.Paint
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
@@ -42,8 +43,15 @@ object BindingAdapters {
     fun setSplitText(view: TextView, text: String?) {
         val input = text?.split(",")
         var output = ""
-        input?.forEach { s -> output+= "$s\n" }
+        input?.forEach { s -> output+= "$s\n\n" }
         view.text =output
+    }
+
+    @BindingAdapter("android:strikeText")
+    @JvmStatic
+    fun strikeText(view: TextView, text: String?) {
+        view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        view.text = text
     }
 
     @BindingAdapter("android:htmlText")
