@@ -97,10 +97,45 @@
         android:label="@string/notes"
         tools:layout="@layout/fragment_notes" />
     <fragment
+        android:id="@+id/navigation_courses"
+        android:name="technited.minds.gurumantra.ui.courses.CoursesFragment"
+        android:label="@string/courses"
+        tools:layout="@layout/fragment_courses">
+        <action
+            android:id="@+id/action_navigation_courses_to_coursesDetails"
+            app:destination="@id/coursesDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/coursesDetails"
+        android:name="technited.minds.gurumantra.ui.courses.CourseDetails"
+        android:label="Course Details"
+        tools:layout="@layout/fragment_courses_details">
+        <action
+            android:id="@+id/action_coursesDetails_to_navigation_packages"
+            app:destination="@id/navigation_packages"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_coursesDetails_to_play"
+            app:destination="@id/Play" />
+    </fragment>
+    <fragment
         android:id="@+id/navigation_packages"
         android:name="technited.minds.gurumantra.ui.packages.PackagesFragment"
         android:label="@string/packages"
         tools:layout="@layout/fragment_packages" />
+    <fragment
+        android:id="@+id/navigation_coupons"
+        android:name="technited.minds.gurumantra.ui.coupons.CouponsFragment"
+        android:label="@string/my_coupons"
+        tools:layout="@layout/fragment_coupons" />
     <fragment
         android:id="@+id/navigation_test_series_type"
         android:name="technited.minds.gurumantra.ui.test.testseries.TestSeriesType"
@@ -125,4 +160,12 @@
             android:id="@+id/action_navigation_home_to_batchDetails"
             app:destination="@id/batchDetails" />
     </fragment>
+    <activity
+        android:id="@+id/Play"
+        android:name="technited.minds.gurumantra.ui.Play"
+        android:label="Play" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </activity>
 </navigation>

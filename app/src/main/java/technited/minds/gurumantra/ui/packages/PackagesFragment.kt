@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.getInputField
+import com.afollestad.materialdialogs.input.input
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.utils.Resource
 import com.razorpay.Checkout
@@ -89,6 +92,7 @@ class PackagesFragment : Fragment() {
 
             }
         })
+
     }
 
     override fun onDestroyView() {
@@ -100,7 +104,7 @@ class PackagesFragment : Fragment() {
         val i = Intent(activity, PaymentPage::class.java)
         i.putExtra("price", pck.pckPrice.toString())
         i.putExtra("title", pck.pckName)
-        paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, pck.pckId.toString(), "package")
+
         paymentViewModel.payment.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -130,10 +134,23 @@ class PackagesFragment : Fragment() {
                             dialog.dismiss()
                         }
                     }
-//                    binding.animationView.visibility = View.GONE
 
                 }
             }
         })
+        val dialog: MaterialDialog =  MaterialDialog(requireContext()).show {
+            title(text = "Apply Coupons")
+            message(text = "Do you have coupon code ?")
+            cornerRadius(16f)
+            input(allowEmpty = true) { dialog, text ->
+//                val coupon: EditText = dialog.getInputField()
+                paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, pck.pckId.toString(), "package",text.toString())
+
+
+            }
+            positiveButton(text = "OK") { dialog ->
+                dialog.dismiss()
+            }
+        }
     }
 }

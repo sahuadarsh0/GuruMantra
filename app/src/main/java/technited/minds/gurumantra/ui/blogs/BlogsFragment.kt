@@ -1,6 +1,9 @@
 package technited.minds.gurumantra.ui.blogs
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentBlogsBinding
 import technited.minds.gurumantra.model.Blog
+import technited.minds.gurumantra.model.GetBlogs
+import technited.minds.gurumantra.ui.WebPage
 import technited.minds.gurumantra.ui.adapters.BlogsAdapter
 import technited.minds.gurumantra.utils.Resource
 
@@ -24,6 +29,7 @@ class BlogsFragment : Fragment() {
     private val blogsViewModel: BlogsViewModel by viewModels()
     private val blogsAdapter = BlogsAdapter(this::onItemClicked)
     private val binding get() = _binding!!
+    private lateinit var  blogs : List<Blog>
 
 
     override fun onCreateView(
@@ -38,11 +44,39 @@ class BlogsFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
 
+        binding.searchBlog.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.isNullOrEmpty()) {
+                    filter(s.toString())
+                }
+            }
+        })
+
         return root
     }
 
     private fun setupRecyclerView() {
         binding.blogsList.adapter = blogsAdapter
+    }
+
+
+    fun filter(strTyped: String) {
+        val filteredList = arrayListOf<Blog>()
+
+        for (blog in blogs) {
+            if (blog.blogTitle.contains(strTyped)) {
+                filteredList.add(blog)
+            }
+        }
+        blogsAdapter.submitList(filteredList)
     }
 
     private fun setupObservers() {
@@ -57,15 +91,10 @@ class BlogsFragment : Fragment() {
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val blogs = it.data
-
-                    if (blogs != null) {
-
-                        blogsAdapter.submitList(blogs)
-                        binding.animationView.visibility = View.GONE
-                        binding.blogsList.visibility = View.VISIBLE
-
-                    }
+                    blogs = it.data!!
+                    blogsAdapter.submitList(blogs.reversed())
+                    binding.animationView.visibility = View.GONE
+                    binding.blogsList.visibility = View.VISIBLE
 
                 }
                 Resource.Status.ERROR -> {
@@ -92,9 +121,20 @@ class BlogsFragment : Fragment() {
     }
 
     private fun onItemClicked(blog: Blog) {
-        findNavController().navigate(
-            R.id.action_navigation_blogs_to_blogDetails,
-            bundleOf("id" to blog.blogId.toString())
-        )
+//        findNavController().navigate(
+//            R.id.action_navigation_blogs_to_blogDetails,
+//            bundleOf("id" to blog.blogId.toString())
+//        )
+        startWebActivity(blog.blogId.toString())
+
     }
+
+
+    private fun startWebActivity(blogId: String) {
+        val intent = Intent(requireContext(), BlogWebPage::class.java)
+        intent.putExtra("url", "https://gurumantra.online/api/webShowBlog/$blogId")
+        intent.putExtra("id", blogId)
+        startActivity(intent)
+    }
+
 }

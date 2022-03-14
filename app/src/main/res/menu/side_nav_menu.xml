@@ -8,13 +8,28 @@
 
     <item
         android:id="@+id/navigation_about_us"
-        android:icon="@drawable/medal"
+        android:icon="@drawable/ic_person"
         android:title="@string/about_us" />
 
-    <!--    <item-->
-    <!--        android:id="@+id/navigation_courses"-->
-    <!--        android:icon="@drawable/medal"-->
-    <!--        android:title="@string/courses" />-->
+    <item
+        android:id="@+id/navigation_coupons"
+        android:icon="@drawable/zm_mm_starred_addr_book_detail_off"
+        android:title="@string/my_coupons" />
+
+    <item
+        android:id="@+id/navigation_scholarship"
+        android:icon="@drawable/medal"
+        android:title="@string/scholarship" />
+
+    <item
+        android:id="@+id/navigation_special_offers"
+        android:icon="@drawable/zm_offline"
+        android:title="@string/special_offers" />
+
+    <item
+        android:id="@+id/navigation_courses"
+        android:icon="@drawable/ic_chalkboard_teacher_solid"
+        android:title="@string/courses" />
 
     <item
         android:id="@+id/navigation_live_class"

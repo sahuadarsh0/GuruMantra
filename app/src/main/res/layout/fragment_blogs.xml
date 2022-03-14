@@ -12,25 +12,85 @@
             android:id="@+id/bg2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/b_bg"
             android:layout_marginBottom="-32dp"
             android:rotation="180"
+            android:src="@drawable/b_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/search_blog"
+            style="@style/TextBlack.medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_edit_text"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:gravity="start|center"
+            android:hint="@string/search"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/discussion_label"
+            style="@style/TextBlack.large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/discussion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_blog" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discussion_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:paddingStart="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discussion_label"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="2"
+            android:orientation="horizontal"
+            tools:listitem="@layout/item_list_discussion" />
+
+        <TextView
+            android:id="@+id/blogs_label"
+            style="@style/TextBlack.large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_blogs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discussion_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/blogs_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:clipToPadding="false"
-            android:layout_marginTop="32dp"
             android:paddingBottom="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blogs_label"
             tools:itemCount="8"
             tools:listitem="@layout/item_list_blog" />
 

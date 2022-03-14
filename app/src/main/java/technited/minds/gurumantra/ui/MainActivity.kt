@@ -88,8 +88,19 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_about_us -> {
                     val intent = Intent(this@MainActivity, WebPage::class.java)
-                    intent.putExtra("url", "https://gurumantra.online/about")
+                    intent.putExtra("url", "https://gurumantra.online/api/about")
                     startActivity(intent)
+                }
+                R.id.navigation_coupons -> {
+                    navController.navigate(R.id.navigation_coupons)
+                }
+                R.id.navigation_scholarship -> {
+                    val intent = Intent(this@MainActivity, WebPage::class.java)
+                    intent.putExtra("url", "https://gurumantra.online/api/scholarship?userId=${userSharedPreferences["id"]}")
+                    startActivity(intent)
+                }
+                R.id.navigation_special_offers -> {
+                    navController.navigate(R.id.navigation_live_class)
                 }
                 R.id.navigation_live_class -> {
                     navController.navigate(R.id.navigation_live_class)
@@ -102,6 +113,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_packages -> {
                     navController.navigate(R.id.navigation_packages)
+                }
+                R.id.navigation_courses -> {
+                    navController.navigate(R.id.navigation_courses)
                 }
                 R.id.navigation_blogs -> {
                     navController.navigate(R.id.navigation_blogs)

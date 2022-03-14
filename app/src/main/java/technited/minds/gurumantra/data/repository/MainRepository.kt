@@ -36,6 +36,7 @@ class MainRepository @Inject constructor(
     suspend fun getEnrolled(userId: String, id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getEnrolled(userId, id)
         "practice" -> remoteDataSource.getEnrolledSet(userId, id)
+        "course" -> remoteDataSource.getEnrolledCourse(userId, id)
         else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
@@ -94,11 +95,13 @@ class MainRepository @Inject constructor(
     suspend fun getNotes() = remoteDataSource.getNotes()
 
     suspend fun getPackages() = remoteDataSource.getPackages()
-    suspend fun getPaymentData(userId: String, id: String, type: String) = when (type) {
-        "package" -> remoteDataSource.getPaymentDataPackage(userId, id)
+    suspend fun getCoupons(userId: String) = remoteDataSource.getCoupons(userId)
+    suspend fun getPaymentData(userId: String, id: String, type: String, coupon: String? = null) = when (type) {
+        "package" -> remoteDataSource.getPaymentDataPackage(userId, id,coupon)
         "test" -> remoteDataSource.getPaymentDataSeries(userId, id)
         "practice" -> remoteDataSource.getPaymentDataPractice(userId, id)
-        else -> remoteDataSource.getPaymentDataPackage(userId, id)
+        "course" -> remoteDataSource.getPaymentDataCourse(userId, id)
+        else -> remoteDataSource.getPaymentDataPackage(userId, id,coupon)
     }
 
     suspend fun purchase(
@@ -110,11 +113,14 @@ class MainRepository @Inject constructor(
         "package" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
         "test" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
         "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
+        "course" -> remoteDataSource.purchaseCourse(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
     }
 
 
     // Courses
     suspend fun getCourses() = remoteDataSource.getCourses()
+    suspend fun getCourseDetails(userId: String, cid: String) =
+        remoteDataSource.getCourseDetails(userId, cid)
 
 }

@@ -1,10 +1,13 @@
 package technited.minds.gurumantra.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityWebPageBinding
+
 
 class WebPage : AppCompatActivity() {
     private lateinit var binding: ActivityWebPageBinding
@@ -20,6 +23,13 @@ class WebPage : AppCompatActivity() {
         webSettings.domStorageEnabled = true
         webSettings.allowContentAccess = true
         intent.getStringExtra("url")?.let { binding.webView.loadUrl(it) }
-
+        binding.webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return false
+            }
+        }
+        webSettings.javaScriptCanOpenWindowsAutomatically = false;
+        webSettings.setSupportMultipleWindows(false);
     }
 }

@@ -16,8 +16,8 @@ class PaymentViewModel @Inject constructor(private val repository: MainRepositor
     val payment: MutableLiveData<Resource<PaymentOrder>> = MutableLiveData()
     val purchase: MutableLiveData<Resource<String>> = MutableLiveData()
 
-    fun getPaymentData(userId: String, id: String, type: String) = viewModelScope.launch {
-        payment.postValue(repository.getPaymentData(userId, id, type))
+    fun getPaymentData(userId: String, id: String, type: String, coupon: String? = null) = viewModelScope.launch {
+        payment.postValue(repository.getPaymentData(userId, id, type, coupon))
     }
 
     fun purchase(
@@ -26,7 +26,7 @@ class PaymentViewModel @Inject constructor(private val repository: MainRepositor
         paymentId: String,
         type: String
     ) = viewModelScope.launch {
-        purchase.postValue(repository.purchase(userId, orderId, paymentId,type))
+        purchase.postValue(repository.purchase(userId, orderId, paymentId, type))
     }
 
 }

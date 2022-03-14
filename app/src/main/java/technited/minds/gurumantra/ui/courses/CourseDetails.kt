@@ -1,46 +1,42 @@
-package technited.minds.gurumantra.ui.test.testseries
+package technited.minds.gurumantra.ui.courses
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.getInputField
-import com.afollestad.materialdialogs.input.input
-import com.rajat.pdfviewer.PdfViewerActivity
+import com.afollestad.materialdialogs.list.listItems
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.databinding.FragmentTestSeriesDetailsBinding
-import technited.minds.gurumantra.model.Ts
-import technited.minds.gurumantra.ui.WebPage
-import technited.minds.gurumantra.ui.adapters.TestsAdapter
+import technited.minds.gurumantra.databinding.FragmentCoursesDetailsBinding
+import technited.minds.gurumantra.model.Module
+import technited.minds.gurumantra.ui.adapters.ModulesAdapter
 import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.ui.payment.PaymentViewModel
-import technited.minds.gurumantra.ui.test.ExamActivity
-import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TestSeriesDetails : Fragment() {
+class CourseDetails : Fragment() {
 
-    private val testSeriesViewModel: TestSeriesViewModel by viewModels()
+    private val coursesViewModel: CoursesViewModel by viewModels()
     private val paymentViewModel: PaymentViewModel by viewModels()
-    private var _binding: FragmentTestSeriesDetailsBinding? = null
-    private val testsAdapter = TestsAdapter(this::onItemClicked)
+    private var _binding: FragmentCoursesDetailsBinding? = null
+    private val modulesAdapter = ModulesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
-    private lateinit var type: String
-    private var tsEnrolls: Int = 0
+    private var courseEnrolls: Int = 0
+    private var courseId: Int = 0
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
@@ -50,72 +46,52 @@ class TestSeriesDetails : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTestSeriesDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentCoursesDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
-        arguments?.getString("type")?.let { type = it }
-
-        arguments?.getString("id")?.let {
-            testSeriesViewModel.getTestSeriesDetails(userSharedPreferences["id"]!!, it, type)
-            testSeriesViewModel.getListTests(it, type)
+        arguments?.getString("id")?.let { coursesViewModel.getCourseDetails(userSharedPreferences["id"]!!, it) }
+        binding.startCourse.setOnClickListener {
+            startCourse()
         }
-
         return root
     }
 
     private fun setupRecyclerView() {
-        binding.testSeriesList.adapter = testsAdapter
+        binding.modulesList.adapter = modulesAdapter
     }
 
     private fun setupObservers() {
         binding.animationView.visibility = VISIBLE
-        binding.testSeriesList.visibility = GONE
+        binding.modulesList.visibility = GONE
 
-        testSeriesViewModel.tests.observe(viewLifecycleOwner, {
+        coursesViewModel.courseDetails.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
-                    binding.testSeriesList.visibility = GONE
-
-                }
-                Resource.Status.SUCCESS -> {
-                    val tests = it.data
-
-                    if (tests != null) {
-
-                        testsAdapter.submitList(tests.ts)
-                        binding.details = tests.tss
-                        binding.animationView.visibility = GONE
-                        binding.testSeriesList.visibility = VISIBLE
-
-                    }
-
-                }
-                Resource.Status.ERROR -> {
-                    binding.animationView.visibility = GONE
-                    binding.testSeriesList.visibility = VISIBLE
-                }
-
-            }
-        })
-
-        testSeriesViewModel.testSeriesDetails.observe(viewLifecycleOwner, {
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    binding.animationView.visibility = VISIBLE
+                    binding.modulesList.visibility = GONE
 
                 }
                 Resource.Status.SUCCESS -> {
                     val details = it.data
 
                     if (details != null) {
-                        if (type != "pdf")
-                            binding.details = details.tss
-                        userSharedPreferences["package"] = details.user?.packageX.toString()
-                        binding.animationView.visibility = GONE
-                        tsEnrolls = details.tsEnrols
 
+                        userSharedPreferences["package"] = details.user?.packageX.toString()
+                        binding.details = details.courses
+                        binding.animationView.visibility = GONE
+
+                        modulesAdapter.submitList(details.modules)
+                        binding.animationView.visibility = GONE
+                        courseEnrolls = details.enrolls.toInt()
+                        courseId = details.courses.cId
+                        if (courseEnrolls == 1) {
+                            binding.startCourse.visibility = GONE
+                            binding.modulesList.visibility = VISIBLE
+                        } else {
+                            binding.startCourse.visibility = VISIBLE
+                            binding.modulesList.visibility = GONE
+                        }
                     }
 
                 }
@@ -129,13 +105,13 @@ class TestSeriesDetails : Fragment() {
                         }
                     }
                     binding.animationView.visibility = GONE
-
+                    binding.modulesList.visibility = VISIBLE
                 }
 
             }
         })
 
-        testSeriesViewModel.enroll.observe(viewLifecycleOwner, {
+        coursesViewModel.enroll.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -167,7 +143,6 @@ class TestSeriesDetails : Fragment() {
 
             }
         })
-
         paymentViewModel.payment.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -182,10 +157,10 @@ class TestSeriesDetails : Fragment() {
                             Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
 
                             val i = Intent(activity, PaymentPage::class.java)
-                            i.putExtra("price", details.tss.price.toString())
+                            i.putExtra("price", details.course.pid.toString())
                             i.putExtra("title", details.data.name)
                             i.putExtra("orderId", details.data.orderId)
-                            i.putExtra("type", type)
+                            i.putExtra("type", "course")
                             startActivity(i)
                         }
                     }
@@ -214,33 +189,40 @@ class TestSeriesDetails : Fragment() {
         _binding = null
     }
 
-    private fun onItemClicked(ts: Ts) {
-//        val i = Intent(activity, ExamActivity::class.java)
-//        i.putExtra("id", ts.tId.toString())
-//        i.putExtra("type", type)
-        if (type == "pdf")
-            startActivity(
-                PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
-                    context,
-                    Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
-                    ts.tName,                        // PDF Name/Title in String format
-                    "",                  // If nothing specific, Put "" it will save to Downloads
-                    enableDownload = false           // This param is true by default.
-                )
-            )
-        if (tsEnrolls == 1) {
-//            startActivity(i)
-            startWebActivity(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
+    private fun onItemClicked(module: Module) {
+        var myItems = listOf<String>()
+        module.lectures.forEach { myItems = myItems.plusElement(it.lectureTitle) }
+        MaterialDialog(requireActivity()).show {
+            title(text = module.moduleTitle)
+            cornerRadius(16f)
+           listItems(items = myItems) { dialog, index, text ->
+                val action = CourseDetailsDirections.actionCoursesDetailsToPlay(module.lectures[index].lectureVideo)
+               NavHostFragment.findNavController(this@CourseDetails).navigate(action)
+            }
 
+
+            negativeButton(text = "cancel") { dialog ->
+                dialog.dismiss()
+            }
+        }
+    }
+
+    private fun openPackage() {
+        findNavController().navigate(R.id.action_coursesDetails_to_navigation_packages)
+    }
+
+    private fun startCourse() {
+        if (courseEnrolls == 1) {
+            startLectures()
         } else {
-            when (binding.details?.packageX) {
+            when (binding.details?.pid) {
                 1 -> {
-                    testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
-                    startWebActivity(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
+                    coursesViewModel.getEnrolled(userSharedPreferences["id"]!!, courseId.toString(), "course")
+                    startLectures()
                 }
                 2 -> {
                     if (userSharedPreferences["package"]!!.toInt() == 2) {
-                        testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
+                        coursesViewModel.getEnrolled(userSharedPreferences["id"]!!, courseId.toString(), "course")
                         Toast.makeText(requireActivity(), "Enrolling to this course", Toast.LENGTH_SHORT).show()
                     } else
                         MaterialDialog(requireContext()).show {
@@ -255,41 +237,13 @@ class TestSeriesDetails : Fragment() {
 
                 }
                 3 -> {
-                    val dialog: MaterialDialog = MaterialDialog(requireContext()).show {
-                        title(text = "Apply Coupons")
-                        message(text = "Do you have coupon code ?")
-                        cornerRadius(16f)
-                        input(allowEmpty = true) { dialog, text ->
-
-
-//                            val coupon: EditText = dialog.getInputField()
-                            paymentViewModel.getPaymentData(
-                                userSharedPreferences["id"]!!,
-                                ts.tsId.toString(),
-                                type,
-                                text.toString()
-                            )
-                        }
-                        positiveButton(text = "OK") { dialog ->
-                            dialog.dismiss()
-                        }
-                    }
+                    paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, courseId.toString(), "course")
                 }
             }
         }
     }
 
-    private fun openPackage() {
-        findNavController().navigate(R.id.action_testSeriesDetails_to_navigation_packages)
-    }
+    private fun startLectures() {
 
-    private fun startWebActivity(usId: String, tsId: String, type: String) {
-        val intent = Intent(requireContext(), WebPage::class.java)
-        when (type) {
-            "test" -> intent.putExtra("url", "https://gurumantra.online/api/webTestsDetails?testId=$tsId&userId=$usId")
-            "practice" -> intent.putExtra("url", "https://gurumantra.online/api/webStartSet?psId=$tsId")
-        }
-        startActivity(intent)
     }
-
 }

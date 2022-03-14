@@ -292,7 +292,7 @@ class ExamActivity : AppCompatActivity() {
         })
     }
 
-    //
+
     private fun submitTest(answers: List<AnswersItem>) {
         if (type != "test")
             finish()
@@ -309,12 +309,5 @@ class ExamActivity : AppCompatActivity() {
         )
     }
 
-    override fun onBackPressed() {
-        if (isExamRunning)
-            Toast.makeText(this@ExamActivity, "Disabled during Test", Toast.LENGTH_SHORT)
-                .show()
-        else
-            super.onBackPressed()
-    }
 
 }

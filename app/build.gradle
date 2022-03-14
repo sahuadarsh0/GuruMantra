@@ -85,6 +85,7 @@ dependencies {
     implementation 'com.github.afreakyelf:Pdf-Viewer:1.0.7'
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
     implementation "com.github.skydoves:androidribbon:1.0.4"
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
 
 //  Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"

@@ -59,14 +59,19 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //    Payment
     suspend fun getPackages() = getResult { apiService.getPackages() }
-    suspend fun getPaymentDataPackage(userId: String, pckId: String) =
-        getResult { apiService.getPaymentDataPackage(userId, pckId) }
+    suspend fun getCoupons(userId: String) = getResult { apiService.getCoupons(userId) }
+    suspend fun getPaymentDataPackage(userId: String, pckId: String,coupon: String? = null) =
+        getResult { apiService.getPaymentDataPackage(userId, pckId,coupon) }
 
     suspend fun getPaymentDataSeries(userId: String, tsId: String) =
         getResult { apiService.getPaymentDataSeries(userId, tsId) }
 
     suspend fun getPaymentDataPractice(userId: String, pssId: String) =
         getResult { apiService.getPaymentDataPractice(userId, pssId) }
+
+
+    suspend fun getPaymentDataCourse(userId: String, cId: String) =
+        getResult { apiService.getPaymentDataCourse(userId, cId) }
 
     suspend fun purchasePackage(
         userId: String,
@@ -86,6 +91,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         paymentId: String
     ) = getResult { apiService.purchasePractice(userId, orderId, paymentId) }
 
+    suspend fun purchaseCourse(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchaseCourse(userId, orderId, paymentId) }
+
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
     suspend fun register(
         name: String,
@@ -96,4 +107,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //Courses
     suspend fun getCourses() = getResult { apiService.getCourses() }
+    suspend fun getCourseDetails(userId: String, cid: String) =
+        getResult { apiService.getCourseDetails(userId, cid) }
+
+    suspend fun getEnrolledCourse(userId: String, cId: String) =
+        getResult { apiService.getEnrolledCourse(userId, cId) }
+
 }

@@ -14,7 +14,9 @@ data class PaymentOrder(
     @SerializedName("pcks")
     val pck: Pck,
     @SerializedName("tss")
-    val tss: TestSeriesItem
+    val tss: TestSeriesItem,
+    @SerializedName("course")
+    val course: Course
 )
 data class PaymentData(
     @SerializedName("orderId")

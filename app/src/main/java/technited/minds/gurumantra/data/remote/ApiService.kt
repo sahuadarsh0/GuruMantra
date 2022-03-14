@@ -29,11 +29,11 @@ interface ApiService {
         password: String?
     ): Response<RegisterDetails>
 
-    //    Home
+    //    Home----------------------------------------------------------------------
     @GET("home")
     suspend fun getHome(): Response<Home>
 
-    //    Live Class
+    //    Live Class----------------------------------------------------------------
     @GET("getMeetings/{batchNo}")
     suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
 
@@ -47,7 +47,7 @@ interface ApiService {
     suspend fun getBatches(): Response<BatchDetails>
 
 
-    //    Test Series
+    //    Test Series---------------------------------------------------------------
     @GET("getTs")
     suspend fun getTestSeries(): Response<TestSeries>
 
@@ -78,7 +78,7 @@ interface ApiService {
     ): Response<Enrolled>
 
 
-    //    Practice Sets
+    //    Practice Sets------------------------------------------------------------------------------
     @GET("getSetSeries")
     suspend fun getSetSeries(): Response<TestSeries>
 
@@ -107,7 +107,7 @@ interface ApiService {
     ): Response<Enrolled>
 
 
-    //    PDF Tests
+    //    PDF Tests-----------------------------------------------------------------------
     @GET("getPDFts")
     suspend fun getPDF(): Response<TestSeries>
 
@@ -117,7 +117,7 @@ interface ApiService {
     ): Response<ListTests>
 
 
-    //    getBlogs
+    //    getBlogs------------------------------------------------------------------------------
     @GET("getBlogs")
     suspend fun getBlogs(): Response<GetBlogs>
 
@@ -136,7 +136,7 @@ interface ApiService {
     ): Response<CommentResponse>
 
 
-    // Others
+    // Others------------------------------------------------------------------------------------------------------
     @GET("gallery")
     suspend fun getGallery(): Response<Gallery>
 
@@ -148,10 +148,16 @@ interface ApiService {
     @GET("packages")
     suspend fun getPackages(): Response<Packages>
 
+    @GET("mycoupons")
+    suspend fun getCoupons(
+        @Query("userId") userId: String
+    ): Response<Coupons>
+
     @GET("getPackageOrderId")
     suspend fun getPaymentDataPackage(
         @Query("userId") userId: String,
-        @Query("pckId") pckId: String
+        @Query("pckId") pckId: String,
+        @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
     @GET("getOrderIdTseries")
@@ -165,6 +171,12 @@ interface ApiService {
     suspend fun getPaymentDataPractice(
         @Query("userId") userId: String,
         @Query("pssId") pssId: String
+    ): Response<PaymentOrder>
+
+    @GET("getCourseOrderId")
+    suspend fun getPaymentDataCourse(
+        @Query("userId") userId: String,
+        @Query("cId") cId: String
     ): Response<PaymentOrder>
 
     @FormUrlEncoded
@@ -200,10 +212,36 @@ interface ApiService {
         paymentId: String?
     ): Response<String>
 
+    @FormUrlEncoded
+    @POST("purchaseCourse")
+    suspend fun purchaseCourse(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
 
-//    getCourses
+
+    //    getCourses-------------------------------------------------------------------------------
     @GET("getCourses")
     suspend fun getCourses(): Response<GetCourses>
+
+    //    getCourseDetails
+    @GET("getCourseDetails")
+    suspend fun getCourseDetails(
+        @Query("userId") userId: String,
+        @Query("cid") cId: String
+    ): Response<CourseDetails>
+
+    //    enroll
+
+    @GET("enrollCourse")
+    suspend fun getEnrolledCourse(
+        @Query("userId") userId: String,
+        @Query("cId") cId: String
+    ): Response<Enrolled>
 
 
 }

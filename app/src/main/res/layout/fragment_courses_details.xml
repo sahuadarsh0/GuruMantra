@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="details"
-            type="technited.minds.gurumantra.model.TestSeriesItem" />
+            type="technited.minds.gurumantra.model.Course" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.test.testseries.TestSeriesDetails">
+        tools:context=".ui.courses.CoursesFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,43 +21,65 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/test_series_image"
+                android:id="@+id/course_image"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
-                android:setImageUrl="@{details.thumbnail}"
+                android:setImageUrl="@{details.courseThumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/test_series_name"
+                android:id="@+id/course_name"
                 style="@style/TextBlack.large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@{details.tsName}"
+                android:text="@{details.courseName}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/test_series_image"
+                app:layout_constraintTop_toBottomOf="@+id/course_image"
                 tools:text="@string/app_name" />
 
             <TextView
-                android:id="@+id/test_series_description"
+                android:id="@+id/course_description"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:htmlText="@{details.tsDescription}"
+                android:htmlText="@{details.courseDescription}"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/test_series_name"
+                app:layout_constraintTop_toBottomOf="@+id/course_name"
                 tools:text="@string/zm_description_passcode_security_202232" />
 
+            <Button
+                android:id="@+id/start_course"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/purple_500"
+                android:padding="8dp"
+                android:text="@string/start_course"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:cornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/course_description"
+                app:layout_constraintWidth_percent=".5" />
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/test_series_list"
+                android:id="@+id/modules_list"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -64,14 +87,14 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="100dp"
                 android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/test_series_description"
+                app:layout_constraintTop_toBottomOf="@+id/course_description"
                 app:spanCount="2"
                 tools:itemCount="8"
-                tools:listitem="@layout/item_list_tests" />
+                tools:listitem="@layout/item_list_modules" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"

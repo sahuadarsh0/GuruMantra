@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentGalleryBinding
 import technited.minds.gurumantra.model.Gal
 import technited.minds.gurumantra.ui.adapters.GalleryAdapter
 import technited.minds.gurumantra.utils.Resource
-import com.github.chrisbanes.photoview.PhotoView
-import technited.minds.gurumantra.utils.Constants
+import technited.minds.gurumantra.ui.adapters.ImageZoomAdapter
+
 
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
@@ -22,6 +22,7 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val galleryViewModel: GalleryViewModel by viewModels()
     private val galleryAdapter = GalleryAdapter(this::onItemClicked)
+    private val zoomAdapter = ImageZoomAdapter()
     private val binding get() = _binding!!
     private lateinit var zoomImageDialog: Dialog
 
@@ -74,6 +75,7 @@ class GalleryFragment : Fragment() {
                     if (gallery != null) {
 
                         galleryAdapter.submitList(gallery)
+                        zoomAdapter.submitList(gallery)
                         binding.animationView.visibility = View.GONE
                         binding.galleryList.visibility = View.VISIBLE
 
@@ -104,12 +106,9 @@ class GalleryFragment : Fragment() {
     }
 
     private fun onItemClicked(gal: Gal) {
+        val galleryRecyclerView: RecyclerView = this.zoomImageDialog.findViewById(R.id.recycler_zoom_image)
+        galleryRecyclerView.adapter = zoomAdapter
+        galleryRecyclerView.layoutManager?.scrollToPosition(gal.gId+1)
         zoomImageDialog.show()
-        val image = zoomImageDialog.findViewById(R.id.image) as PhotoView
-        Glide
-            .with(requireActivity())
-            .load(Constants.URL.toString()+gal.gImage)
-            .placeholder(R.drawable.notebook)
-            .into(image)
     }
 }
