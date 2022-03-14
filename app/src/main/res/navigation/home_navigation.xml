@@ -45,6 +45,13 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_blogs_to_discussionDetails"
+            app:destination="@id/discussionDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/batchDetails"
@@ -86,6 +93,11 @@
         android:name="technited.minds.gurumantra.ui.blogs.BlogDetails"
         android:label="Blog Details"
         tools:layout="@layout/fragment_blog_details" />
+    <fragment
+        android:id="@+id/discussionDetails"
+        android:name="technited.minds.gurumantra.ui.blogs.DiscussionDetails"
+        android:label="Discussion Details"
+        tools:layout="@layout/fragment_discussion_details" />
     <fragment
         android:id="@+id/navigation_gallery"
         android:name="technited.minds.gurumantra.ui.gallery.GalleryFragment"

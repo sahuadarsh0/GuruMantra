@@ -6,45 +6,34 @@
     <data>
 
         <variable
-            name="blog"
-            type="technited.minds.gurumantra.model.Blog" />
+            name="discussion"
+            type="technited.minds.gurumantra.model.Dcs" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.blogs.BlogDetails">
+        tools:context=".ui.blogs.DiscussionDetails">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:minHeight="500dp"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/blog_name"
-                style="@style/TextBlack.large"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{blog.blogTitle}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/app_name" />
 
             <TextView
                 android:id="@+id/blog_description"
-                style="@style/TextBlack.small"
+                style="@style/TextBlack.medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:htmlText="@{blog.userName}"
+                android:htmlText="@{discussion.userName}"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blog_name"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/nav_app_bar_navigate_up_description" />
 
             <TextView
@@ -52,12 +41,13 @@
                 style="@style/TextBlack.medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxLines="5"
                 android:layout_marginStart="16dp"
                 android:paddingBottom="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:htmlText="@{blog.blogContent}"
+                android:htmlText="@{discussion.content}"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

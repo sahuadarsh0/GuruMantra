@@ -75,15 +75,15 @@ class MainRepository @Inject constructor(
     suspend fun getPDF() = remoteDataSource.getPDF()
 
     //    Blogs
-    fun getBlogs() = performGetOperation(
-        databaseQuery = { localBlogsDataSource.getBlogs() },
-        networkCall = { remoteDataSource.getBlogs() },
-        saveCallResult = { localBlogsDataSource.insertAll(it.blogs) }
-    )
+    suspend fun getBlogs() = remoteDataSource.getBlogs()
 
     suspend fun getComments(blogId: String) = remoteDataSource.getComments(blogId)
     suspend fun postComment(userId: Int, blogId: Int, comment: String) =
         remoteDataSource.postComment(userId, blogId, comment)
+    suspend fun getDiscussionForumDetail(dId: String) = remoteDataSource.getDiscussionForumDetail(dId)
+    suspend fun getDiscussionComments(dId: String) = remoteDataSource.getDiscussionComments(dId)
+    suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) =
+        remoteDataSource.postDiscussionComment(userId, dId, comment)
 
     // Others
     fun getGallery() = performGetOperation(

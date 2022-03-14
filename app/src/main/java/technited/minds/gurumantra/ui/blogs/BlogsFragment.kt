@@ -16,9 +16,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentBlogsBinding
 import technited.minds.gurumantra.model.Blog
+import technited.minds.gurumantra.model.Dcs
 import technited.minds.gurumantra.model.GetBlogs
 import technited.minds.gurumantra.ui.WebPage
 import technited.minds.gurumantra.ui.adapters.BlogsAdapter
+import technited.minds.gurumantra.ui.adapters.DiscussionAdapter
 import technited.minds.gurumantra.utils.Resource
 
 @AndroidEntryPoint
@@ -28,6 +30,7 @@ class BlogsFragment : Fragment() {
 
     private val blogsViewModel: BlogsViewModel by viewModels()
     private val blogsAdapter = BlogsAdapter(this::onItemClicked)
+    private val discussionAdapter = DiscussionAdapter(this::onItemClicked)
     private val binding get() = _binding!!
     private lateinit var  blogs : List<Blog>
 
@@ -65,6 +68,7 @@ class BlogsFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.blogsList.adapter = blogsAdapter
+        binding.discussionList.adapter = discussionAdapter
     }
 
 
@@ -91,8 +95,10 @@ class BlogsFragment : Fragment() {
 
                 }
                 Resource.Status.SUCCESS -> {
-                    blogs = it.data!!
-                    blogsAdapter.submitList(blogs.reversed())
+                    blogs = it.data?.blogs!!
+                    val discussion = it.data.dcs
+                    blogsAdapter.submitList(blogs)
+                    discussionAdapter.submitList(discussion)
                     binding.animationView.visibility = View.GONE
                     binding.blogsList.visibility = View.VISIBLE
 
@@ -126,6 +132,15 @@ class BlogsFragment : Fragment() {
 //            bundleOf("id" to blog.blogId.toString())
 //        )
         startWebActivity(blog.blogId.toString())
+
+    }
+
+    private fun onItemClicked(dcs: Dcs) {
+        findNavController().navigate(
+            R.id.action_navigation_blogs_to_discussionDetails,
+            bundleOf("id" to dcs.dId.toString())
+        )
+//        startWebActivity(blog.blogId.toString())
 
     }
 

@@ -83,6 +83,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/technited/minds/gurumantra/ui/blogs/BlogsViewModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/proguard-rules.pro">
           <value>
             <set />
@@ -553,6 +558,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/adapters/DiscussionAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/adapters/GalleryAdapter.kt">
           <value>
             <set />
@@ -624,6 +634,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/blogs/BlogsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/blogs/DiscussionDetails.kt">
           <value>
             <set />
           </value>
@@ -1109,6 +1124,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_discussion_details.xml">
           <value>
             <set />
           </value>

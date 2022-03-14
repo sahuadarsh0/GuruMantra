@@ -135,6 +135,26 @@ interface ApiService {
         comment: String?
     ): Response<CommentResponse>
 
+    @GET("discussionForum")
+    suspend fun getDiscussionForumDetail(
+        @Query("dId") dId: String,
+    ): Response<GetDcs>
+
+    @GET("discussion/getComments/")
+    suspend fun getDiscussionComments(
+        @Query("dId") dId: String,
+    ): Response<GetDcsComment>
+
+    @FormUrlEncoded
+    @POST("discussion/postComment")
+    suspend fun postDiscussionComment(
+        @Field("userId")
+        userId: Int?,
+        @Field("dId")
+        dId: Int?,
+        @Field("comment")
+        comment: String?
+    ): Response<CommentResponse>
 
     // Others------------------------------------------------------------------------------------------------------
     @GET("gallery")

@@ -22,6 +22,9 @@ import technited.minds.gurumantra.ui.adapters.CommentsAdapter
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
+import android.content.Intent
+import technited.minds.gurumantra.model.Blog
+
 
 @AndroidEntryPoint
 class BlogWebPage : AppCompatActivity() {
@@ -65,6 +68,7 @@ class BlogWebPage : AppCompatActivity() {
                 )
             }
         }
+        binding.share.setOnClickListener { shareIt() }
         CoroutineScope(Dispatchers.Main).launch {
 
             delay(2000.toLong())
@@ -79,7 +83,7 @@ class BlogWebPage : AppCompatActivity() {
 
 
     private fun setupObservers() {
-        val id =  intent.getStringExtra("id")
+        val id = intent.getStringExtra("id")
         if (id != null) {
             blogId = id
             blogsViewModel.getComments(blogId)
@@ -123,6 +127,20 @@ class BlogWebPage : AppCompatActivity() {
         })
 
     }
+
     private fun onItemClicked(comment: Comment) {
+    }
+
+
+    private fun shareIt() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_SUBJECT, "")
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            "GuruMantra.online \nhttps://gurumantra.online/api/webShowBlog/$blogId"
+        )
+        intent.type = "text/plain"
+        startActivity(Intent.createChooser(intent, "GuruMantra.online \n"))
     }
 }

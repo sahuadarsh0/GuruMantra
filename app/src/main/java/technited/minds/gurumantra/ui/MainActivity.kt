@@ -128,6 +128,11 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("url", "https://gurumantra.online/contact")
                     startActivity(intent)
                 }
+                R.id.navigation_profile -> {
+                    val intent = Intent(this@MainActivity, WebPage::class.java)
+                    intent.putExtra("url", "https://gurumantra.online/api/profile/${userSharedPreferences["id"]}")
+                    startActivity(intent)
+                }
                 R.id.logout -> {
                     MaterialDialog(this).show {
                         title(text = "Logout?")

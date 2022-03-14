@@ -139,8 +139,8 @@ class PackagesFragment : Fragment() {
             }
         })
         val dialog: MaterialDialog =  MaterialDialog(requireContext()).show {
-            title(text = "Apply Coupons")
-            message(text = "Do you have coupon code ?")
+            title(text = "Apply Coupons ?")
+            message(text = "Enter coupon code")
             cornerRadius(16f)
             input(allowEmpty = true) { dialog, text ->
 //                val coupon: EditText = dialog.getInputField()
@@ -150,6 +150,11 @@ class PackagesFragment : Fragment() {
             }
             positiveButton(text = "OK") { dialog ->
                 dialog.dismiss()
+            }
+            negativeButton(text = "No Coupons") { dialog ->
+
+                paymentViewModel.getPaymentData(userSharedPreferences["id"]!!, pck.pckId.toString(), "package")
+
             }
         }
     }

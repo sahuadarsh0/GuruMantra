@@ -7,7 +7,23 @@ import com.google.gson.annotations.SerializedName
 
 data class GetBlogs(
     @SerializedName("blogs")
-    val blogs: List<Blog>
+    val blogs: List<Blog>,
+
+    @SerializedName("dcs")
+    val dcs: List<Dcs>
+
+)
+
+data class GetDcs(
+    @SerializedName("dcs")
+    val dcs: Dcs
+
+)
+
+data class GetDcsComment(
+    @SerializedName("comments")
+    val comment:  List<Comment>
+
 )
 
 
@@ -38,4 +54,21 @@ data class Blog(
     val updatedAt: String,
     @SerializedName("userName")
     val userName: String
+)
+
+data class Dcs(
+    @SerializedName("dId")
+    val dId: Int,
+    @SerializedName("userId")
+    val userId: Int,
+    @SerializedName("bContent")
+    val content: String,
+    @SerializedName("created_at")
+    val createdAt: String,
+    @SerializedName("updated_at")
+    val updatedAt: String,
+    @SerializedName("userName")
+    val userName: String,
+    @SerializedName("userImage")
+    val userImage: String
 )
