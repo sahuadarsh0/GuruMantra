@@ -53,10 +53,16 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) = getResult {
         apiService.postDiscussionComment(userId, dId, comment)
     }
+    suspend fun filterBlogs(cId: String,scId: String) = getResult {
+        apiService.filterBlogs(cId, scId)
+    }
 
     //    others
     suspend fun getGallery() = getResult { apiService.getGallery() }
 
+    suspend fun getCategory() = getResult { apiService.getCategory() }
+    suspend fun getSubCategory(cid: String) =
+        getResult { apiService.getSubCategory(cid) }
 
     //    notes
     suspend fun getNotes() = getResult { apiService.getNotes() }

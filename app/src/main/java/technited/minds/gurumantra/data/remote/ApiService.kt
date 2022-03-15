@@ -156,6 +156,12 @@ interface ApiService {
         comment: String?
     ): Response<CommentResponse>
 
+    @GET("filterBlog")
+    suspend fun filterBlogs(
+    @Query("cId") cId: String,
+    @Query("sId") scId: String
+    ): Response<GetBlogs>
+
     // Others------------------------------------------------------------------------------------------------------
     @GET("gallery")
     suspend fun getGallery(): Response<Gallery>
@@ -243,6 +249,14 @@ interface ApiService {
         paymentId: String?
     ): Response<String>
 
+
+    @GET("getCatogery")
+    suspend fun getCategory(): Response<GetCategory>
+
+    @GET("getSubCatogery")
+    suspend fun getSubCategory(
+        @Query("cId") cId: String
+    ): Response<GetSubCategory>
 
     //    getCourses-------------------------------------------------------------------------------
     @GET("getCourses")

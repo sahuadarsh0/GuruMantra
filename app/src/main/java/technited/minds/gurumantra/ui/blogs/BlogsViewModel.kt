@@ -11,13 +11,16 @@ import javax.inject.Inject
 @HiltViewModel
 class BlogsViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
-    val blogs = liveData { emit(repository.getBlogs()) }
 
+    val blogs: MutableLiveData<Resource<GetBlogs>> = MutableLiveData()
     val comment: MutableLiveData<Resource<List<Comment>>> = MutableLiveData()
     val dcsComment: MutableLiveData<Resource<GetDcsComment>> = MutableLiveData()
     val dcs: MutableLiveData<Resource<GetDcs>> = MutableLiveData()
     val response: MutableLiveData<Resource<CommentResponse>> = MutableLiveData()
 
+    fun getBlogs() = viewModelScope.launch {
+        blogs.postValue(repository.getBlogs())
+    }
     fun getComments(blogId: String) = viewModelScope.launch {
         comment.postValue(repository.getComments(blogId))
     }
@@ -36,5 +39,9 @@ class BlogsViewModel @Inject constructor(private val repository: MainRepository)
 
     fun postDiscussionComment(userId: Int, dId: Int, comment: String) = viewModelScope.launch {
         response.postValue(repository.postDiscussionComment(userId, dId, comment))
+    }
+
+    fun filterBlogs(cId: String, scId: String) = viewModelScope.launch {
+        blogs.postValue(repository.filterBlogs(cId, scId))
     }
 }

@@ -10,7 +10,7 @@ data class GetBlogs(
     val blogs: List<Blog>,
 
     @SerializedName("dcs")
-    val dcs: List<Dcs>
+    val dcs: List<Dcs>?= null
 
 )
 

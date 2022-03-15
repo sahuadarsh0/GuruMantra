@@ -84,6 +84,7 @@ class MainRepository @Inject constructor(
     suspend fun getDiscussionComments(dId: String) = remoteDataSource.getDiscussionComments(dId)
     suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) =
         remoteDataSource.postDiscussionComment(userId, dId, comment)
+    suspend fun filterBlogs(cId: String,scId: String) = remoteDataSource.filterBlogs(cId, scId)
 
     // Others
     fun getGallery() = performGetOperation(
@@ -91,6 +92,9 @@ class MainRepository @Inject constructor(
         networkCall = { remoteDataSource.getGallery() },
         saveCallResult = { localGalleryDataSource.insertAll(it.gals) }
     )
+
+    suspend fun getCategory() = remoteDataSource.getCategory()
+    suspend fun getSubCategory(cid: String) = remoteDataSource.getSubCategory(cid)
 
     suspend fun getNotes() = remoteDataSource.getNotes()
 
