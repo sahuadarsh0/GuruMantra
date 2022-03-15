@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.navigation_live_class)
                 }
                 R.id.navigation_notes -> {
-                    navController.navigate(R.id.navigation_notes)
+                    navController.navigate(R.id.navigation_library_notes)
                 }
                 R.id.navigation_test_series_type -> {
                     navController.navigate(R.id.navigation_test_series_type)

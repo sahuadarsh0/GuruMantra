@@ -166,9 +166,33 @@ interface ApiService {
     @GET("gallery")
     suspend fun getGallery(): Response<Gallery>
 
+    // Notes Library
+
+
+    @GET("getNotes")
+    suspend fun getLibraryNotes(): Response<GetLibraryNotes>
+
+    @GET("getSampleNotes")
+    suspend fun getSampleNotes(): Response<GetNotes>
+
+    @GET("getCaNotes")
+    suspend fun getCaNotes(): Response<GetNotes>
+
+    @GET("getNcertNotes")
+    suspend fun getNcertNotes(): Response<GetNotes>
 
     @GET("getAllNotes")
-    suspend fun getNotes(): Response<GetNotes>
+    suspend fun getAllNotes(): Response<GetNotes>
+
+    @GET("filterNotes")
+    suspend fun filterNotes(
+        @Query("cId") cId: String,
+        @Query("sId") scId: String
+    ): Response<GetNotes>
+
+
+
+
 
 
     @GET("packages")

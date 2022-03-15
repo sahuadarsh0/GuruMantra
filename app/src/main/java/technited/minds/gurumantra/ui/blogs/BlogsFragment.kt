@@ -88,6 +88,7 @@ class BlogsFragment : Fragment() {
                 }
             })
         }
+
         filterCatView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             cId = cts[newIndex].cId.toString()
             categoryViewModel.getSubCategory(cId)

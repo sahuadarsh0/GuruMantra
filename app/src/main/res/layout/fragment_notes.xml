@@ -6,32 +6,85 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.gallery.GalleryFragment">
+        tools:context=".ui.notes.NotesFragment">
 
         <ImageView
             android:id="@+id/bg2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/b_bg"
             android:layout_marginBottom="-32dp"
             android:rotation="180"
+            android:src="@drawable/b_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <EditText
+            android:id="@+id/search_notes"
+            style="@style/TextBlack.medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_edit_text"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:gravity="start|center"
+            android:hint="@string/search"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/filter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:padding="0dp"
+            android:text="Filter"
+            android:textAllCaps="false"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/search_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/search_notes"
+            app:layout_constraintWidth_percent=".15" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/TextBlack.large"
+            android:text="Latest Notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/search_notes"
+            tools:text="Latest Notes" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notes_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:clipToPadding="false"
             android:paddingBottom="32dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             app:spanCount="3"
             tools:itemCount="18"
             tools:listitem="@layout/item_list_notes" />

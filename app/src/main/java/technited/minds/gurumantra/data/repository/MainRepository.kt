@@ -96,7 +96,15 @@ class MainRepository @Inject constructor(
     suspend fun getCategory() = remoteDataSource.getCategory()
     suspend fun getSubCategory(cid: String) = remoteDataSource.getSubCategory(cid)
 
-    suspend fun getNotes() = remoteDataSource.getNotes()
+    suspend fun getLibraryNotes() = remoteDataSource.getLibraryNotes()
+    suspend fun getNotes(type: String) = when (type) {
+        "Sample" -> remoteDataSource.getSampleNotes()
+        "Ca" -> remoteDataSource.getCaNotes()
+        "Ncert" -> remoteDataSource.getNcertNotes()
+        "All" -> remoteDataSource.getAllNotes()
+        else -> remoteDataSource.getAllNotes()
+    }
+    suspend fun filterNotes(cId: String,scId: String) = remoteDataSource.filterNotes(cId, scId)
 
     suspend fun getPackages() = remoteDataSource.getPackages()
     suspend fun getCoupons(userId: String) = remoteDataSource.getCoupons(userId)

@@ -7,7 +7,7 @@ data class GetNotes(
     @SerializedName("notes")
     val notes: List<Note>,
     @SerializedName("nts")
-    val nts: String
+    val nts: String? = null
 )
 
 

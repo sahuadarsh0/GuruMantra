@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="600dp"
+            tools:context=".ui.notes.LibraryNotesFragment">
+
+            <ImageView
+                android:id="@+id/bg2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-32dp"
+                android:rotation="180"
+                android:src="@drawable/b_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <TextView
+                android:id="@+id/search_notes"
+                style="@style/TextBlack.medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="10dp"
+                android:elevation="5dp"
+                android:gravity="start|center"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/filter"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:padding="0dp"
+                android:text="Filter"
+                android:textAllCaps="false"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/search_notes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/search_notes"
+                app:layout_constraintWidth_percent=".15" />
+
+            <TextView
+                android:id="@+id/title1"
+                style="@style/TextBlack.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Sample Notes"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_notes" />
+
+            <Button
+                android:id="@+id/view_all1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:padding="0dp"
+                android:text="View all"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintTop_toTopOf="@+id/title1"
+                app:layout_constraintWidth_percent=".22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notes_list1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title1"
+                app:spanCount="4"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_list_notes" />
+
+            <TextView
+                android:id="@+id/title2"
+                style="@style/TextBlack.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notes_list1"
+                android:text="Current Affairs"/>
+
+            <Button
+                android:id="@+id/view_all2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:padding="0dp"
+                android:text="View all"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintTop_toTopOf="@+id/title2"
+                app:layout_constraintWidth_percent=".22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notes_list2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title2"
+                app:spanCount="4"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_list_notes" />
+
+            <TextView
+                android:id="@+id/title3"
+                style="@style/TextBlack.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notes_list2"
+                android:text="NCERT Notes" />
+
+            <Button
+                android:id="@+id/view_all3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:padding="0dp"
+                android:text="View all"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintTop_toTopOf="@+id/title3"
+                app:layout_constraintWidth_percent=".22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notes_list3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title3"
+                app:spanCount="4"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_list_notes" />
+
+            <TextView
+                android:id="@+id/title4"
+                style="@style/TextBlack.large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notes_list3"
+                android:text="Latest Notes"/>
+
+            <Button
+                android:id="@+id/view_all4"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:padding="0dp"
+                android:text="View all"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintTop_toTopOf="@+id/title4"
+                app:layout_constraintWidth_percent=".22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notes_list4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title4"
+                app:spanCount="4"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_list_notes" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loader" />
+
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="wrap_content"
+                android:id="@+id/page"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="notes_list1,notes_list2,notes_list3,notes_list4,title1,title2,title3,title4,view_all1,view_all2,view_all3,view_all4"
+                tools:layout_editor_absoluteX="366dp"
+                tools:layout_editor_absoluteY="285dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

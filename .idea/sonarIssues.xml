@@ -333,7 +333,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/GetLibraryNotes.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/GetNotes.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/GetNotesX.kt">
           <value>
             <set />
           </value>
@@ -434,6 +444,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/Slider.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/Smnt.kt">
           <value>
             <set />
           </value>
@@ -759,6 +774,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/login/RegisterFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/notes/LibraryNotesFragment.kt">
           <value>
             <set />
           </value>
@@ -1174,6 +1194,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_library_notes.xml">
           <value>
             <set />
           </value>

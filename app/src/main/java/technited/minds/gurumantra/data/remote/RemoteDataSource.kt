@@ -65,7 +65,14 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         getResult { apiService.getSubCategory(cid) }
 
     //    notes
-    suspend fun getNotes() = getResult { apiService.getNotes() }
+    suspend fun getLibraryNotes() = getResult { apiService.getLibraryNotes() }
+    suspend fun getSampleNotes() = getResult { apiService.getSampleNotes() }
+    suspend fun getCaNotes() = getResult { apiService.getCaNotes() }
+    suspend fun getNcertNotes() = getResult { apiService.getNcertNotes() }
+    suspend fun getAllNotes() = getResult { apiService.getAllNotes() }
+    suspend fun filterNotes(cId: String,scId: String) = getResult {
+        apiService.filterNotes(cId, scId)
+    }
 
 
     //    Payment

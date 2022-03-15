@@ -104,10 +104,23 @@
         android:label="@string/gallery"
         tools:layout="@layout/fragment_gallery" />
     <fragment
+        android:id="@+id/navigation_library_notes"
+        android:name="technited.minds.gurumantra.ui.notes.LibraryNotesFragment"
+        android:label="@string/notes"
+        tools:layout="@layout/fragment_library_notes" >
+        <action
+            android:id="@+id/action_navigation_library_notes_to_navigation_notes"
+            app:destination="@id/navigation_notes" />
+    </fragment>
+    <fragment
         android:id="@+id/navigation_notes"
         android:name="technited.minds.gurumantra.ui.notes.NotesFragment"
-        android:label="@string/notes"
-        tools:layout="@layout/fragment_notes" />
+        android:label="@string/sample_notes"
+        tools:layout="@layout/fragment_notes" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_courses"
         android:name="technited.minds.gurumantra.ui.courses.CoursesFragment"
