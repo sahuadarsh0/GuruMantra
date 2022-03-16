@@ -67,8 +67,9 @@ class CouponsFragment : Fragment() {
                         binding.animationView.visibility = View.GONE
                         binding.couponsList.visibility = View.VISIBLE
 
-                    } else if(coupons?.coupons?.isEmpty() == true){
-                        binding.noCoupon.visibility = View.VISIBLE
+                        if(coupons.coupons.isNullOrEmpty()){
+                            binding.noCoupon.visibility = View.VISIBLE
+                        }
                     }
 
                 }

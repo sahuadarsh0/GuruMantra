@@ -50,6 +50,7 @@
             style="@style/TextBlack.large"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
             android:gravity="center"
             android:text="No Coupons Found"
             android:visibility="gone" />
