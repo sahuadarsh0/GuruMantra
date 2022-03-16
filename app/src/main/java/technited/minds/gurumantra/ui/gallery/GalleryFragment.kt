@@ -25,13 +25,14 @@ class GalleryFragment : Fragment() {
     private val zoomAdapter = ImageZoomAdapter()
     private val binding get() = _binding!!
     private lateinit var zoomImageDialog: Dialog
+    private lateinit var gallery: List<Gal>
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setupRecyclerView()
@@ -70,16 +71,11 @@ class GalleryFragment : Fragment() {
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val gallery = it.data
-
-                    if (gallery != null) {
-
-                        galleryAdapter.submitList(gallery)
-                        zoomAdapter.submitList(gallery)
-                        binding.animationView.visibility = View.GONE
-                        binding.galleryList.visibility = View.VISIBLE
-
-                    }
+                    gallery = it.data!!
+                    galleryAdapter.submitList(gallery)
+                    zoomAdapter.submitList(gallery)
+                    binding.animationView.visibility = View.GONE
+                    binding.galleryList.visibility = View.VISIBLE
 
                 }
                 Resource.Status.ERROR -> {
@@ -108,7 +104,7 @@ class GalleryFragment : Fragment() {
     private fun onItemClicked(gal: Gal) {
         val galleryRecyclerView: RecyclerView = this.zoomImageDialog.findViewById(R.id.recycler_zoom_image)
         galleryRecyclerView.adapter = zoomAdapter
-        galleryRecyclerView.layoutManager?.scrollToPosition(gal.gId+1)
+        galleryRecyclerView.layoutManager?.scrollToPosition(gallery.indexOf(gal))
         zoomImageDialog.show()
     }
 }
