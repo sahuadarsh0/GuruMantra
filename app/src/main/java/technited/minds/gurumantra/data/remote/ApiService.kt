@@ -33,6 +33,9 @@ interface ApiService {
     @GET("home")
     suspend fun getHome(): Response<Home>
 
+    @GET("specialOffers")
+    suspend fun getSpecialOffers(): Response<Home>
+
     //    Live Class----------------------------------------------------------------
     @GET("getMeetings/{batchNo}")
     suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>

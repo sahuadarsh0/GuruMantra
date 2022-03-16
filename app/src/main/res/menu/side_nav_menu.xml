@@ -7,9 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_about_us"
-        android:icon="@drawable/ic_person"
-        android:title="@string/about_us" />
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/zm_menu_icon_profile"
+        android:title="@string/profile" />
 
     <item
         android:id="@+id/navigation_coupons"
@@ -63,9 +63,9 @@
         android:title="@string/gallery" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/zm_menu_icon_profile"
-        android:title="@string/profile" />
+        android:id="@+id/navigation_about_us"
+        android:icon="@drawable/ic_person"
+        android:title="@string/about_us" />
 
     <item
         android:id="@+id/navigation_contact_us"

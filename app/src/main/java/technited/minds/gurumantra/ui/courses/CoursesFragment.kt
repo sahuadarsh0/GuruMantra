@@ -96,7 +96,7 @@ class CoursesFragment : Fragment() {
     private fun onItemClicked(course: Course) {
         findNavController().navigate(
             R.id.action_navigation_courses_to_coursesDetails,
-            bundleOf("id" to course.cId.toString())
+            bundleOf("id" to course.courseId.toString())
         )
     }
 }

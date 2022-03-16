@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.courses
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -76,15 +77,15 @@ class CourseDetails : Fragment() {
                     val details = it.data
 
                     if (details != null) {
-
-                        userSharedPreferences["package"] = details.user?.packageX.toString()
+                        if (details.user != null)
+                            userSharedPreferences["package"] = details.user.packageX.toString()
                         binding.details = details.courses
                         binding.animationView.visibility = GONE
 
                         modulesAdapter.submitList(details.modules)
                         binding.animationView.visibility = GONE
                         courseEnrolls = details.enrolls.toInt()
-                        courseId = details.courses.cId
+                        courseId = details.courses.courseId
                         if (courseEnrolls == 1) {
                             binding.startCourse.visibility = GONE
                             binding.modulesList.visibility = VISIBLE
@@ -195,9 +196,9 @@ class CourseDetails : Fragment() {
         MaterialDialog(requireActivity()).show {
             title(text = module.moduleTitle)
             cornerRadius(16f)
-           listItems(items = myItems) { dialog, index, text ->
+            listItems(items = myItems) { dialog, index, text ->
                 val action = CourseDetailsDirections.actionCoursesDetailsToPlay(module.lectures[index].lectureVideo)
-               NavHostFragment.findNavController(this@CourseDetails).navigate(action)
+                NavHostFragment.findNavController(this@CourseDetails).navigate(action)
             }
 
 

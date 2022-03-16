@@ -184,6 +184,24 @@
         <action
             android:id="@+id/action_navigation_home_to_batchDetails"
             app:destination="@id/batchDetails" />
+        <action
+            android:id="@+id/action_navigation_home_to_coursesDetails"
+            app:destination="@id/coursesDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_special_offers"
+        android:name="technited.minds.gurumantra.ui.home.SpecialOffersFragment"
+        android:label="@string/special_offers"
+        tools:layout="@layout/fragment_special_offers">
+        <action
+            android:id="@+id/action_special_offers_to_testSeriesDetails"
+            app:destination="@id/testSeriesDetails" />
+        <action
+            android:id="@+id/action_special_offers_to_batchDetails"
+            app:destination="@id/batchDetails" />
+        <action
+            android:id="@+id/action_special_offers_to_coursesDetails"
+            app:destination="@id/coursesDetails" />
     </fragment>
     <activity
         android:id="@+id/Play"

@@ -12,24 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="1500dp"
-            tools:context=".ui.home.HomeFragment">
-
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/slider"
-                android:layout_width="0dp"
-                android:layout_height="128dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_edit_text"
-                android:elevation="10dp"
-                app:iss_auto_cycle="true"
-                app:iss_corner_radius="18"
-                app:iss_delay="0"
-                app:iss_period="1000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            tools:context=".ui.home.SpecialOffersFragment">
 
             <TextView
                 android:id="@+id/marquee_text"
@@ -47,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slider" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/live_class_text"
@@ -139,24 +122,6 @@
                 tools:itemCount="2"
                 tools:listitem="@layout/item_list_course" />
 
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/small_slider"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                android:background="@drawable/bg_edit_text"
-                android:elevation="10dp"
-                app:iss_auto_cycle="true"
-                app:iss_corner_radius="18"
-                app:iss_delay="0"
-                app:iss_period="1000"
-                app:layout_constraintDimensionRatio="5:3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courses_list" />
-
             <TextView
                 android:id="@+id/practice_sets_text"
                 style="@style/TextBlack.medium"
@@ -169,7 +134,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/small_slider" />
+                app:layout_constraintTop_toBottomOf="@+id/courses_list" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/practice_sets_list"
@@ -217,38 +182,6 @@
                 tools:itemCount="4"
                 tools:listitem="@layout/item_list_test_series" />
 
-            <TextView
-                android:id="@+id/blogs_text"
-                style="@style/TextBlack.medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="Latest News"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pdf_sets_list" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/blogs_list"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="32dp"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                android:paddingBottom="32dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blogs_text"
-                app:layout_constraintVertical_bias="0.0"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_list_blog" />
-
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
                 android:layout_width="180dp"
@@ -265,7 +198,7 @@
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="marquee_text,course_text,courses_list,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
+                app:constraint_referenced_ids="marquee_text,batches_list,test_series_list,test_series_text,live_class_text,practice_sets_text,pdf_sets_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

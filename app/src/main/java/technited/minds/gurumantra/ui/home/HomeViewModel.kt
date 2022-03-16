@@ -13,5 +13,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
     val home = liveData { emit(repository.getHome()) }
+    val specialOffers = liveData { emit(repository.getSpecialOffers()) }
 
 }

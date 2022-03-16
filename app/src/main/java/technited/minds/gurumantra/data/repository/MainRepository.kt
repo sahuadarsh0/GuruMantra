@@ -16,6 +16,7 @@ class MainRepository @Inject constructor(
 
     //  Home
     suspend fun getHome() = remoteDataSource.getHome()
+    suspend fun getSpecialOffers() = remoteDataSource.getSpecialOffers()
 
 
     //    Live Class

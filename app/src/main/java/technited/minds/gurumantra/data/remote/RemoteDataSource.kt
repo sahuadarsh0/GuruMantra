@@ -6,6 +6,7 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) : BaseDataSource() {
     //    Home
     suspend fun getHome() = getResult { apiService.getHome() }
+    suspend fun getSpecialOffers() = getResult { apiService.getSpecialOffers() }
 
     //    Live Class
     suspend fun getMeetings(batchNo: String) = getResult { apiService.getMeetings(batchNo) }

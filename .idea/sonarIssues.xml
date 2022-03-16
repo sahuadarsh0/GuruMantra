@@ -753,6 +753,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/home/SpecialOffersFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/LiveClassFragment.kt">
           <value>
             <set />
@@ -1229,6 +1234,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_register.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_special_offers.xml">
           <value>
             <set />
           </value>

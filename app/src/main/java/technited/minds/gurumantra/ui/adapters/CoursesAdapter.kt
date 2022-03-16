@@ -22,7 +22,7 @@ class CoursesAdapter(private val onItemClicked: (Course) -> Unit) : ListAdapter<
     companion object {
         private val DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Course>() {
             override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean =
-                oldItem.cId == newItem.cId
+                oldItem.courseId == newItem.courseId
 
 
             override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean =

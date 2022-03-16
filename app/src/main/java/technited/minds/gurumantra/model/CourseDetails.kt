@@ -10,7 +10,7 @@ data class CourseDetails(
     val modules: List<Module>,
     @SerializedName("enrolls")
     val enrolls: String,
-    @SerializedName("users")
+    @SerializedName("user")
     val user: Users? = null
 )
 

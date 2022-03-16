@@ -8,11 +8,11 @@ data class Home(
     val blogs: List<Blog>,
     @SerializedName("courses")
     val courses: List<Course>,
-    @SerializedName("pdfts")
+    @SerializedName("pdfts", alternate = ["pdfTestSeries"])
     val pdfts: List<TestSeriesItem>,
-    @SerializedName("tss")
+    @SerializedName("tss", alternate = ["testSeries"])
     val tss: List<TestSeriesItem>,
-    @SerializedName("practs")
+    @SerializedName("practs", alternate = ["setSeries"])
     val practs: List<TestSeriesItem>,
     @SerializedName("batches")
     val batches: List<BatchDetailsItem>,

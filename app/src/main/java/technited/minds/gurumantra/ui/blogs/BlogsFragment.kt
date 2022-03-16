@@ -124,6 +124,8 @@ class BlogsFragment : Fragment() {
         for (blog in blogs) {
             if (blog.blogTitle.contains(strTyped)) {
                 filteredList.add(blog)
+            }else if (blog.blogTitle.lowercase().contains(strTyped.lowercase())) {
+                filteredList.add(blog)
             }
         }
         blogsAdapter.submitList(filteredList)

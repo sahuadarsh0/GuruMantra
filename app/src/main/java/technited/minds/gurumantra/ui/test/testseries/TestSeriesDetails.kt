@@ -230,13 +230,13 @@ class TestSeriesDetails : Fragment() {
             )
         if (tsEnrolls == 1) {
 //            startActivity(i)
-            startWebActivity(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
+            startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
 
         } else {
             when (binding.details?.packageX) {
                 1 -> {
                     testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
-                    startWebActivity(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
+                    startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
                 }
                 2 -> {
                     if (userSharedPreferences["package"]!!.toInt() == 2) {

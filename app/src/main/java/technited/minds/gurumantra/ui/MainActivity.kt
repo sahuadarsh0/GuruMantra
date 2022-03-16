@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.navigation_special_offers -> {
-                    navController.navigate(R.id.navigation_live_class)
+                    navController.navigate(R.id.navigation_special_offers)
                 }
                 R.id.navigation_live_class -> {
                     navController.navigate(R.id.navigation_live_class)
