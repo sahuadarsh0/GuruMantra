@@ -9,10 +9,34 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getSpecialOffers() = getResult { apiService.getSpecialOffers() }
 
     //    Live Class
-    suspend fun getMeetings(batchNo: String) = getResult { apiService.getMeetings(batchNo) }
-    suspend fun getBatchDetails(batchNo: String) = getResult { apiService.getBatchDetails(batchNo) }
-    suspend fun getFetchMeeting(classNo: String) = getResult { apiService.getFetchMeeting(classNo) }
-    suspend fun getBatches() = getResult { apiService.getBatches() }
+//    suspend fun getMeetings(batchNo: String) = getResult { apiService.getMeetings(batchNo) }
+//    suspend fun getBatchDetails(batchNo: String) = getResult { apiService.getBatchDetails(batchNo) }
+//    suspend fun getFetchMeeting(classNo: String) = getResult { apiService.getFetchMeeting(classNo) }
+//    suspend fun getBatches(type: String) = getResult { apiService.getBatches(type) }
+
+    //    Live Class v2
+    suspend fun getBatches(type: String) = getResult { apiService.getBatches(type) }
+    suspend fun getConfList(batchId: String) = getResult { apiService.getConfList(batchId) }
+    suspend fun getLiveList(batchId: String) = getResult { apiService.getLiveList(batchId) }
+    suspend fun getBatchDetails(userId: String, batchId: String) =
+        getResult { apiService.getBatchDetails(userId, batchId) }
+
+    suspend fun getConfClassDesc(userId: String, clsId: String) = getResult { apiService.getConfClassDesc(userId, clsId) }
+    suspend fun getLiveClassDesc(userId: String, lcsId: String) = getResult { apiService.getLiveClassDesc(userId, lcsId) }
+    suspend fun getJoinLiveClass(lcsId: String) = getResult { apiService.getJoinLiveClass(lcsId) }
+    suspend fun getConfPreviousClasses(clsId: String) = getResult { apiService.getConfPreviousClasses(clsId) }
+    suspend fun getLivePreviousClasses(lcsId: String) = getResult { apiService.getLivePreviousClasses(lcsId) }
+    suspend fun getConfComments(pcId: String) = getResult { apiService.getConfComments(pcId) }
+    suspend fun postConfComment(userId: Int, pcId: Int, comment: String) = getResult {
+        apiService.postConfComment(userId, pcId, comment)
+    }
+    suspend fun getLiveComments(lcId: String) = getResult { apiService.getLiveComments(lcId) }
+    suspend fun postLiveComment(userId: Int, lcId: Int, comment: String) = getResult {
+        apiService.postLiveComment(userId, lcId, comment)
+    }
+
+    suspend fun getEnrolledBatch(userId: String, batchId: String) =
+        getResult { apiService.getEnrolledBatch(userId, batchId) }
 
 
     //Test Series
@@ -49,12 +73,14 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun postComment(userId: Int, blogId: Int, comment: String) = getResult {
         apiService.postComment(userId, blogId, comment)
     }
+
     suspend fun getDiscussionForumDetail(dId: String) = getResult { apiService.getDiscussionForumDetail(dId) }
     suspend fun getDiscussionComments(dId: String) = getResult { apiService.getDiscussionComments(dId) }
     suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) = getResult {
         apiService.postDiscussionComment(userId, dId, comment)
     }
-    suspend fun filterBlogs(cId: String,scId: String) = getResult {
+
+    suspend fun filterBlogs(cId: String, scId: String) = getResult {
         apiService.filterBlogs(cId, scId)
     }
 
@@ -71,7 +97,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getCaNotes() = getResult { apiService.getCaNotes() }
     suspend fun getNcertNotes() = getResult { apiService.getNcertNotes() }
     suspend fun getAllNotes() = getResult { apiService.getAllNotes() }
-    suspend fun filterNotes(cId: String,scId: String) = getResult {
+    suspend fun filterNotes(cId: String, scId: String) = getResult {
         apiService.filterNotes(cId, scId)
     }
 
@@ -79,8 +105,8 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     //    Payment
     suspend fun getPackages() = getResult { apiService.getPackages() }
     suspend fun getCoupons(userId: String) = getResult { apiService.getCoupons(userId) }
-    suspend fun getPaymentDataPackage(userId: String, pckId: String,coupon: String? = null) =
-        getResult { apiService.getPaymentDataPackage(userId, pckId,coupon) }
+    suspend fun getPaymentDataPackage(userId: String, pckId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataPackage(userId, pckId, coupon) }
 
     suspend fun getPaymentDataSeries(userId: String, tsId: String) =
         getResult { apiService.getPaymentDataSeries(userId, tsId) }
@@ -91,6 +117,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     suspend fun getPaymentDataCourse(userId: String, cId: String) =
         getResult { apiService.getPaymentDataCourse(userId, cId) }
+
+    suspend fun getPaymentDataBatch(userId: String, batchId: String) =
+        getResult { apiService.getPaymentDataBatch(userId, batchId) }
 
     suspend fun purchasePackage(
         userId: String,
@@ -115,6 +144,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         orderId: String,
         paymentId: String
     ) = getResult { apiService.purchaseCourse(userId, orderId, paymentId) }
+
+    suspend fun purchaseBatch(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchaseBatch(userId, orderId, paymentId) }
 
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
     suspend fun register(

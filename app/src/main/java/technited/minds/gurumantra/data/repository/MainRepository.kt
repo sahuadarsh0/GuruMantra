@@ -20,10 +20,34 @@ class MainRepository @Inject constructor(
 
 
     //    Live Class
-    suspend fun getBatches() = remoteDataSource.getBatches()
-    suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
-    suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
-    suspend fun getFetchMeeting(classNo: String) = remoteDataSource.getFetchMeeting(classNo)
+//    suspend fun getBatches() = remoteDataSource.getBatches()
+//    suspend fun getMeetings(batchNo: String) = remoteDataSource.getMeetings(batchNo)
+//    suspend fun getBatchDetails(batchNo: String) = remoteDataSource.getBatchDetails(batchNo)
+//    suspend fun getFetchMeeting(classNo: String) = remoteDataSource.getFetchMeeting(classNo)
+
+    //    Live Class v2
+    suspend fun getBatches(type: String) = remoteDataSource.getBatches(type)
+    suspend fun getMeetings(batchId: String, type: Int) = when (type) {
+        0 -> remoteDataSource.getConfList(batchId) // "conference"
+        1 -> remoteDataSource.getLiveList(batchId)// "live"
+        else -> Resource(Resource.Status.SUCCESS, null, null)
+    }
+
+    suspend fun getClassDescription(userId: String, id: String, type: Int) = when (type) {
+        0 -> remoteDataSource.getConfClassDesc(userId, id) // "conference"
+        1 -> remoteDataSource.getLiveClassDesc(userId, id) // "live"
+        else -> Resource(Resource.Status.SUCCESS, null, null)
+    }
+
+    suspend fun getPreviousClasses(id: String, type: Int) = when (type) {
+        0 -> remoteDataSource.getConfPreviousClasses(id) // "conference"
+        1 -> remoteDataSource.getLivePreviousClasses(id) // "live"
+        else -> Resource(Resource.Status.SUCCESS, null, null)
+    }
+
+    suspend fun getBatchDetails(userId: String, batchId: String) = remoteDataSource.getBatchDetails(userId, batchId)
+    suspend fun getJoinLiveClass(lcsId: String) = remoteDataSource.getJoinLiveClass(lcsId)
+
 
     suspend fun login(username: String, password: String) = remoteDataSource.login(username, password)
     suspend fun register(
@@ -38,6 +62,7 @@ class MainRepository @Inject constructor(
         "test" -> remoteDataSource.getEnrolled(userId, id)
         "practice" -> remoteDataSource.getEnrolledSet(userId, id)
         "course" -> remoteDataSource.getEnrolledCourse(userId, id)
+        "batch" -> remoteDataSource.getEnrolledBatch(userId, id)
         else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
@@ -72,20 +97,20 @@ class MainRepository @Inject constructor(
     suspend fun submitTest(endTest: EndTest) = remoteDataSource.submitTest(endTest)
 
 
-    //    PDF Tests
-    suspend fun getPDF() = remoteDataSource.getPDF()
-
     //    Blogs
     suspend fun getBlogs() = remoteDataSource.getBlogs()
 
-    suspend fun getComments(blogId: String) = remoteDataSource.getComments(blogId)
-    suspend fun postComment(userId: Int, blogId: Int, comment: String) =
-        remoteDataSource.postComment(userId, blogId, comment)
+//    suspend fun getComments(blogId: String) = remoteDataSource.getComments(blogId)
+//    suspend fun postComment(userId: Int, blogId: Int, comment: String) =
+//        remoteDataSource.postComment(userId, blogId, comment)
+
     suspend fun getDiscussionForumDetail(dId: String) = remoteDataSource.getDiscussionForumDetail(dId)
-    suspend fun getDiscussionComments(dId: String) = remoteDataSource.getDiscussionComments(dId)
-    suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) =
-        remoteDataSource.postDiscussionComment(userId, dId, comment)
-    suspend fun filterBlogs(cId: String,scId: String) = remoteDataSource.filterBlogs(cId, scId)
+
+    //    suspend fun getDiscussionComments(dId: String) = remoteDataSource.getDiscussionComments(dId)
+//    suspend fun postDiscussionComment(userId: Int, dId: Int, comment: String) =
+//        remoteDataSource.postDiscussionComment(userId, dId, comment)
+
+    suspend fun filterBlogs(cId: String, scId: String) = remoteDataSource.filterBlogs(cId, scId)
 
     // Others
     fun getGallery() = performGetOperation(
@@ -105,16 +130,18 @@ class MainRepository @Inject constructor(
         "All" -> remoteDataSource.getAllNotes()
         else -> remoteDataSource.getAllNotes()
     }
-    suspend fun filterNotes(cId: String,scId: String) = remoteDataSource.filterNotes(cId, scId)
+
+    suspend fun filterNotes(cId: String, scId: String) = remoteDataSource.filterNotes(cId, scId)
 
     suspend fun getPackages() = remoteDataSource.getPackages()
     suspend fun getCoupons(userId: String) = remoteDataSource.getCoupons(userId)
     suspend fun getPaymentData(userId: String, id: String, type: String, coupon: String? = null) = when (type) {
-        "package" -> remoteDataSource.getPaymentDataPackage(userId, id,coupon)
+        "package" -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
         "test" -> remoteDataSource.getPaymentDataSeries(userId, id)
         "practice" -> remoteDataSource.getPaymentDataPractice(userId, id)
         "course" -> remoteDataSource.getPaymentDataCourse(userId, id)
-        else -> remoteDataSource.getPaymentDataPackage(userId, id,coupon)
+        "batch" -> remoteDataSource.getPaymentDataBatch(userId, id)
+        else -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
     }
 
     suspend fun purchase(
@@ -127,7 +154,34 @@ class MainRepository @Inject constructor(
         "test" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
         "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
         "course" -> remoteDataSource.purchaseCourse(userId, orderId, paymentId)
+        "batch" -> remoteDataSource.purchaseBatch(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
+    }
+
+
+    suspend fun getComments(
+        id: String,
+        type: String
+    ) = when (type) {
+        "blog" -> remoteDataSource.getComments(id)
+        "discussion" -> remoteDataSource.getDiscussionComments(id)
+        "conference" -> remoteDataSource.getConfComments(id)
+        "live" -> remoteDataSource.getLiveComments(id)
+        else -> remoteDataSource.getComments(id)
+    }
+
+
+    suspend fun postComment(
+        userId: Int,
+        id: Int,
+        comment: String,
+        type: String
+    ) = when (type) {
+        "blog" -> remoteDataSource.postComment(userId, id, comment)
+        "discussion" -> remoteDataSource.postDiscussionComment(userId, id, comment)
+        "conference" -> remoteDataSource.postConfComment(userId, id, comment)
+        "live" -> remoteDataSource.postLiveComment(userId, id, comment)
+        else -> remoteDataSource.postComment(userId, id, comment)
     }
 
 

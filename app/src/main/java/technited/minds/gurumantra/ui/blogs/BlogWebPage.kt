@@ -31,6 +31,7 @@ class BlogWebPage : AppCompatActivity() {
     private lateinit var binding: ActivityBlogWebPageBinding
     private val commentsAdapter by lazy { CommentsAdapter(this::onItemClicked) }
 
+    private val commentsViewModel: CommentsViewModel by viewModels()
     private val blogsViewModel: BlogsViewModel by viewModels()
     private lateinit var blogId: String
 
@@ -61,10 +62,11 @@ class BlogWebPage : AppCompatActivity() {
         setupRecyclerView()
         binding.postButton.setOnClickListener {
             if (binding.postComment.text.isNotEmpty()) {
-                blogsViewModel.postComment(
+                commentsViewModel.postComment(
                     userSharedPreferences["id"]!!.toInt(),
                     blogId.toInt(),
-                    binding.postComment.text.toString()
+                    binding.postComment.text.toString(),
+                    "blog"
                 )
             }
         }
@@ -86,9 +88,9 @@ class BlogWebPage : AppCompatActivity() {
         val id = intent.getStringExtra("id")
         if (id != null) {
             blogId = id
-            blogsViewModel.getComments(blogId)
+            commentsViewModel.getComments(blogId, "blog")
         }
-        blogsViewModel.comment.observe(this, {
+        commentsViewModel.comment.observe(this, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                 }
@@ -98,7 +100,7 @@ class BlogWebPage : AppCompatActivity() {
                     if (comments != null) {
 
                         binding.commentsList.visibility = View.VISIBLE
-                        commentsAdapter.submitList(comments)
+                        commentsAdapter.submitList(comments.comment)
 
                     }
                 }
@@ -116,12 +118,12 @@ class BlogWebPage : AppCompatActivity() {
             }
         })
 
-        blogsViewModel.response.observe(this, {
+        commentsViewModel.response.observe(this, {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(this@BlogWebPage, "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
                     binding.postComment.setText("")
-                    blogsViewModel.getComments(blogId)
+                    commentsViewModel.getComments(blogId, "blog")
                 }
             }
         })

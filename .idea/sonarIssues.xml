@@ -78,12 +78,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/technited/minds/gurumantra/databinding/ActivityWebPageBindingImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/technited/minds/gurumantra/databinding/FragmentCoursesTypeBindingImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/technited/minds/gurumantra/databinding/FragmentTestSeriesBindingImpl.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/technited/minds/gurumantra/ui/blogs/BlogsViewModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/technited/minds/gurumantra/ui/blogs/DiscussionDetails.java">
           <value>
             <set />
           </value>
@@ -353,6 +368,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/JoinLiveClass.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/Lecture.kt">
           <value>
             <set />
@@ -404,6 +424,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/Pdf.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/PreviousClasses.kt">
           <value>
             <set />
           </value>
@@ -508,7 +533,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/batchEnrolled.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/coupons.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/model/previousClasses.kt">
           <value>
             <set />
           </value>
@@ -519,6 +554,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/CategoryViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/LiveViewModel.kt">
           <value>
             <set />
           </value>
@@ -549,6 +589,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/Play.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/PlayNComments.kt">
           <value>
             <set />
           </value>
@@ -638,6 +683,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/adapters/PreviousClassAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/adapters/TestSeriesAdapter.kt">
           <value>
             <set />
@@ -683,6 +733,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/blogs/CommentsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/blogs/DiscussionDetails.kt">
           <value>
             <set />
@@ -704,6 +759,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/courses/CoursesFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/courses/CoursesType.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/courses/CoursesTypeFragment.kt">
           <value>
             <set />
           </value>
@@ -758,7 +823,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/BatchDetails.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/BatchDetailsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/LiveClassFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/LiveClassType.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/LiveClassViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/PlayNComments.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/technited/minds/gurumantra/ui/live/PreviousClassFragment.kt">
           <value>
             <set />
           </value>
@@ -1118,6 +1213,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_play_n_comments.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
           <value>
             <set />
@@ -1183,6 +1283,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_courses_type.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml">
           <value>
             <set />
@@ -1213,6 +1318,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_live_class_type.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_login.xml">
           <value>
             <set />
@@ -1229,6 +1339,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_packages.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_previous_class.xml">
           <value>
             <set />
           </value>
@@ -1324,6 +1439,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_list_package.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_list_previous.xml">
           <value>
             <set />
           </value>
@@ -1473,6 +1593,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/data/remote/Service.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/data/remote/ZoomApiService.kt">
           <value>
             <set />
@@ -1494,6 +1619,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/FetchMeeting.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/Grant.kt">
           <value>
             <set />
           </value>
@@ -1524,6 +1654,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/SplashActivity.kt">
           <value>
             <set />
           </value>
@@ -1583,12 +1718,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/live/LiveClassFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/login/LoginFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/login/RegisterFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/notifications/NotificationsFragment.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/notifications/NotificationsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/test/testseries/TestSeriesDetails.kt">
           <value>
             <set />
           </value>
@@ -1614,6 +1769,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/layout/activity_website.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/navigation/home_navigation.xml">
           <value>
             <set />
           </value>

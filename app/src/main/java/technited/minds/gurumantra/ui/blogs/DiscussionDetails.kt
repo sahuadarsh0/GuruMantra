@@ -31,6 +31,7 @@ class DiscussionDetails : Fragment() {
     private val binding get() = _binding!!
     private val commentsAdapter = CommentsAdapter(this::onItemClicked)
 
+    private val commentsViewModel: CommentsViewModel by viewModels()
     private val blogsViewModel: BlogsViewModel by viewModels()
     private lateinit var dId: String
 
@@ -49,10 +50,11 @@ class DiscussionDetails : Fragment() {
         setupRecyclerView()
         binding.postButton.setOnClickListener {
             if (binding.postComment.text.isNotEmpty()) {
-                blogsViewModel.postDiscussionComment(
+                commentsViewModel.postComment(
                     userSharedPreferences["id"]!!.toInt(),
                     dId.toInt(),
-                    binding.postComment.text.toString()
+                    binding.postComment.text.toString(),
+                    "discussion"
                 )
             }
         }
@@ -71,9 +73,9 @@ class DiscussionDetails : Fragment() {
         if (id != null) {
             dId = id
             blogsViewModel.getDiscussionForumDetail(dId)
-            blogsViewModel.getDiscussionComments(dId)
+            commentsViewModel.getComments(dId,"discussion")
         }
-        blogsViewModel.dcsComment.observe(viewLifecycleOwner, {
+        commentsViewModel.comment.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -105,12 +107,12 @@ class DiscussionDetails : Fragment() {
             }
         })
 
-        blogsViewModel.response.observe(viewLifecycleOwner, {
+        commentsViewModel.response.observe(viewLifecycleOwner, {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(requireContext(), "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
                     binding.postComment.setText("")
-                    blogsViewModel.getDiscussionComments(dId)
+                    commentsViewModel.getComments(dId,"discussion")
                 }
             }
         })

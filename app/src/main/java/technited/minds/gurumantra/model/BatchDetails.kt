@@ -3,7 +3,14 @@ package technited.minds.gurumantra.model
 
 import com.google.gson.annotations.SerializedName
 
-class BatchDetails : ArrayList<BatchDetailsItem>()
+class Batches : ArrayList<BatchDetailsItem>()
+
+data class BatchDetails(
+    @SerializedName("batchEnrolled")
+    val batchEnrolled: Int,
+    @SerializedName("batch")
+    val batch: BatchDetailsItem
+)
 
 data class BatchDetailsItem(
     @SerializedName("batchId")

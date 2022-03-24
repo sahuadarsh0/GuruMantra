@@ -31,6 +31,7 @@ class BlogDetails : Fragment() {
     private val commentsAdapter = CommentsAdapter(this::onItemClicked)
 
     private val blogsViewModel: BlogsViewModel by viewModels()
+    private val commentsViewModel: CommentsViewModel by viewModels()
     private lateinit var blogId: String
 
     @Inject
@@ -51,10 +52,11 @@ class BlogDetails : Fragment() {
         setupRecyclerView()
         binding.postButton.setOnClickListener {
             if (binding.postComment.text.isNotEmpty()) {
-                blogsViewModel.postComment(
+                commentsViewModel.postComment(
                     userSharedPreferences["id"]!!.toInt(),
                     blogId.toInt(),
-                    binding.postComment.text.toString()
+                    binding.postComment.text.toString(),
+                    "blog"
                 )
             }
         }
@@ -75,9 +77,9 @@ class BlogDetails : Fragment() {
                 binding.blog = it
                 binding.animationView.visibility = GONE
             })
-            blogsViewModel.getComments(blogId)
+            commentsViewModel.getComments(blogId,"blog")
         }
-        blogsViewModel.comment.observe(viewLifecycleOwner, {
+        commentsViewModel.comment.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -89,7 +91,7 @@ class BlogDetails : Fragment() {
                     if (comments != null) {
 
                         binding.commentsList.visibility = VISIBLE
-                        commentsAdapter.submitList(comments)
+                        commentsAdapter.submitList(comments.comment)
                         binding.animationView.visibility = GONE
 
                     }
@@ -109,12 +111,12 @@ class BlogDetails : Fragment() {
             }
         })
 
-        blogsViewModel.response.observe(viewLifecycleOwner, {
+        commentsViewModel.response.observe(viewLifecycleOwner, {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(requireContext(), "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
                     binding.postComment.setText("")
-                    blogsViewModel.getComments(blogId)
+                    commentsViewModel.getComments(blogId,"blog")
                 }
             }
         })

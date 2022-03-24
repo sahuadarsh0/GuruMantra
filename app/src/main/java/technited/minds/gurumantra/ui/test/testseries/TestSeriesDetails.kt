@@ -218,25 +218,38 @@ class TestSeriesDetails : Fragment() {
 //        val i = Intent(activity, ExamActivity::class.java)
 //        i.putExtra("id", ts.tId.toString())
 //        i.putExtra("type", type)
-        if (type == "pdf")
-            startActivity(
-                PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
-                    context,
-                    Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
-                    ts.tName,                        // PDF Name/Title in String format
-                    "",                  // If nothing specific, Put "" it will save to Downloads
-                    enableDownload = false           // This param is true by default.
-                )
-            )
+
         if (tsEnrolls == 1) {
 //            startActivity(i)
-            startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
+            if (type == "pdf")
+                startActivity(
+                    PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                        context,
+                        Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
+                        ts.tName,                        // PDF Name/Title in String format
+                        "",                  // If nothing specific, Put "" it will save to Downloads
+                        enableDownload = false           // This param is true by default.
+                    )
+                )
+            else
+                startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
 
         } else {
             when (binding.details?.packageX) {
                 1 -> {
                     testSeriesViewModel.getEnrolled(userSharedPreferences["id"]!!, ts.tsId.toString(), type)
-                    startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
+                    if (type == "pdf")
+                        startActivity(
+                            PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                                context,
+                                Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
+                                ts.tName,                        // PDF Name/Title in String format
+                                "",                  // If nothing specific, Put "" it will save to Downloads
+                                enableDownload = false           // This param is true by default.
+                            )
+                        )
+                    else
+                        startWebActivity(userSharedPreferences["id"]!!, ts.tId.toString(), type)
                 }
                 2 -> {
                     if (userSharedPreferences["package"]!!.toInt() == 2) {
@@ -256,8 +269,8 @@ class TestSeriesDetails : Fragment() {
                 }
                 3 -> {
                     val dialog: MaterialDialog = MaterialDialog(requireContext()).show {
-                        title(text = "Apply Coupons")
-                        message(text = "Do you have coupon code ?")
+                        title(text = "Apply Coupons ?")
+                        message(text = "Enter coupon code")
                         cornerRadius(16f)
                         input(allowEmpty = true) { dialog, text ->
 

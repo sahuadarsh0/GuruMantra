@@ -27,12 +27,12 @@
         android:title="@string/special_offers" />
 
     <item
-        android:id="@+id/navigation_courses"
+        android:id="@+id/navigation_courses_type"
         android:icon="@drawable/ic_chalkboard_teacher_solid"
         android:title="@string/courses" />
 
     <item
-        android:id="@+id/navigation_live_class"
+        android:id="@+id/navigation_live_class_type"
         android:icon="@drawable/zm_video_on"
         android:title="@string/title_live_class" />
 

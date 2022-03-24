@@ -29,7 +29,7 @@ class ZoomActivity : AppCompatActivity() {
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
-    private val zoomViewModel: ZoomViewModel by viewModels()
+    private val liveViewModel: LiveViewModel by viewModels()
     private lateinit var binding: ActivityZoomBinding
     private val args: ZoomActivityArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class ZoomActivity : AppCompatActivity() {
     }
 
     private fun setUpObservers() {
-        zoomViewModel.meeting.observe(this, {
+        liveViewModel.meeting.observe(this, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -106,7 +106,7 @@ class ZoomActivity : AppCompatActivity() {
              */
             override fun onZoomSDKInitializeResult(errorCode: Int, internalErrorCode: Int) {
                 if (errorCode == ZoomError.ZOOM_ERROR_SUCCESS) {
-                    zoomViewModel.fetchMeeting(args.classNo)
+                    liveViewModel.fetchMeeting(userSharedPreferences["id"]!!,args.classNo,0)
                 }
             }
 

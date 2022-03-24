@@ -20,10 +20,9 @@ data class GetDcs(
 
 )
 
-data class GetDcsComment(
+data class GetComment(
     @SerializedName("comments")
     val comment:  List<Comment>
-
 )
 
 

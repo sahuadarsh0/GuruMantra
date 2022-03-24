@@ -37,18 +37,107 @@ interface ApiService {
     suspend fun getSpecialOffers(): Response<Home>
 
     //    Live Class----------------------------------------------------------------
-    @GET("getMeetings/{batchNo}")
-    suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
+//    @GET("getMeetings/{batchNo}")
+//    suspend fun getMeetings(@Path("batchNo") batchNo: String): Response<MeetingDetails>
+//
+//    @GET("batchDetails/{batchNo}")
+//    suspend fun getBatchDetails(@Path("batchNo") batchNo: String): Response<BatchDetailsItem>
+//
+//    @GET("fetchMeeting/{classNo}")
+//    suspend fun getFetchMeeting(@Path("classNo") classNo: String): Response<FetchMeeting>
+//
+//    @GET("getBatches/")
+//    suspend fun getBatches(): Response<Batches>
 
-    @GET("batchDetails/{batchNo}")
-    suspend fun getBatchDetails(@Path("batchNo") batchNo: String): Response<BatchDetailsItem>
 
-    @GET("fetchMeeting/{classNo}")
-    suspend fun getFetchMeeting(@Path("classNo") classNo: String): Response<FetchMeeting>
+    //    Live Class v2----------------------------------------------------------------
+    @GET("liveClassCon/")
+    suspend fun getConfList(
+        @Query("batchId") batchId: String
+    ): Response<MeetingDetails>
 
-    @GET("getBatches")
-    suspend fun getBatches(): Response<BatchDetails>
+    @GET("liveClass/")
+    suspend fun getLiveList(
+        @Query("batchId") batchId: String
+    ): Response<MeetingDetails>
 
+    @GET("conferenceClassDesc/")
+    suspend fun getConfClassDesc(
+        @Query("userId") userId: String,
+        @Query("clsId") clsId: String,
+    ): Response<FetchMeeting>
+
+    @GET("liveClassDesc/")
+    suspend fun getLiveClassDesc(
+        @Query("userId") userId: String,
+        @Query("lcsId") lcsId: String,
+    ): Response<FetchMeeting>
+
+    @GET("joinLiveClass/")
+    suspend fun getJoinLiveClass(
+        @Query("lcsId") lcsId: String,
+    ): Response<JoinLiveClass>
+
+
+    @GET("batch/details/")
+    suspend fun getBatchDetails(
+        @Query("userId") userId: String,
+        @Query("batchId") batchId: String
+    ): Response<BatchDetails>
+
+
+    @GET("confClass/previousClasses/")
+    suspend fun getConfPreviousClasses(
+        @Query("clsId") clsId: String,
+    ): Response<PreviousClasses>
+
+    @GET("getPreviousLiveClass/")
+    suspend fun getLivePreviousClasses(
+        @Query("lcsId") lcsId: String,
+    ): Response<PreviousClasses>
+
+
+    @GET("getBatches/{type}")
+    suspend fun getBatches(@Path("type") type: String): Response<Batches>
+
+//    comments
+
+    @GET("cls/getComments")
+    suspend fun getConfComments(@Query("pcId") pcId: String): Response<GetComment>
+
+    @FormUrlEncoded
+    @POST("cls/postComment")
+    suspend fun postConfComment(
+        @Field("userId")
+        userId: Int?,
+        @Field("pcId")
+        pcId: Int?,
+        @Field("comment")
+        comment: String?
+    ): Response<CommentResponse>
+
+    @GET("lcs/getComments")
+    suspend fun getLiveComments(@Query("lcId") lcId: String): Response<GetComment>
+
+    @FormUrlEncoded
+    @POST("lcs/postComment")
+    suspend fun postLiveComment(
+        @Field("userId")
+        userId: Int?,
+        @Field("lcId")
+        lcId: Int?,
+        @Field("comment")
+        comment: String?
+    ): Response<CommentResponse>
+
+
+
+    //    enroll
+    @GET("enrollBatch")
+    suspend fun getEnrolledBatch(
+        @Query("userId") userId: String,
+        @Query("batchId") batchId: String
+    ): Response<Enrolled>
 
     //    Test Series---------------------------------------------------------------
     @GET("getTs")
@@ -125,7 +214,7 @@ interface ApiService {
     suspend fun getBlogs(): Response<GetBlogs>
 
     @GET("getComments/{blogId}")
-    suspend fun getComments(@Path("blogId") blogId: String): Response<List<Comment>>
+    suspend fun getComments(@Path("blogId") blogId: String): Response<GetComment>
 
     @FormUrlEncoded
     @POST("postComment")
@@ -146,7 +235,7 @@ interface ApiService {
     @GET("discussion/getComments/")
     suspend fun getDiscussionComments(
         @Query("dId") dId: String,
-    ): Response<GetDcsComment>
+    ): Response<GetComment>
 
     @FormUrlEncoded
     @POST("discussion/postComment")
@@ -161,8 +250,8 @@ interface ApiService {
 
     @GET("filterBlog")
     suspend fun filterBlogs(
-    @Query("cId") cId: String,
-    @Query("sId") scId: String
+        @Query("cId") cId: String,
+        @Query("sId") scId: String
     ): Response<GetBlogs>
 
     // Others------------------------------------------------------------------------------------------------------
@@ -192,10 +281,6 @@ interface ApiService {
         @Query("cId") cId: String,
         @Query("sId") scId: String
     ): Response<GetNotes>
-
-
-
-
 
 
     @GET("packages")
@@ -230,6 +315,12 @@ interface ApiService {
     suspend fun getPaymentDataCourse(
         @Query("userId") userId: String,
         @Query("cId") cId: String
+    ): Response<PaymentOrder>
+
+    @GET("getBatchOrderId")
+    suspend fun getPaymentDataBatch(
+        @Query("userId") userId: String,
+        @Query("batchId") batchId: String
     ): Response<PaymentOrder>
 
     @FormUrlEncoded
@@ -268,6 +359,17 @@ interface ApiService {
     @FormUrlEncoded
     @POST("purchaseCourse")
     suspend fun purchaseCourse(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
+
+    @FormUrlEncoded
+    @POST("purchaseBatch")
+    suspend fun purchaseBatch(
         @Field("userId")
         userId: String?,
         @Field("orderId")

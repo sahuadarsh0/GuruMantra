@@ -6,6 +6,20 @@
     app:startDestination="@id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_live_class_type"
+        android:name="technited.minds.gurumantra.ui.live.LiveClassType"
+        android:label="@string/title_live_class"
+        tools:layout="@layout/fragment_live_class_type">
+        <action
+            android:id="@+id/action_navigation_live_class_type_to_navigation_live_class"
+            app:destination="@id/navigation_live_class"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_live_class"
         android:name="technited.minds.gurumantra.ui.live.LiveClassFragment"
         android:label="@string/title_live_class"
@@ -65,16 +79,28 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_batchDetails_to_navigation_packages"
+            app:destination="@id/navigation_packages"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_batchDetails_to_PlayNComments"
+            app:destination="@id/PlayNComments"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_batchDetails_to_previousClassFragment"
+            app:destination="@id/previousClassFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"  />
     </fragment>
-    <activity
-        android:id="@+id/zoomActivity"
-        android:name="technited.minds.gurumantra.ui.ZoomActivity"
-        android:label="Zoom"
-        tools:layout="@layout/activity_zoom">
-        <argument
-            android:name="classNo"
-            app:argType="string" />
-    </activity>
     <fragment
         android:id="@+id/testSeriesDetails"
         android:name="technited.minds.gurumantra.ui.test.testseries.TestSeriesDetails"
@@ -117,9 +143,6 @@
         android:name="technited.minds.gurumantra.ui.notes.NotesFragment"
         android:label="@string/sample_notes"
         tools:layout="@layout/fragment_notes" >
-        <argument
-            android:name="type"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/navigation_courses"
@@ -129,6 +152,19 @@
         <action
             android:id="@+id/action_navigation_courses_to_coursesDetails"
             app:destination="@id/coursesDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_courses_type"
+        android:name="technited.minds.gurumantra.ui.courses.CoursesTypeFragment"
+        android:label="@string/courses"
+        tools:layout="@layout/fragment_courses_type">
+        <action
+            android:id="@+id/action_navigation_courses_type_to_navigation_courses"
+            app:destination="@id/navigation_courses"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
@@ -149,7 +185,11 @@
             app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_coursesDetails_to_play"
-            app:destination="@id/Play" />
+            app:destination="@id/Play"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/navigation_packages"
@@ -177,16 +217,32 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_blogDetails"
-            app:destination="@id/blogDetails" />
+            app:destination="@id/blogDetails"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_home_to_testSeriesDetails"
-            app:destination="@id/testSeriesDetails" />
+            app:destination="@id/testSeriesDetails"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_home_to_batchDetails"
-            app:destination="@id/batchDetails" />
+            app:destination="@id/batchDetails"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_navigation_home_to_coursesDetails"
-            app:destination="@id/coursesDetails" />
+            app:destination="@id/coursesDetails"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_special_offers"
@@ -206,9 +262,40 @@
     <activity
         android:id="@+id/Play"
         android:name="technited.minds.gurumantra.ui.Play"
-        android:label="Play" >
+        android:label="Play"
+        tools:layout="@layout/activity_play">
         <argument
             android:name="url"
             app:argType="string" />
     </activity>
+    <activity
+        android:id="@+id/PlayNComments"
+        android:name="technited.minds.gurumantra.ui.PlayNComments"
+        android:label="Play Live"
+        tools:layout="@layout/activity_play_n_comments">
+        <argument
+            android:name="classNo"
+            app:argType="string" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/zoomActivity"
+        android:name="technited.minds.gurumantra.ui.ZoomActivity"
+        android:label="Zoom"
+        tools:layout="@layout/activity_zoom">
+        <argument
+            android:name="classNo"
+            app:argType="string" />
+    </activity>
+    <fragment
+        android:id="@+id/previousClassFragment"
+        android:name="technited.minds.gurumantra.ui.live.PreviousClassFragment"
+        android:label="Previous Class"
+        tools:layout="@layout/fragment_previous_class" >
+        <action
+            android:id="@+id/action_previous_to_PlayNComments"
+            app:destination="@id/PlayNComments" />
+    </fragment>
 </navigation>

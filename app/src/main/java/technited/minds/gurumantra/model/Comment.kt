@@ -4,13 +4,13 @@ package technited.minds.gurumantra.model
 import com.google.gson.annotations.SerializedName
 
 data class Comment(
-    @SerializedName("bcId", alternate = ["dcId"])
+    @SerializedName("bcId", alternate = ["dcId","pccId","lccId"])
     val bcId: Int,
-    @SerializedName("blogId", alternate = ["dId"])
+    @SerializedName("blogId", alternate = ["dId","pcId","lcId"])
     val blogId: Int,
     @SerializedName("userId")
     val userId: Int,
-    @SerializedName("bcComment", alternate = ["dcComment"])
+    @SerializedName("bcComment", alternate = ["dcComment","pcComment","lcComment"])
     val bcComment: String,
     @SerializedName("created_at")
     val createdAt: String,

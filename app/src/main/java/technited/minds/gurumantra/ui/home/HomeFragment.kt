@@ -87,13 +87,14 @@ class HomeFragment : Fragment() {
                         binding.slider.setImageList(imageList, ScaleTypes.CENTER_CROP)
                         binding.smallSlider.setImageList(smallImageList, ScaleTypes.CENTER_CROP)
 
-                        blogsAdapter.submitList(home.blogs.subList(0,3))
+                        blogsAdapter.submitList(home.blogs.subList(0, 3))
                         testSeriesAdapter.submitList(home.tss)
                         practiceSetsAdapter.submitList(home.practs)
                         pdfSetsAdapter.submitList(home.pdfts)
                         batchesAdapter.submitList(home.batches)
                         coursesAdapter.submitList(home.courses)
-                        binding.marqueeText.text = home.notices.joinToString { notice ->"               * "+notice.content }
+                        binding.marqueeText.text =
+                            home.notices.joinToString { notice -> "               * " + notice.content }
                         binding.marqueeText.isSelected = true
                         binding.animationView.visibility = View.GONE
                         binding.group.visibility = View.VISIBLE
@@ -150,6 +151,7 @@ class HomeFragment : Fragment() {
             )
         )
     }
+
     private fun onPdfClicked(testSeriesItem: TestSeriesItem) {
         findNavController().navigate(
             R.id.action_navigation_home_to_testSeriesDetails,
@@ -163,9 +165,11 @@ class HomeFragment : Fragment() {
     private fun onBatchClicked(batchDetailsItem: BatchDetailsItem) {
         findNavController().navigate(
             R.id.action_navigation_home_to_batchDetails,
-            bundleOf("id" to batchDetailsItem.batchId.toString())
+            bundleOf("id" to batchDetailsItem.batchId.toString(),
+                "type" to batchDetailsItem.batchType)
         )
     }
+
     private fun onCourseClicked(course: Course) {
         findNavController().navigate(
             R.id.action_navigation_home_to_coursesDetails,

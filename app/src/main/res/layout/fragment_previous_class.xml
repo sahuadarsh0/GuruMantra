@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.live.LiveClassFragment">
+        tools:context=".ui.live.PreviousClassFragment">
 
         <ImageView
             android:id="@+id/bg2"
@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/batches_list"
+            android:id="@+id/prev_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
             tools:itemCount="8"
-            tools:listitem="@layout/item_list_batches" />
+            tools:listitem="@layout/item_list_previous" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"

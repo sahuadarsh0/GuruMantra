@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_special_offers -> {
                     navController.navigate(R.id.navigation_special_offers)
                 }
-                R.id.navigation_live_class -> {
-                    navController.navigate(R.id.navigation_live_class)
+                R.id.navigation_live_class_type -> {
+                    navController.navigate(R.id.navigation_live_class_type)
                 }
                 R.id.navigation_notes -> {
                     navController.navigate(R.id.navigation_library_notes)
@@ -114,8 +114,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_packages -> {
                     navController.navigate(R.id.navigation_packages)
                 }
-                R.id.navigation_courses -> {
-                    navController.navigate(R.id.navigation_courses)
+                R.id.navigation_courses_type -> {
+                    navController.navigate(R.id.navigation_courses_type)
                 }
                 R.id.navigation_blogs -> {
                     navController.navigate(R.id.navigation_blogs)

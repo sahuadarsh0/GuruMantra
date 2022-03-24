@@ -142,7 +142,8 @@ class SpecialOffersFragment : Fragment() {
     private fun onBatchClicked(batchDetailsItem: BatchDetailsItem) {
         findNavController().navigate(
             R.id.action_special_offers_to_batchDetails,
-            bundleOf("id" to batchDetailsItem.batchId.toString())
+            bundleOf("id" to batchDetailsItem.batchId.toString(),
+                "type" to batchDetailsItem.batchType)
         )
     }
     private fun onCourseClicked(course: Course) {

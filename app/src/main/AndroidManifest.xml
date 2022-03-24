@@ -46,6 +46,10 @@
             android:screenOrientation="landscape"
             android:exported="true" />
         <activity
+            android:name=".ui.PlayNComments"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true" />
+        <activity
             android:name=".ui.payment.PaymentPage"
             android:exported="true" />
 

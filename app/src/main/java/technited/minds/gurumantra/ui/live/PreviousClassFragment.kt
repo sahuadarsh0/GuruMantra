@@ -14,28 +14,34 @@ import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentLiveClassBinding
+import technited.minds.gurumantra.databinding.FragmentPreviousClassBinding
 import technited.minds.gurumantra.model.BatchDetailsItem
+import technited.minds.gurumantra.model.PreviousClassItem
+import technited.minds.gurumantra.model.PreviousClasses
 import technited.minds.gurumantra.ui.adapters.BatchesAdapter
+import technited.minds.gurumantra.ui.adapters.PreviousClassAdapter
 import technited.minds.gurumantra.utils.Resource
 
 @AndroidEntryPoint
-class LiveClassFragment : Fragment() {
+class PreviousClassFragment : Fragment() {
 
     private val liveClassViewModel: LiveClassViewModel by viewModels()
-    private var _binding: FragmentLiveClassBinding? = null
-    private val batchesAdapter = BatchesAdapter(this::onItemClicked)
+    private var _binding: FragmentPreviousClassBinding? = null
+    private val previousClassAdapter = PreviousClassAdapter(this::onItemClicked)
     private val binding get() = _binding!!
-    private lateinit var type: String
+    private lateinit var id: String
+    private var type = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLiveClassBinding.inflate(inflater, container, false)
+        _binding = FragmentPreviousClassBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        arguments?.getString("type")?.let { type = it }
-        liveClassViewModel.getBatches(type)
+        arguments?.getInt("type")?.let { type = it }
+        arguments?.getString("id")?.let { id = it }
+        liveClassViewModel.getPreviousClasses(id, type)
         setupRecyclerView()
         setupObservers()
 
@@ -43,28 +49,28 @@ class LiveClassFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.batchesList.adapter = batchesAdapter
+        binding.prevList.adapter = previousClassAdapter
     }
 
     private fun setupObservers() {
         binding.animationView.visibility = VISIBLE
-        binding.batchesList.visibility = GONE
+        binding.prevList.visibility = GONE
 
-        liveClassViewModel.batches.observe(viewLifecycleOwner, {
+        liveClassViewModel.previousClasses.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
-                    binding.batchesList.visibility = GONE
+                    binding.prevList.visibility = GONE
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val batches = it.data
+                    val classes = it.data
 
-                    if (batches != null) {
+                    if (classes != null) {
 
-                        batchesAdapter.submitList(batches)
+                        previousClassAdapter.submitList(classes.previousClasses)
                         binding.animationView.visibility = GONE
-                        binding.batchesList.visibility = VISIBLE
+                        binding.prevList.visibility = VISIBLE
 
                     }
 
@@ -79,7 +85,7 @@ class LiveClassFragment : Fragment() {
                         }
                     }
                     binding.animationView.visibility = GONE
-                    binding.batchesList.visibility = VISIBLE
+                    binding.prevList.visibility = VISIBLE
 
                 }
 
@@ -92,12 +98,12 @@ class LiveClassFragment : Fragment() {
         _binding = null
     }
 
-    private fun onItemClicked(batchDetailsItem: BatchDetailsItem) {
-        findNavController().navigate(
-            R.id.action_navigation_live_class_to_batchDetails,
-            bundleOf(
-                "id" to batchDetailsItem.batchId.toString(),
-                "type" to batchDetailsItem.batchType)
-        )
+    private fun onItemClicked(previousClassItem: PreviousClassItem) {
+        val action =
+            PreviousClassFragmentDirections.actionPreviousToPlayNComments(
+                previousClassItem.pcId.toString(),
+                previousClassItem.pcVideo
+            )
+        findNavController().navigate(action)
     }
 }
