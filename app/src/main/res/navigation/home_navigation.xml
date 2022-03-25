@@ -145,6 +145,27 @@
         tools:layout="@layout/fragment_notes" >
     </fragment>
     <fragment
+        android:id="@+id/navigation_courses_type"
+        android:name="technited.minds.gurumantra.ui.courses.CoursesTypeFragment"
+        android:label="@string/courses"
+        tools:layout="@layout/fragment_courses_type">
+        <action
+            android:id="@+id/action_navigation_courses_type_to_navigation_courses"
+            app:destination="@id/navigation_courses"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_courses_type_to_navigation_postal_courses"
+            app:destination="@id/navigation_postal_courses"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_courses"
         android:name="technited.minds.gurumantra.ui.courses.CoursesFragment"
         android:label="@string/courses"
@@ -158,19 +179,18 @@
             app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_courses_type"
-        android:name="technited.minds.gurumantra.ui.courses.CoursesTypeFragment"
-        android:label="@string/courses"
-        tools:layout="@layout/fragment_courses_type">
-        <action
-            android:id="@+id/action_navigation_courses_type_to_navigation_courses"
-            app:destination="@id/navigation_courses"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_left" />
+        android:id="@+id/navigation_postal_courses"
+        android:name="technited.minds.gurumantra.ui.courses.PostalCoursesFragment"
+        android:label="@string/postal_course"
+        tools:layout="@layout/fragment_postal_courses">
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_courses_to_coursesDetails"-->
+<!--            app:destination="@id/coursesDetails"-->
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_right"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_left" />-->
     </fragment>
-
     <fragment
         android:id="@+id/coursesDetails"
         android:name="technited.minds.gurumantra.ui.courses.CourseDetails"

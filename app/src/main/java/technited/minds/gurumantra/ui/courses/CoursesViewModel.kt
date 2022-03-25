@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import technited.minds.gurumantra.data.repository.MainRepository
+import technited.minds.gurumantra.model.*
 import technited.minds.gurumantra.model.CourseDetails
-import technited.minds.gurumantra.model.Enrolled
 import technited.minds.gurumantra.utils.Resource
 import javax.inject.Inject
 
@@ -17,6 +17,10 @@ class CoursesViewModel @Inject constructor(private val repository: MainRepositor
 
 
     val courses = liveData { emit(repository.getCourses()) }
+
+    val postalCourses = liveData { emit(repository.getPostalCourses()) }
+    val submitPostalResult: MutableLiveData<Resource<PostalResult>> = MutableLiveData()
+    val postalOrders: MutableLiveData<Resource<OrderPostalCourses>> = MutableLiveData()
 
     val courseDetails: MutableLiveData<Resource<CourseDetails>> = MutableLiveData()
     val enroll: MutableLiveData<Resource<Enrolled>> = MutableLiveData()
@@ -27,5 +31,13 @@ class CoursesViewModel @Inject constructor(private val repository: MainRepositor
 
     fun getEnrolled(userId: String, cId: String, type: String) = viewModelScope.launch {
         enroll.postValue(repository.getEnrolled(userId, cId, type))
+    }
+
+    fun submitPostalAddress(submitPostalAddress: SubmitPostalAddress) = viewModelScope.launch {
+        submitPostalResult.postValue(repository.submitPostalAddress(submitPostalAddress))
+    }
+
+    fun getPostalOrders(userId: String) = viewModelScope.launch {
+        postalOrders.postValue(repository.getPostalOrders(userId))
     }
 }

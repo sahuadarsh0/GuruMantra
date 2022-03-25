@@ -62,6 +62,8 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_notes.xml" value="0.25" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_notifications.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_packages.xml" value="0.27685185185185185" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_postal_address.xml" value="0.32533197139938713" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_postal_courses.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_previous_class.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_special_offers.xml" value="0.2851851851851852" />
@@ -82,6 +84,8 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_modules.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_notes.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_package.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_postal_course.xml" value="0.3140625" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_postal_order.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_previous.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_test_series.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_tests.xml" value="0.5377176015473888" />

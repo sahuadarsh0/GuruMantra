@@ -1,6 +1,7 @@
 package technited.minds.gurumantra.data.remote
 
 import technited.minds.gurumantra.model.EndTest
+import technited.minds.gurumantra.model.SubmitPostalAddress
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) : BaseDataSource() {
@@ -30,6 +31,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun postConfComment(userId: Int, pcId: Int, comment: String) = getResult {
         apiService.postConfComment(userId, pcId, comment)
     }
+
     suspend fun getLiveComments(lcId: String) = getResult { apiService.getLiveComments(lcId) }
     suspend fun postLiveComment(userId: Int, lcId: Int, comment: String) = getResult {
         apiService.postLiveComment(userId, lcId, comment)
@@ -167,4 +169,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getEnrolledCourse(userId: String, cId: String) =
         getResult { apiService.getEnrolledCourse(userId, cId) }
 
+    suspend fun getPostalCourses() = getResult { apiService.getPostalCourses() }
+    suspend fun submitPostalAddress(submitPostalAddress: SubmitPostalAddress) =
+        getResult { apiService.submitPostalAddress(submitPostalAddress) }
+
+    suspend fun getPostalOrders(userId: String) = getResult { apiService.getPostalOrders(userId) }
 }

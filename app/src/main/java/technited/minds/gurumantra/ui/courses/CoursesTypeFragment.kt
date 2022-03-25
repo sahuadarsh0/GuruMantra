@@ -43,9 +43,9 @@ class CoursesTypeFragment : Fragment() {
     }
 
     private fun openPostalCourse() {
-//        findNavController().navigate(
-//            R.id.action_navigation_courses_type_to_navigation_postal_courses,
-//        )
+        findNavController().navigate(
+            R.id.action_navigation_courses_type_to_navigation_postal_courses,
+        )
     }
 
     private fun openVideoCourse() {

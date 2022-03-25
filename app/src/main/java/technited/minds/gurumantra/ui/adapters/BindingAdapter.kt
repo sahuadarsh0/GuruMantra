@@ -4,6 +4,8 @@ import android.graphics.Paint
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -43,8 +45,8 @@ object BindingAdapters {
     fun setSplitText(view: TextView, text: String?) {
         val input = text?.split(",")
         var output = ""
-        input?.forEach { s -> output+= "$s\n\n" }
-        view.text =output
+        input?.forEach { s -> output += "$s\n\n" }
+        view.text = output
     }
 
     @BindingAdapter("android:strikeText")
@@ -58,6 +60,22 @@ object BindingAdapters {
     @JvmStatic
     fun htmlText(view: TextView, text: String?) {
         val output = text?.let { Html.fromHtml(it) }
+        view.text = output
+    }
+
+    @BindingAdapter("android:stock")
+    @JvmStatic
+    fun stock(view: TextView, text: Int?) {
+        var output = ""
+        if (text != null) {
+            if (text >= 0) {
+                output = "In Stock"
+                view.setTextColor(getColor(view.context, R.color.zm_green))
+            }else{
+                output = "Out of Stock"
+                view.setTextColor(getColor(view.context, R.color.red))
+            }
+        }
         view.text = output
     }
 }

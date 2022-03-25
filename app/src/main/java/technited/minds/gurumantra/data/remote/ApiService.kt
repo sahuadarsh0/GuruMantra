@@ -406,5 +406,17 @@ interface ApiService {
         @Query("cId") cId: String
     ): Response<Enrolled>
 
+    // getPostalCourses
+    @GET("postalcourse")
+    suspend fun getPostalCourses(): Response<PostalCourses>
+
+    @Headers("Content-Type: application/json")
+    @POST("pcs/submitUserDetails")
+    suspend fun submitPostalAddress(@Body submitPostalAddress: SubmitPostalAddress): Response<PostalResult>
+
+    @GET("user/pcs/orders")
+    suspend fun getPostalOrders(
+        @Query("userId") userId: String
+    ): Response<OrderPostalCourses>
 
 }

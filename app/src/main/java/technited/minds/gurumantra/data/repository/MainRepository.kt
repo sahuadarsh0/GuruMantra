@@ -4,6 +4,7 @@ import technited.minds.gurumantra.data.local.BlogsDao
 import technited.minds.gurumantra.data.local.GalleryDao
 import technited.minds.gurumantra.data.remote.RemoteDataSource
 import technited.minds.gurumantra.model.EndTest
+import technited.minds.gurumantra.model.SubmitPostalAddress
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.performGetOperation
 import javax.inject.Inject
@@ -190,4 +191,10 @@ class MainRepository @Inject constructor(
     suspend fun getCourseDetails(userId: String, cid: String) =
         remoteDataSource.getCourseDetails(userId, cid)
 
+    //    Postal Courses
+    suspend fun getPostalCourses() = remoteDataSource.getPostalCourses()
+    suspend fun submitPostalAddress(submitPostalAddress: SubmitPostalAddress) =
+        remoteDataSource.submitPostalAddress(submitPostalAddress)
+
+    suspend fun getPostalOrders(userId: String) = remoteDataSource.getPostalOrders(userId)
 }

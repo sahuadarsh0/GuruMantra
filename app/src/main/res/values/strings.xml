@@ -47,4 +47,14 @@
     <string name="discussion">Discussion Forum</string>
     <string name="profile">Profile</string>
     <string name="sample_notes">Notes</string>
+    <string name="postal_course">Postal Course</string>
+    <string name="fill">Fill the following details</string>
+    <string name="f_name">Full Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="address">Address</string>
+    <string name="continue_order">Continue Order</string>
+    <string name="city_village">City/Village</string>
+    <string name="district">District</string>
+    <string name="state">State</string>
+    <string name="postal_code">Postal Code</string>
 </resources>

@@ -50,7 +50,7 @@
                 android:layout_width="155dp"
                 android:layout_height="wrap_content"
                 android:text="@{coupon.ccDiscount +`% OFF`}"
-                android:textColor="@color/purple_500"
+                android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:ribbon_background_color="@color/secondary"
