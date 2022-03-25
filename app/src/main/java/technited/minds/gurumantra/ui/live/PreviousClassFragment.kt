@@ -99,10 +99,16 @@ class PreviousClassFragment : Fragment() {
     }
 
     private fun onItemClicked(previousClassItem: PreviousClassItem) {
+        val batchType =  when(type) {
+            0 -> "conference"
+            1 -> "live"
+            else -> ""
+        }
         val action =
             PreviousClassFragmentDirections.actionPreviousToPlayNComments(
                 previousClassItem.pcId.toString(),
-                previousClassItem.pcVideo
+                previousClassItem.pcVideo,
+                batchType
             )
         findNavController().navigate(action)
     }

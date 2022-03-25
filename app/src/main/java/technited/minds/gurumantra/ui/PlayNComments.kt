@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.navArgs
+import com.afollestad.materialdialogs.MaterialDialog
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -14,6 +15,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityPlayNCommentsBinding
+import technited.minds.gurumantra.ui.adapters.CommentsAdapter
+import technited.minds.gurumantra.ui.blogs.CommentsViewModel
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -28,6 +31,10 @@ class PlayNComments : AppCompatActivity() {
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
     private val liveViewModel: LiveViewModel by viewModels()
+    private val commentsViewModel: CommentsViewModel by viewModels()
+    private val commentsAdapter = CommentsAdapter()
+    private var clsId = "0"
+    private var type = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +49,24 @@ class PlayNComments : AppCompatActivity() {
             videoUrl = args.url
             callListener()
         }
+        clsId = args.classNo
+        type = args.type
+        setupRecyclerView()
         setUpObservers()
+        binding.postButton.setOnClickListener {
+            if (binding.postComment.text.isNotEmpty()) {
+                commentsViewModel.postComment(
+                    userSharedPreferences["id"]!!.toInt(),
+                    clsId.toInt(),
+                    binding.postComment.text.toString(),
+                    type
+                )
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        binding.commentsList.adapter = commentsAdapter
     }
 
     private fun setUpObservers() {
@@ -73,6 +97,46 @@ class PlayNComments : AppCompatActivity() {
 
             }
         })
+
+        commentsViewModel.getComments(clsId, type)
+
+        commentsViewModel.comment.observe(this, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                }
+                Resource.Status.SUCCESS -> {
+                    val comments = it.data
+
+                    if (comments != null) {
+                        binding.commentsList.visibility = View.VISIBLE
+                        commentsAdapter.submitList(comments.comment)
+
+                    }
+                }
+                Resource.Status.ERROR -> {
+                    MaterialDialog(this@PlayNComments).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
+
+                }
+            }
+        })
+
+        commentsViewModel.response.observe(this, {
+            if (it.data != null) {
+                if (it.data.data == 1) {
+                    Toast.makeText(this@PlayNComments, "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
+                    binding.postComment.setText("")
+                    commentsViewModel.getComments(clsId, type)
+                }
+            }
+        })
+
     }
 
     private fun callListener() {
@@ -82,7 +146,7 @@ class PlayNComments : AppCompatActivity() {
                 super.onReady(youTubePlayer)
                 youTubePlayer.loadVideo(videoUrl, 0F)
                 youTubePlayer.play()
-
+                binding.animationView.visibility = View.GONE
                 youTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
                     override fun onStateChange(
                         youTubePlayer: YouTubePlayer,

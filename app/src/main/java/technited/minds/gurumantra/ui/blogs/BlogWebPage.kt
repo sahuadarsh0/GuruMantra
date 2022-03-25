@@ -29,10 +29,9 @@ import technited.minds.gurumantra.model.Blog
 @AndroidEntryPoint
 class BlogWebPage : AppCompatActivity() {
     private lateinit var binding: ActivityBlogWebPageBinding
-    private val commentsAdapter by lazy { CommentsAdapter(this::onItemClicked) }
+    private val commentsAdapter = CommentsAdapter()
 
     private val commentsViewModel: CommentsViewModel by viewModels()
-    private val blogsViewModel: BlogsViewModel by viewModels()
     private lateinit var blogId: String
 
     @Inject
@@ -129,10 +128,6 @@ class BlogWebPage : AppCompatActivity() {
         })
 
     }
-
-    private fun onItemClicked(comment: Comment) {
-    }
-
 
     private fun shareIt() {
         val intent = Intent()

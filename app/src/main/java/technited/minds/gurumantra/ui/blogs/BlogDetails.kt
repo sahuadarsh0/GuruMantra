@@ -28,9 +28,7 @@ class BlogDetails : Fragment() {
 
     private var _binding: FragmentBlogDetailsBinding? = null
     private val binding get() = _binding!!
-    private val commentsAdapter = CommentsAdapter(this::onItemClicked)
-
-    private val blogsViewModel: BlogsViewModel by viewModels()
+    private val commentsAdapter = CommentsAdapter()
     private val commentsViewModel: CommentsViewModel by viewModels()
     private lateinit var blogId: String
 
@@ -126,8 +124,5 @@ class BlogDetails : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun onItemClicked(comment: Comment) {
     }
 }

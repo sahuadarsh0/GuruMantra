@@ -279,6 +279,9 @@
         <argument
             android:name="url"
             app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="string" />
     </activity>
     <activity
         android:id="@+id/zoomActivity"

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import technited.minds.gurumantra.databinding.ItemListCommentsBinding
 import technited.minds.gurumantra.model.Comment
 
-class CommentsAdapter(private val onItemClicked: (Comment) -> Unit) : ListAdapter<Comment, CommentsAdapter
+class CommentsAdapter : ListAdapter<Comment, CommentsAdapter
 .CommentsViewHolder>(DIFFUTIL_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder =
@@ -31,12 +31,11 @@ class CommentsAdapter(private val onItemClicked: (Comment) -> Unit) : ListAdapte
     }
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) =
-        holder.bind(getItem(position), onItemClicked)
+        holder.bind(getItem(position))
 
     inner class CommentsViewHolder(private val binding: ItemListCommentsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(comment: Comment, onItemClicked: (Comment) -> Unit) {
+        fun bind(comment: Comment) {
             binding.comment = comment
-            binding.root.setOnClickListener { onItemClicked(comment) }
         }
     }
 }

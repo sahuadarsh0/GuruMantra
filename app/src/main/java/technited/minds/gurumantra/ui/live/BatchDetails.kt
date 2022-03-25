@@ -203,7 +203,7 @@ class BatchDetails : Fragment() {
                     findNavController().navigate(action)
                 }
                 1 -> {
-                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id,"live") //Youtube Live
+                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id,"live","live") //Youtube Live
                     findNavController().navigate(action)
                 }
             }

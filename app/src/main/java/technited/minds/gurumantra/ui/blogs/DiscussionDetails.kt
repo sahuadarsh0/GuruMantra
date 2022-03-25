@@ -29,7 +29,7 @@ class DiscussionDetails : Fragment() {
 
     private var _binding: FragmentDiscussionDetailsBinding? = null
     private val binding get() = _binding!!
-    private val commentsAdapter = CommentsAdapter(this::onItemClicked)
+    private val commentsAdapter = CommentsAdapter()
 
     private val commentsViewModel: CommentsViewModel by viewModels()
     private val blogsViewModel: BlogsViewModel by viewModels()
@@ -128,8 +128,5 @@ class DiscussionDetails : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun onItemClicked(comment: Comment) {
     }
 }
