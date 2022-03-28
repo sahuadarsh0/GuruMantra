@@ -153,6 +153,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         paymentId: String
     ) = getResult { apiService.purchaseBatch(userId, orderId, paymentId) }
 
+    suspend fun purchasePostal(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchasePostal(userId, orderId, paymentId) }
+
     suspend fun login(username: String, password: String) = getResult { apiService.login(username, password) }
     suspend fun register(
         name: String,

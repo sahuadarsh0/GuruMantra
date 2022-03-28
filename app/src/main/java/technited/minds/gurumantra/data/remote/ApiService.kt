@@ -378,6 +378,17 @@ interface ApiService {
         paymentId: String?
     ): Response<String>
 
+    @FormUrlEncoded
+    @POST("orderPostalCourse")
+    suspend fun purchasePostal(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
+
 
     @GET("getCatogery")
     suspend fun getCategory(): Response<GetCategory>

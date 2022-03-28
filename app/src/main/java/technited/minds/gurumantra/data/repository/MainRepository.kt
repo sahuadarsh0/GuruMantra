@@ -156,6 +156,7 @@ class MainRepository @Inject constructor(
         "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
         "course" -> remoteDataSource.purchaseCourse(userId, orderId, paymentId)
         "batch" -> remoteDataSource.purchaseBatch(userId, orderId, paymentId)
+        "postal" -> remoteDataSource.purchasePostal(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
     }
 

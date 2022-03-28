@@ -225,8 +225,8 @@ class TestSeriesDetails : Fragment() {
                 startActivity(
                     PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
                         context,
-                        Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
-                        ts.tName,                        // PDF Name/Title in String format
+                        Constants.URL.toString() + ts.ptAnswers,                                // PDF URL in String format
+                        ts.tName+" Answers",              // PDF Name/Title in String format
                         "",                  // If nothing specific, Put "" it will save to Downloads
                         enableDownload = false           // This param is true by default.
                     )
@@ -242,8 +242,8 @@ class TestSeriesDetails : Fragment() {
                         startActivity(
                             PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
                                 context,
-                                Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
-                                ts.tName,                        // PDF Name/Title in String format
+                                Constants.URL.toString() + ts.ptAnswers,                                // PDF URL in String format
+                                ts.tName+" Answers",                        // PDF Name/Title in String format
                                 "",                  // If nothing specific, Put "" it will save to Downloads
                                 enableDownload = false           // This param is true by default.
                             )

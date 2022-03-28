@@ -38,22 +38,28 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
 
     inner class TestsViewHolder(private val binding: ItemListTestsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(ts: Ts, onItemClicked: (Ts) -> Unit) {
-            binding.test = ts
-            binding.cardView1.setOnClickListener { onItemClicked(ts) }
-            if (ts.ptQuestions != null) {
-                binding.cardView2.visibility = VISIBLE
-            }
-            binding.cardView2.setOnClickListener {
-                it.context.startActivity(
-                    PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
-                        it.context,
-                        Constants.URL.toString() + ts.ptAnswers,                                // PDF URL in String format
-                        ts.tName+" Answers",                        // PDF Name/Title in String format
-                        "",                  // If nothing specific, Put "" it will save to Downloads
-                        enableDownload = false                    // This param is true by defualt.
-                    )
-                )
+            binding.apply {
+                test = ts
+                if (ts.ptQuestions != null) {
+                    cardView2.visibility = VISIBLE
+                }
+                cardView1.setOnClickListener {
+                    if (ts.ptQuestions != null) {
+                        it.context.startActivity(
+                            PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                                it.context,
+                                Constants.URL.toString() + ts.ptQuestions,                                // PDF URL in String format
+                                ts.tName,                        // PDF Name/Title in String format
+                                "",                  // If nothing specific, Put "" it will save to Downloads
+                                enableDownload = false                    // This param is true by defualt.
+                            )
+                        )
+                    } else
+                        onItemClicked(ts)
+                }
+                cardView2.setOnClickListener { onItemClicked(ts) }
             }
         }
     }
+
 }

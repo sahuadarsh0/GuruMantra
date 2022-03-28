@@ -5,6 +5,8 @@
 
     <data>
 
+
+        <import type="android.view.View" />
         <variable
             name="note"
             type="technited.minds.gurumantra.model.Note" />
@@ -22,43 +24,73 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/note_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="4dp"
-                android:src="@drawable/zm_ic_filetype_pdf"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="2:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+            android:layout_height="match_parent"
+            android:minHeight="100dp">
 
             <TextView
-                android:id="@+id/gallery_title"
+                android:id="@+id/note_title"
                 style="@style/TextBlack.small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingStart="2dp"
-                android:paddingTop="4dp"
-                android:textSize="11sp"
-                android:paddingEnd="2dp"
+                android:gravity="start"
+                android:padding="12dp"
                 android:text="@{note.notesTitle}"
+                android:textSize="11sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/note_image"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:text="Bla Bla Tests" />
+                tools:text="Bla Bla Note" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/grey"
+                app:layout_constraintBottom_toTopOf="@+id/notes_package"
+                tools:layout_editor_absoluteX="0dp" />
 
+            <TextView
+                android:id="@+id/notes_package"
+                style="@style/TextBlack.small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:text="@{note.packageName}"
+                android:textColor="@color/zm_bg_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="General" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_lock"
+                android:visibility="@{note.packageX == 2 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/notes_package"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/notes_package"
+                app:layout_constraintTop_toTopOf="@+id/notes_package"
+                app:tint="@color/red" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/zm_mm_template_eye_icon"
+                android:visibility="@{note.packageX == 1 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/notes_package"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/notes_package"
+                app:layout_constraintTop_toTopOf="@+id/notes_package"
+                app:tint="@color/zm_green" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
