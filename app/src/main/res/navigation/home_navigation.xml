@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_navigation_live_class_type_to_navigation_courses"
+            app:destination="@id/navigation_courses" />
     </fragment>
 
     <fragment
@@ -145,19 +148,19 @@
         tools:layout="@layout/fragment_notes" >
     </fragment>
     <fragment
-        android:id="@+id/navigation_courses_type"
-        android:name="technited.minds.gurumantra.ui.courses.CoursesTypeFragment"
-        android:label="@string/courses"
-        tools:layout="@layout/fragment_courses_type">
+        android:id="@+id/navigation_library_type"
+        android:name="technited.minds.gurumantra.ui.notes.LibraryTypeFragment"
+        android:label="@string/notes"
+        tools:layout="@layout/fragment_library_type">
         <action
-            android:id="@+id/action_navigation_courses_type_to_navigation_courses"
-            app:destination="@id/navigation_courses"
+            android:id="@+id/action_navigation_library_type_to_navigation_library_notes"
+            app:destination="@id/navigation_library_notes"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left" />
         <action
-            android:id="@+id/action_navigation_courses_type_to_navigation_postal_courses"
+            android:id="@+id/action_navigation_library_type_to_navigation_postal_courses"
             app:destination="@id/navigation_postal_courses"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
@@ -263,6 +266,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_home_to_testSeries"
+            app:destination="@id/testSeries" />
     </fragment>
     <fragment
         android:id="@+id/navigation_special_offers"

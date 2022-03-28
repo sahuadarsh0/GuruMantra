@@ -105,17 +105,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_live_class_type -> {
                     navController.navigate(R.id.navigation_live_class_type)
                 }
-                R.id.navigation_notes -> {
-                    navController.navigate(R.id.navigation_library_notes)
+                R.id.navigation_library_type -> {
+                    navController.navigate(R.id.navigation_library_type)
                 }
                 R.id.navigation_test_series_type -> {
                     navController.navigate(R.id.navigation_test_series_type)
                 }
                 R.id.navigation_packages -> {
                     navController.navigate(R.id.navigation_packages)
-                }
-                R.id.navigation_courses_type -> {
-                    navController.navigate(R.id.navigation_courses_type)
                 }
                 R.id.navigation_blogs -> {
                     navController.navigate(R.id.navigation_blogs)

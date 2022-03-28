@@ -338,7 +338,7 @@
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="marquee_text,course_text,courses_list,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
+                app:constraint_referenced_ids="view_all1,view_all2,view_all3,view_all4,view_all5,marquee_text,course_text,courses_list,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

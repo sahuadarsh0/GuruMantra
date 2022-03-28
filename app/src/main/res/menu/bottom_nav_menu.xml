@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_library_notes"
+        android:id="@+id/navigation_library_type"
         android:icon="@drawable/ic_book_reader_solid"
         android:title="@string/notes" />
 
@@ -18,7 +18,7 @@
 
 
     <item
-        android:id="@+id/navigation_courses"
+        android:id="@+id/navigation_live_class_type"
         android:icon="@drawable/ic_chalkboard_teacher_solid"
         android:title="@string/lectures" />
 

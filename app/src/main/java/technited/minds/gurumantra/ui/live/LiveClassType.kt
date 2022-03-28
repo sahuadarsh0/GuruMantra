@@ -39,6 +39,9 @@ class LiveClassType : Fragment() {
         binding.youtube.setOnClickListener{
             openLiveClass("live")
         }
+        binding.course.setOnClickListener{
+            openVideoCourse()
+        }
         return root
     }
 
@@ -51,6 +54,11 @@ class LiveClassType : Fragment() {
         )
     }
 
+    private fun openVideoCourse() {
+        findNavController().navigate(
+            R.id.action_navigation_live_class_type_to_navigation_courses,
+        )
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

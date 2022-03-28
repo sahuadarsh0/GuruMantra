@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
     companion object {
         private val DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Ts>() {
             override fun areItemsTheSame(oldItem: Ts, newItem: Ts): Boolean =
-                oldItem.tsId == newItem.tsId
+                oldItem.tId == newItem.tId
 
 
             override fun areContentsTheSame(oldItem: Ts, newItem: Ts): Boolean =
@@ -38,6 +39,7 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
 
     inner class TestsViewHolder(private val binding: ItemListTestsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(ts: Ts, onItemClicked: (Ts) -> Unit) {
+            Log.d("asa", "bind: " + ts.tId )
             binding.apply {
                 test = ts
                 if (ts.ptQuestions != null) {

@@ -9,7 +9,7 @@
             type="technited.minds.gurumantra.model.TestSeriesItem" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.test.testseries.TestSeriesDetails">
@@ -85,5 +85,5 @@
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/loader" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -6,25 +6,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.course.CourseType">
+        tools:context=".ui.notes.LibraryTypeFragment">
 
         <ImageView
             android:id="@+id/bg2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/b_bg"
             android:layout_marginBottom="-32dp"
             android:rotation="180"
+            android:src="@drawable/b_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/video"
+            android:id="@+id/pdf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="32dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -46,14 +46,15 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/exo_controls_play"
-                    app:tint="@color/purple_500"
+                    android:padding="10dp"
+                    android:src="@drawable/zm_ic_filetype_pdf"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="16:9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/red" />
 
                 <TextView
                     android:id="@+id/name1"
@@ -62,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="4dp"
-                    android:text="Video Course"
+                    android:text="Library Notes"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,11 +82,11 @@
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="8dp"
             app:cardElevation="3dp"
-            app:layout_constraintBottom_toBottomOf="@+id/video"
+            app:layout_constraintBottom_toBottomOf="@+id/pdf"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/video"
-            app:layout_constraintTop_toTopOf="@+id/video">
+            app:layout_constraintStart_toEndOf="@+id/pdf"
+            app:layout_constraintTop_toTopOf="@+id/pdf">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -98,14 +99,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    app:tint="@color/purple_500"
                     android:src="@drawable/zm_menu_icon_send_email"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="w,16:9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/red" />
 
                 <TextView
                     android:id="@+id/name3"

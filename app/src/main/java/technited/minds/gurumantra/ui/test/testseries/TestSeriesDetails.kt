@@ -2,19 +2,16 @@ package technited.minds.gurumantra.ui.test.testseries
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
 import com.rajat.pdfviewer.PdfViewerActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +22,6 @@ import technited.minds.gurumantra.ui.WebPage
 import technited.minds.gurumantra.ui.adapters.TestsAdapter
 import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.ui.payment.PaymentViewModel
-import technited.minds.gurumantra.ui.test.ExamActivity
 import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
@@ -226,7 +222,7 @@ class TestSeriesDetails : Fragment() {
                     PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
                         context,
                         Constants.URL.toString() + ts.ptAnswers,                                // PDF URL in String format
-                        ts.tName+" Answers",              // PDF Name/Title in String format
+                        ts.tName + " Answers",              // PDF Name/Title in String format
                         "",                  // If nothing specific, Put "" it will save to Downloads
                         enableDownload = false           // This param is true by default.
                     )
@@ -243,7 +239,7 @@ class TestSeriesDetails : Fragment() {
                             PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
                                 context,
                                 Constants.URL.toString() + ts.ptAnswers,                                // PDF URL in String format
-                                ts.tName+" Answers",                        // PDF Name/Title in String format
+                                ts.tName + " Answers",                        // PDF Name/Title in String format
                                 "",                  // If nothing specific, Put "" it will save to Downloads
                                 enableDownload = false           // This param is true by default.
                             )

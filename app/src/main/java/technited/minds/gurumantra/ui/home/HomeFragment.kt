@@ -49,16 +49,35 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
+        binding.apply {
+            viewAll1.setOnClickListener{
+                findNavController().navigate(R.id.navigation_live_class_type)
+            }
+            viewAll2.setOnClickListener{
+                openTestSeries("test")
+            }
+            viewAll3.setOnClickListener{
+                findNavController().navigate(R.id.navigation_courses)
+            }
+            viewAll4.setOnClickListener{
+                openTestSeries("practice")
+            }
+            viewAll5.setOnClickListener{
+                openTestSeries("pdf")
+            }
+        }
         return root
     }
 
     private fun setupRecyclerView() {
-        binding.blogsList.adapter = blogsAdapter
-        binding.testSeriesList.adapter = testSeriesAdapter
-        binding.practiceSetsList.adapter = practiceSetsAdapter
-        binding.pdfSetsList.adapter = pdfSetsAdapter
-        binding.batchesList.adapter = batchesAdapter
-        binding.coursesList.adapter = coursesAdapter
+        binding.apply {
+            blogsList.adapter = blogsAdapter
+            testSeriesList.adapter = testSeriesAdapter
+            practiceSetsList.adapter = practiceSetsAdapter
+            pdfSetsList.adapter = pdfSetsAdapter
+            batchesList.adapter = batchesAdapter
+            coursesList.adapter = coursesAdapter
+        }
     }
 
     private fun setupObservers() {
@@ -124,7 +143,14 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    private fun openTestSeries(type: String) {
+        findNavController().navigate(
+            R.id.action_navigation_home_to_testSeries,
+            bundleOf(
+                "type" to type
+            )
+        )
+    }
     private fun onBlogClicked(blog: Blog) {
         findNavController().navigate(
             R.id.action_navigation_home_to_blogDetails,
