@@ -40,7 +40,7 @@ class PostalCoursesAdapter(private val onItemClicked: (PostalCourseItem) -> Unit
     inner class CoursesViewHolder(private val binding: ItemListPostalCourseBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(postalCourseItem: PostalCourseItem, onItemClicked: (PostalCourseItem) -> Unit) {
             binding.postal = postalCourseItem
-            binding.root.setOnClickListener { onItemClicked(postalCourseItem) }
+            binding.buy.setOnClickListener { onItemClicked(postalCourseItem) }
         }
     }
 }

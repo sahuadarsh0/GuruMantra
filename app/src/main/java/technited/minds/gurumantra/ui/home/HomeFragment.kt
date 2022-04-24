@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import technited.minds.gurumantra.ui.adapters.BatchesAdapter
 import technited.minds.gurumantra.ui.adapters.BlogsAdapter
 import technited.minds.gurumantra.ui.adapters.CoursesAdapter
 import technited.minds.gurumantra.ui.adapters.TestSeriesAdapter
+import technited.minds.gurumantra.ui.blogs.BlogWebPage
 import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
 
@@ -64,6 +66,9 @@ class HomeFragment : Fragment() {
             }
             viewAll5.setOnClickListener{
                 openTestSeries("pdf")
+            }
+            viewAll6.setOnClickListener{
+                findNavController().navigate(R.id.navigation_blogs)
             }
         }
         return root
@@ -152,10 +157,7 @@ class HomeFragment : Fragment() {
         )
     }
     private fun onBlogClicked(blog: Blog) {
-        findNavController().navigate(
-            R.id.action_navigation_home_to_blogDetails,
-            bundleOf("id" to blog.blogId.toString())
-        )
+        startWebActivity(blog.blogId.toString())
     }
 
     private fun onTestClicked(testSeriesItem: TestSeriesItem) {
@@ -201,5 +203,12 @@ class HomeFragment : Fragment() {
             R.id.action_navigation_home_to_coursesDetails,
             bundleOf("id" to course.courseId.toString())
         )
+    }
+
+    private fun startWebActivity(blogId: String) {
+        val intent = Intent(requireContext(), BlogWebPage::class.java)
+        intent.putExtra("url", "https://gurumantra.online/api/webShowBlog/$blogId")
+        intent.putExtra("id", blogId)
+        startActivity(intent)
     }
 }

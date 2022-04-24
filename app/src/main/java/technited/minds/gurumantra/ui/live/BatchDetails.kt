@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.ui.live
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentBatchDetailsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
 import technited.minds.gurumantra.ui.adapters.MeetingsAdapter
+import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.ui.payment.PaymentViewModel
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
@@ -50,10 +52,14 @@ class BatchDetails : Fragment() {
         setupObservers()
         batchId = arguments?.getString("id")!!
         batchType = arguments?.getInt("type")!!
+
+        loadFragment()
+        return root
+    }
+
+    private fun loadFragment() {
         batchDetailsViewModel.getBatchDetails(userSharedPreferences["id"]!!, batchId)
         batchDetailsViewModel.getMeetings(batchId, batchType)
-
-        return root
     }
 
     private fun setupRecyclerView() {
@@ -117,6 +123,77 @@ class BatchDetails : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
+                    binding.animationView.visibility = GONE
+
+                }
+
+            }
+        })
+        paymentViewModel.payment.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.animationView.visibility = VISIBLE
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val details = it.data
+
+                    if (details != null) {
+                        if (details.status == 1) {
+                            Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
+
+                            val i = Intent(activity, PaymentPage::class.java)
+                            i.putExtra("price", details.batch.batchPrice.toString())
+                            i.putExtra("title", details.data.name)
+                            i.putExtra("orderId", details.data.orderId)
+                            i.putExtra("type", type)
+                            startActivity(i)
+                        }
+                    }
+                    binding.animationView.visibility = GONE
+
+                }
+                Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
+                    binding.animationView.visibility = GONE
+
+                }
+
+            }
+        })
+        batchDetailsViewModel.enroll.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.animationView.visibility = VISIBLE
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val details = it.data
+
+                    if (details != null) {
+                        if (details.status == 1)
+                            Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
+                        binding.animationView.visibility = GONE
+                        loadFragment()
+                    }
+
+                }
+                Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
                     binding.animationView.visibility = GONE
 
                 }
@@ -203,7 +280,7 @@ class BatchDetails : Fragment() {
                     findNavController().navigate(action)
                 }
                 1 -> {
-                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id,"live","live") //Youtube Live
+                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id, "live", "live") //Youtube Live
                     findNavController().navigate(action)
                 }
             }

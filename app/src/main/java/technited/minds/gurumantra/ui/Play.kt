@@ -1,6 +1,5 @@
 package technited.minds.gurumantra.ui
 
-import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityPlayBinding
-import technited.minds.gurumantra.utils.SharedPrefs
 
 
 class Play : AppCompatActivity() {

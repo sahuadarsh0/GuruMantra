@@ -301,26 +301,30 @@ interface ApiService {
     @GET("getOrderIdTseries")
     suspend fun getPaymentDataSeries(
         @Query("userId") userId: String,
-        @Query("tsId") tsId: String
+        @Query("tsId") tsId: String,
+        @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
 
     @GET("getOrderIdPracseries")
     suspend fun getPaymentDataPractice(
         @Query("userId") userId: String,
-        @Query("pssId") pssId: String
+        @Query("pssId") pssId: String,
+        @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
     @GET("getCourseOrderId")
     suspend fun getPaymentDataCourse(
         @Query("userId") userId: String,
-        @Query("cId") cId: String
+        @Query("cId") cId: String,
+        @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
     @GET("getBatchOrderId")
     suspend fun getPaymentDataBatch(
         @Query("userId") userId: String,
-        @Query("batchId") batchId: String
+        @Query("batchId") batchId: String,
+        @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
     @FormUrlEncoded

@@ -50,7 +50,7 @@ class PostalAddressFragment : Fragment() {
                         .isNotEmpty()) {
 
                     val submitPostalAddress = SubmitPostalAddress(
-                        pcsId = 1,
+                        pcsId = arguments?.getString("id")!!.toInt(),
                         userId = userSharedPreferences["id"]!!.toInt(),
                         name = name.text.toString(),
                         email = email.text.toString(),

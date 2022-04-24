@@ -138,10 +138,10 @@ class MainRepository @Inject constructor(
     suspend fun getCoupons(userId: String) = remoteDataSource.getCoupons(userId)
     suspend fun getPaymentData(userId: String, id: String, type: String, coupon: String? = null) = when (type) {
         "package" -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
-        "test" -> remoteDataSource.getPaymentDataSeries(userId, id)
-        "practice" -> remoteDataSource.getPaymentDataPractice(userId, id)
-        "course" -> remoteDataSource.getPaymentDataCourse(userId, id)
-        "batch" -> remoteDataSource.getPaymentDataBatch(userId, id)
+        "test" -> remoteDataSource.getPaymentDataSeries(userId, id, coupon)
+        "practice" -> remoteDataSource.getPaymentDataPractice(userId, id, coupon)
+        "course" -> remoteDataSource.getPaymentDataCourse(userId, id, coupon)
+        "batch" -> remoteDataSource.getPaymentDataBatch(userId, id, coupon)
         else -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
     }
 

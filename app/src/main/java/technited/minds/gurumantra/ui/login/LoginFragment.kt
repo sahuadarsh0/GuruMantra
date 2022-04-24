@@ -46,6 +46,10 @@ class LoginFragment : Fragment() {
         binding.registerText.setOnClickListener {
             it.findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
         }
+        binding.linkForgetPassword.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
+            Toast.makeText(context, "Feature Coming soon", Toast.LENGTH_SHORT).show()
+        }
         return root
     }
 

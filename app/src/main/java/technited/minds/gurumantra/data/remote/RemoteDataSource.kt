@@ -110,18 +110,18 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getPaymentDataPackage(userId: String, pckId: String, coupon: String? = null) =
         getResult { apiService.getPaymentDataPackage(userId, pckId, coupon) }
 
-    suspend fun getPaymentDataSeries(userId: String, tsId: String) =
-        getResult { apiService.getPaymentDataSeries(userId, tsId) }
+    suspend fun getPaymentDataSeries(userId: String, tsId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataSeries(userId, tsId, coupon) }
 
-    suspend fun getPaymentDataPractice(userId: String, pssId: String) =
-        getResult { apiService.getPaymentDataPractice(userId, pssId) }
+    suspend fun getPaymentDataPractice(userId: String, pssId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataPractice(userId, pssId, coupon) }
 
 
-    suspend fun getPaymentDataCourse(userId: String, cId: String) =
-        getResult { apiService.getPaymentDataCourse(userId, cId) }
+    suspend fun getPaymentDataCourse(userId: String, cId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataCourse(userId, cId, coupon) }
 
-    suspend fun getPaymentDataBatch(userId: String, batchId: String) =
-        getResult { apiService.getPaymentDataBatch(userId, batchId) }
+    suspend fun getPaymentDataBatch(userId: String, batchId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataBatch(userId, batchId, coupon) }
 
     suspend fun purchasePackage(
         userId: String,

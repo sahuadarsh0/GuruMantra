@@ -159,6 +159,7 @@ class ExamActivity : AppCompatActivity() {
                 it.status == Resource.Status.SUCCESS && it.data.resultUrl.isNotEmpty() -> {
                     val intent = Intent(this@ExamActivity, WebPage::class.java)
                     intent.putExtra("url", it.data.resultUrl)
+                    intent.putExtra("back", false)
                     startActivity(intent)
                     finish()
                 }

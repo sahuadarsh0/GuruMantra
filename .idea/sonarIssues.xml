@@ -1233,6 +1233,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout-land/activity_play_n_comments.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_blog_web_page.xml">
           <value>
             <set />
@@ -1633,6 +1638,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/build/generated/source/kapt/release/com/accnee/gurumantra/databinding/ActivityWebPageBindingImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/proguard-rules.pro">
           <value>
             <set />
@@ -1649,6 +1659,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/WebPage.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/data/local/BlogsDao.kt">
           <value>
             <set />
           </value>
@@ -1688,7 +1703,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/AnswersItem.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/BatchDetails.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/Coupons.kt">
           <value>
             <set />
           </value>
@@ -1699,6 +1724,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/Grant.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/Home.kt">
           <value>
             <set />
           </value>
@@ -1714,6 +1744,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/model/ZoomToken.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/CategoryViewModel.kt">
           <value>
             <set />
           </value>
@@ -1734,6 +1769,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/SplashActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/WebPage.kt">
           <value>
             <set />
           </value>
@@ -1763,12 +1803,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/adapters/PostalCoursesAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/batch/BatchDetails.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/batch/BatchDetailsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/blogs/BlogsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/courses/CourseDetails.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/courses/PostalAddressFragment.kt">
           <value>
             <set />
           </value>
@@ -1789,6 +1849,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/home/HomeViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/live/BatchDetails.kt">
           <value>
             <set />
           </value>
@@ -1818,6 +1883,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/test/ExamActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/java/com/accnee/gurumantra/ui/test/testseries/TestSeriesDetails.kt">
           <value>
             <set />
@@ -1843,7 +1913,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/layout/activity_exam.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/layout/activity_website.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/layout/fragment_test_series_details.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GurumantraOnline/app/src/main/res/layout/item_list_discussion.xml">
           <value>
             <set />
           </value>
@@ -1869,6 +1954,266 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../GurumantraOnline/settings.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/SmsReceiver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/AnswersDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/AppDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/BlogsDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/GalleryDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/OptionsTypeConverter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/QuestionsDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/SMSDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/SMSDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/local/UserTypeConverter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/remote/ApiService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/remote/BaseDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/remote/RemoteDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/data/repository/MainRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/di/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/model/SMSItem.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/receivers/SaveSmsService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/receivers/SmsReceiver.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/OtherActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/adapters/BindingAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/adapters/MessagesAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/home/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/home/HomeViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/message/DetailedMessageFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/otp/OtpFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/ui/otp/OtpViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/utils/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/utils/DataAccessStrategy.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/utils/Resource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/java/technited/minds/kutumb/utils/SharedPrefs.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/drawable/ic_launcher_foreground.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/drawable/ic_message.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/drawable/splash.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/activity_main2.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/fragment_detailed_message.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/fragment_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/fragment_otp.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/layout/item_list_messages.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/menu/bottom_nav_menu.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/navigation/mobile_navigation.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/values/ic_launcher_background.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/app/src/main/res/values/themes.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../KutumbHiring/settings.gradle">
           <value>
             <set />
           </value>
@@ -1944,6 +2289,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../OnlineStudy1/app/src/main/res/layout/activity_login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../OnlineStudy1/app/src/main/res/layout/activity_play.xml">
           <value>
             <set />
           </value>

@@ -97,7 +97,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/purple_500"
-            android:padding="10dp"
+            android:padding="8dp"
             android:text="@string/login"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -108,6 +108,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password"
             app:layout_constraintWidth_percent=".5" />
+
+        <TextView
+            android:id="@+id/linkForgetPassword"
+            style="@style/TextGrey.small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="@string/zm_lbl_forget_password_57079"
+            app:layout_constraintEnd_toEndOf="@+id/login_button"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
         <TextView
             android:id="@+id/register_text"
@@ -154,7 +164,7 @@
             android:id="@+id/items"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="imageView,blurView,welcome_text,register_text,view,password,login_button,view8,email" />
+            app:constraint_referenced_ids="imageView,blurView,welcome_text,register_text,view,password,login_button,view8,email,linkForgetPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -52,12 +52,16 @@ class TestSeriesDetails : Fragment() {
         setupObservers()
         arguments?.getString("type")?.let { type = it }
 
+
+        loadFragment()
+        return root
+    }
+
+    private fun loadFragment() {
         arguments?.getString("id")?.let {
             testSeriesViewModel.getTestSeriesDetails(userSharedPreferences["id"]!!, it, type)
             testSeriesViewModel.getListTests(it, type)
         }
-
-        return root
     }
 
     private fun setupRecyclerView() {
@@ -144,7 +148,7 @@ class TestSeriesDetails : Fragment() {
                         if (details.status == 1)
                             Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
                         binding.animationView.visibility = GONE
-
+                        loadFragment()
                     }
 
                 }
@@ -298,6 +302,8 @@ class TestSeriesDetails : Fragment() {
             "test" -> intent.putExtra("url", "https://gurumantra.online/api/webTestsDetails?testId=$tsId&userId=$usId")
             "practice" -> intent.putExtra("url", "https://gurumantra.online/api/webStartSet?psId=$tsId")
         }
+
+        intent.putExtra("back", false)
         startActivity(intent)
     }
 

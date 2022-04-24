@@ -42,12 +42,12 @@
             android:exported="true" />
         <activity
             android:name=".ui.Play"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:screenOrientation="landscape"
             android:exported="true" />
         <activity
             android:name=".ui.PlayNComments"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:exported="true" />
         <activity
             android:name=".ui.payment.PaymentPage"

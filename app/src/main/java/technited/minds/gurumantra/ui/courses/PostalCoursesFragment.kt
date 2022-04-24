@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
+import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentPostalCoursesBinding
 import technited.minds.gurumantra.model.PostalCourseItem
 import technited.minds.gurumantra.ui.adapters.PostalCoursesAdapter
@@ -98,11 +101,13 @@ class PostalCoursesFragment : Fragment() {
                     val courses = it.data
 
                     if (courses != null) {
-                        binding.orderGroup.visibility = View.VISIBLE
-                        postalOrdersAdapter.submitList(courses.pcs)
-                        binding.ordersList.visibility = View.VISIBLE
-                        binding.animationView.visibility = View.GONE
+                        if (courses.pcs.isNotEmpty()) {
+                            binding.orderGroup.visibility = View.VISIBLE
+                            postalOrdersAdapter.submitList(courses.pcs)
+                            binding.ordersList.visibility = View.VISIBLE
+                            binding.animationView.visibility = View.GONE
 
+                        }
                     }
 
                 }
@@ -129,9 +134,9 @@ class PostalCoursesFragment : Fragment() {
     }
 
     private fun onItemClicked(postal: PostalCourseItem) {
-//        findNavController().navigate(
-//            R.id.action_navigation_courses_to_coursesDetails,
-//            bundleOf("id" to course.courseId.toString())
-//        )
+        findNavController().navigate(
+            R.id.action_navigation_postal_courses_to_postalAddressFragment,
+            bundleOf("id" to postal.pcsId.toString())
+        )
     }
 }

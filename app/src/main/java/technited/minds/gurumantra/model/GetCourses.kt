@@ -20,7 +20,7 @@ data class Course(
     @SerializedName("pid")
     val pid: Int,
     @SerializedName("coursePrice")
-    val coursePrice: Any,
+    val coursePrice: Int,
     @SerializedName("courseValidity")
     val courseValidity: Any,
     @SerializedName("courseCreatedBy")

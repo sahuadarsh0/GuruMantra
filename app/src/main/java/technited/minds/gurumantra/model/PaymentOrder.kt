@@ -16,7 +16,9 @@ data class PaymentOrder(
     @SerializedName("tss")
     val tss: TestSeriesItem,
     @SerializedName("course")
-    val course: Course
+    val course: Course,
+    @SerializedName("bts")
+    val batch: BatchDetailsItem
 )
 data class PaymentData(
     @SerializedName("orderId")

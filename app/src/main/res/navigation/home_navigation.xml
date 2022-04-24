@@ -193,7 +193,15 @@
 <!--            app:exitAnim="@anim/slide_out_right"-->
 <!--            app:popEnterAnim="@anim/slide_in_left"-->
 <!--            app:popExitAnim="@anim/slide_out_left" />-->
+        <action
+            android:id="@+id/action_navigation_postal_courses_to_postalAddressFragment"
+            app:destination="@id/postalAddressFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/postalAddressFragment"
+        android:name="technited.minds.gurumantra.ui.courses.PostalAddressFragment"
+        android:label="PostalAddressFragment"
+        tools:layout="@layout/fragment_postal_address"/>
     <fragment
         android:id="@+id/coursesDetails"
         android:name="technited.minds.gurumantra.ui.courses.CourseDetails"

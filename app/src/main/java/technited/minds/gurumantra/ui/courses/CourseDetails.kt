@@ -51,11 +51,15 @@ class CourseDetails : Fragment() {
         val root: View = binding.root
         setupRecyclerView()
         setupObservers()
-        arguments?.getString("id")?.let { coursesViewModel.getCourseDetails(userSharedPreferences["id"]!!, it) }
+        loadFragment()
         binding.startCourse.setOnClickListener {
             startCourse()
         }
         return root
+    }
+
+    private fun loadFragment() {
+        arguments?.getString("id")?.let { coursesViewModel.getCourseDetails(userSharedPreferences["id"]!!, it) }
     }
 
     private fun setupRecyclerView() {
@@ -125,7 +129,7 @@ class CourseDetails : Fragment() {
                         if (details.status == 1)
                             Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
                         binding.animationView.visibility = GONE
-
+                        loadFragment()
                     }
 
                 }
@@ -158,7 +162,7 @@ class CourseDetails : Fragment() {
                             Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
 
                             val i = Intent(activity, PaymentPage::class.java)
-                            i.putExtra("price", details.course.pid.toString())
+                            i.putExtra("price", details.course.coursePrice.toString())
                             i.putExtra("title", details.data.name)
                             i.putExtra("orderId", details.data.orderId)
                             i.putExtra("type", "course")

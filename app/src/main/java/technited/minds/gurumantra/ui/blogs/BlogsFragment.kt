@@ -11,7 +11,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.skydoves.powerspinner.PowerSpinnerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -193,12 +192,7 @@ class BlogsFragment : Fragment() {
     }
 
     private fun onItemClicked(blog: Blog) {
-//        findNavController().navigate(
-//            R.id.action_navigation_blogs_to_blogDetails,
-//            bundleOf("id" to blog.blogId.toString())
-//        )
         startWebActivity(blog.blogId.toString())
-
     }
 
     private fun onItemClicked(dcs: Dcs) {
@@ -206,8 +200,6 @@ class BlogsFragment : Fragment() {
             R.id.action_navigation_blogs_to_discussionDetails,
             bundleOf("id" to dcs.dId.toString())
         )
-//        startWebActivity(blog.blogId.toString())
-
     }
 
 
