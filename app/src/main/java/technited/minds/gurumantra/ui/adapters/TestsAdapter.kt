@@ -2,11 +2,14 @@ package technited.minds.gurumantra.ui.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionManager
 import com.rajat.pdfviewer.PdfViewerActivity
 import technited.minds.gurumantra.databinding.ItemListTestsBinding
 import technited.minds.gurumantra.model.Ts
@@ -14,6 +17,10 @@ import technited.minds.gurumantra.utils.Constants
 
 class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, TestsAdapter
 .TestsViewHolder>(DIFFUTIL_CALLBACK) {
+
+    private var previousExpandedPosition = -1
+    private var mExpandedPosition  = -1
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestsViewHolder =
         TestsViewHolder(
@@ -34,16 +41,37 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
         }
     }
 
-    override fun onBindViewHolder(holder: TestsViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: TestsViewHolder, position: Int) {
         holder.bind(getItem(position), onItemClicked)
+        val isExpanded: Boolean = position == mExpandedPosition
+        holder.name.visibility = if (isExpanded) VISIBLE else GONE
+        holder.more.visibility = if (isExpanded) GONE else VISIBLE
+        holder.more.isActivated = isExpanded
+
+        if (isExpanded)
+            previousExpandedPosition = holder.bindingAdapterPosition
+        holder.more.setOnClickListener {
+            mExpandedPosition = if (isExpanded) -1 else position
+            TransitionManager.beginDelayedTransition(recyclerView)
+            notifyItemChanged(previousExpandedPosition);
+            notifyItemChanged(position)
+        }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
 
     inner class TestsViewHolder(private val binding: ItemListTestsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val name = binding.name
+        val more = binding.more
         fun bind(ts: Ts, onItemClicked: (Ts) -> Unit) {
-            Log.d("asa", "bind: " + ts.tId )
             binding.apply {
                 test = ts
                 if (ts.ptQuestions != null) {
                     cardView2.visibility = VISIBLE
+                    more.visibility = GONE
                 }
                 cardView1.setOnClickListener {
                     if (ts.ptQuestions != null) {

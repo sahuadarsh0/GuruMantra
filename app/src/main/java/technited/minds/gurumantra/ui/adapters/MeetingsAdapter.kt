@@ -1,19 +1,25 @@
 package technited.minds.gurumantra.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionManager
 import technited.minds.gurumantra.databinding.ItemListMeetingsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
 import technited.minds.gurumantra.ui.live.BatchDetailsDirections
 import technited.minds.gurumantra.utils.SharedPrefs
 
-class MeetingsAdapter(private val onItemClicked: (MeetingDetailsItem,String) -> Unit) :
+class MeetingsAdapter(private val onItemClicked: (MeetingDetailsItem, String) -> Unit) :
     ListAdapter<MeetingDetailsItem, MeetingsAdapter
     .MeetingsViewHolder>(DIFFUTIL_CALLBACK) {
+
+    private var previousExpandedPosition = -1
+    private var mExpandedPosition = -1
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeetingsViewHolder =
         MeetingsViewHolder(
@@ -34,15 +40,37 @@ class MeetingsAdapter(private val onItemClicked: (MeetingDetailsItem,String) -> 
         }
     }
 
-    override fun onBindViewHolder(holder: MeetingsViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: MeetingsViewHolder, position: Int) {
         holder.bind(getItem(position), onItemClicked)
+        val isExpanded: Boolean = position == mExpandedPosition
+        holder.desc.visibility = if (isExpanded) View.VISIBLE else View.GONE
+        holder.more.visibility = if (isExpanded) View.INVISIBLE else View.VISIBLE
+        holder.more.isActivated = isExpanded
+
+        if (isExpanded)
+            previousExpandedPosition = holder.bindingAdapterPosition
+        holder.more.setOnClickListener {
+            mExpandedPosition = if (isExpanded) -1 else position
+            TransitionManager.beginDelayedTransition(recyclerView)
+            notifyItemChanged(previousExpandedPosition)
+            notifyItemChanged(position)
+        }
+    }
+
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
 
     inner class MeetingsViewHolder(private val binding: ItemListMeetingsBinding) : RecyclerView.ViewHolder(binding.root) {
         var userSharedPreferences: SharedPrefs = SharedPrefs(binding.root.context, "USER")
-        fun bind(meetingDetailsItem: MeetingDetailsItem, onItemClicked: (MeetingDetailsItem,String) -> Unit) {
+        val desc = binding.description
+        val more = binding.more
+        fun bind(meetingDetailsItem: MeetingDetailsItem, onItemClicked: (MeetingDetailsItem, String) -> Unit) {
             binding.details = meetingDetailsItem
-            binding.button.setOnClickListener { onItemClicked(meetingDetailsItem,"join") }
-            binding.previous.setOnClickListener { onItemClicked(meetingDetailsItem,"previous") }
+            binding.button.setOnClickListener { onItemClicked(meetingDetailsItem, "join") }
+            binding.previous.setOnClickListener { onItemClicked(meetingDetailsItem, "previous") }
             if (userSharedPreferences["type"].equals("Admin") || userSharedPreferences["type"].equals("Faculty"))
                 binding.button.text = "Start"
             else

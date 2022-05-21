@@ -427,7 +427,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("pcs/submitUserDetails")
-    suspend fun submitPostalAddress(@Body submitPostalAddress: SubmitPostalAddress): Response<PostalResult>
+    suspend fun submitPostalAddress(@Body submitPostalAddress: SubmitPostalAddress): Response<PaymentOrder>
 
     @GET("user/pcs/orders")
     suspend fun getPostalOrders(

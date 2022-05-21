@@ -17,7 +17,7 @@
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/slider"
                 android:layout_width="0dp"
-                android:layout_height="128dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="8dp"
@@ -197,7 +197,7 @@
                 app:iss_corner_radius="18"
                 app:iss_delay="0"
                 app:iss_period="1000"
-                app:layout_constraintDimensionRatio="5:3"
+                app:layout_constraintDimensionRatio="5:3.2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/courses_list" />
@@ -355,7 +355,7 @@
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="view_all1,view_all2,view_all3,view_all4,view_all5,marquee_text,course_text,courses_list,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
+                app:constraint_referenced_ids="view_all1,view_all2,view_all3,view_all4,view_all5,view_all6,marquee_text,course_text,courses_list,batches_list,test_series_list,blogs_text,blogs_list,test_series_text,small_slider,live_class_text,slider,practice_sets_text,pdf_sets_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

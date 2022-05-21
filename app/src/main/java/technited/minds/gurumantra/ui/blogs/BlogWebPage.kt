@@ -76,6 +76,9 @@ class BlogWebPage : AppCompatActivity() {
             binding.commentsSection.visibility = View.VISIBLE
         }
 
+        binding.webView.setOnLongClickListener { true }
+        binding.webView.isLongClickable = false
+        binding.root.isLongClickable = false
     }
 
     private fun setupRecyclerView() {

@@ -19,7 +19,7 @@ class CoursesViewModel @Inject constructor(private val repository: MainRepositor
     val courses = liveData { emit(repository.getCourses()) }
 
     val postalCourses = liveData { emit(repository.getPostalCourses()) }
-    val submitPostalResult: MutableLiveData<Resource<PostalResult>> = MutableLiveData()
+    val submitPostalResult: MutableLiveData<Resource<PaymentOrder>> = MutableLiveData()
     val postalOrders: MutableLiveData<Resource<OrderPostalCourses>> = MutableLiveData()
 
     val courseDetails: MutableLiveData<Resource<CourseDetails>> = MutableLiveData()

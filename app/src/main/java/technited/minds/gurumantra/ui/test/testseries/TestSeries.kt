@@ -1,6 +1,8 @@
 package technited.minds.gurumantra.ui.test.testseries
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentTestSeriesBinding
+import technited.minds.gurumantra.model.Note
+import technited.minds.gurumantra.model.TestSeries as TestSeries1
 import technited.minds.gurumantra.model.TestSeriesItem
 import technited.minds.gurumantra.ui.adapters.TestSeriesAdapter
 import technited.minds.gurumantra.utils.Resource
@@ -25,6 +29,7 @@ class TestSeries : Fragment() {
     private val testSeriesViewModel: TestSeriesViewModel by viewModels()
     private val testSeriesAdapter = TestSeriesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
+    private lateinit var tests: TestSeries1
     private lateinit var type: String
 
     override fun onCreateView(
@@ -37,9 +42,39 @@ class TestSeries : Fragment() {
 
         arguments?.getString("type")?.let { type = it }
         testSeriesViewModel.getTestSeries(type)
+        binding.search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.isNullOrEmpty()) {
+                    setupSearch(s.toString())
+                }
+            }
+        })
+
         setupRecyclerView()
         setupObservers()
         return root
+    }
+
+    fun setupSearch(strTyped: String) {
+        val filteredList = arrayListOf<TestSeriesItem>()
+
+        for (test in tests) {
+            if (test.tsName.contains(strTyped)) {
+                filteredList.add(test)
+            }
+            else if (test.tsName.lowercase().contains(strTyped.lowercase())) {
+                filteredList.add(test)
+            }
+        }
+        testSeriesAdapter.submitList(filteredList)
     }
 
     private fun setupRecyclerView() {
@@ -58,7 +93,7 @@ class TestSeries : Fragment() {
 
                 }
                 Resource.Status.SUCCESS -> {
-                    val tests = it.data
+                    tests = it.data!!
 
                     if (tests != null) {
 

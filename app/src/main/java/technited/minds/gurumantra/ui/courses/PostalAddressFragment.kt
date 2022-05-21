@@ -1,5 +1,6 @@
 package technited.minds.gurumantra.ui.courses
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.databinding.FragmentPostalAddressBinding
 import technited.minds.gurumantra.model.RegisterDetails
 import technited.minds.gurumantra.model.SubmitPostalAddress
+import technited.minds.gurumantra.ui.payment.PaymentPage
+import technited.minds.gurumantra.ui.payment.PaymentViewModel
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -25,7 +28,7 @@ class PostalAddressFragment : Fragment() {
 
     @Inject
     lateinit var userSharedPreferences: SharedPrefs
-    private lateinit var registerDetails: RegisterDetails
+    private val paymentViewModel: PaymentViewModel by viewModels()
     private val coursesViewModel: CoursesViewModel by viewModels()
     private val binding get() = _binding!!
 
@@ -47,19 +50,20 @@ class PostalAddressFragment : Fragment() {
             continueOrder.setOnClickListener {
                 if (name.text.isNotEmpty() || email.text.isNotEmpty() || city.text.isNotEmpty() || state.text.isNotEmpty()
                     || district.text.isNotEmpty() || postalCode.text.isNotEmpty() || mobile.text.isNotEmpty() || address.text
-                        .isNotEmpty()) {
+                        .isNotEmpty()
+                ) {
 
                     val submitPostalAddress = SubmitPostalAddress(
                         pcsId = arguments?.getString("id")!!.toInt(),
                         userId = userSharedPreferences["id"]!!.toInt(),
                         name = name.text.toString(),
                         email = email.text.toString(),
-                        phone= mobile.text.toString(),
-                        city= city.text.toString(),
-                        state= state.text.toString(),
-                        pcode= postalCode.text.toString(),
-                        district= district.text.toString(),
-                        address= address.text.toString()
+                        phone = mobile.text.toString(),
+                        city = city.text.toString(),
+                        state = state.text.toString(),
+                        pcode = postalCode.text.toString(),
+                        district = district.text.toString(),
+                        address = address.text.toString()
                     )
                     send(submitPostalAddress)
                 } else {
@@ -74,6 +78,16 @@ class PostalAddressFragment : Fragment() {
                     }
                     Resource.Status.SUCCESS -> {
 
+                        val details = it.data
+
+                        if (details != null) {
+                            val i = Intent(activity, PaymentPage::class.java)
+                            i.putExtra("price", details.pcs.pcsPrice)
+                            i.putExtra("title", details.data.name)
+                            i.putExtra("orderId", details.data.orderId)
+                            i.putExtra("type", "postal")
+                            startActivity(i)
+                        }
                         animationView.visibility = GONE
                     }
                     Resource.Status.ERROR -> {
@@ -90,7 +104,6 @@ class PostalAddressFragment : Fragment() {
                 }
 
             })
-
         }
     }
 

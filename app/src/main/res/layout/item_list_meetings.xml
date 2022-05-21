@@ -28,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:setImage="@{details.thumbnail}"
+                android:setImageUrl="@{details.thumbnail}"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="h,1:1"
@@ -51,6 +51,23 @@
                 app:layout_constraintTop_toTopOf="@+id/photo"
                 tools:text="@string/app_name" />
 
+            <TextView
+                android:id="@+id/description"
+                style="@style/TextBlack.small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:htmlText="@{details.classDescription}"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/photo"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="ple/lorem/random" />
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="0dp"
@@ -63,16 +80,16 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:cornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"
+                app:layout_constraintEnd_toStartOf="@+id/previous"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/previous"
                 app:layout_constraintWidth_percent=".2" />
 
             <Button
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/purple_500"
                 android:padding="5dp"
                 android:text="Previous Class"
@@ -80,9 +97,38 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:cornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                app:layout_constraintBottom_toBottomOf="@+id/button"
+                app:layout_constraintEnd_toStartOf="@+id/more"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button"
+                app:layout_constraintTop_toTopOf="@+id/button" />
+
+            <Button
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/red_500"
+                android:padding="0dp"
+                android:text="@string/more"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/previous"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/previous"
+                app:layout_constraintTop_toBottomOf="@+id/stopper" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/stopper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="description,photo"
+                app:layout_constraintTop_toBottomOf="@id/photo" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

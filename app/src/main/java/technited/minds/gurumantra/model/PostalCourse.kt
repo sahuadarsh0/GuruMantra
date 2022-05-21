@@ -57,12 +57,6 @@ data class SubmitPostalAddress(
 )
 
 
-data class PostalResult(
-    @SerializedName("pcs")
-    val pcs: PCOrder // Temp
-)
-
-
 data class OrderPostalCourses(
     @SerializedName("pcs")
     val pcs: List<PCOrder>

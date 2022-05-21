@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable-v24/bg1.xml" value="0.32788559754851887" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable-v24/expand_background.xml" value="0.171875" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg1.xml" value="0.3435185185185185" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_bottom_nav.xml" value="0.3452502553626149" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/drawable/bg_edit_text.xml" value="0.31851851851851853" />
@@ -55,7 +56,7 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_dashboard.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_discussion_details.xml" value="0.3079673135852911" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_gallery.xml" value="0.33177083333333335" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_home.xml" value="0.22272385252069224" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_library_notes.xml" value="0.33" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_live_class.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/fragment_live_class_type.xml" value="0.33177083333333335" />
@@ -81,7 +82,7 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_course.xml" value="0.275" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_discussion.xml" value="0.5" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_gallery.xml" value="0.33177083333333335" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_meetings.xml" value="0.33177083333333335" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_meetings.xml" value="0.2" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_modules.xml" value="0.33177083333333335" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_notes.xml" value="0.33" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_package.xml" value="0.33177083333333335" />
@@ -89,7 +90,7 @@
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_postal_order.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_previous.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_test_series.xml" value="0.3140625" />
-        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_tests.xml" value="0.2" />
+        <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_list_tests.xml" value="0.2783375314861461" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/item_zoom_image.xml" value="0.2" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/nav_header_main.xml" value="0.3140625" />
         <entry key="..\:/Important_Docs/Projects/Backup/GuruMantra/app/src/main/res/layout/process_dialog.xml" value="0.3140625" />
