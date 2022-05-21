@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.live
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -52,6 +53,8 @@ class BatchDetails : Fragment() {
         setupObservers()
         batchId = arguments?.getString("id")!!
         batchType = arguments?.getInt("type")!!
+
+        binding.batchDescription.movementMethod = LinkMovementMethod.getInstance()
 
         loadFragment()
         return root

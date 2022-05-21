@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.courses
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +56,9 @@ class CourseDetails : Fragment() {
         binding.startCourse.setOnClickListener {
             startCourse()
         }
+
+        binding.courseDescription.movementMethod = LinkMovementMethod.getInstance()
+
         return root
     }
 

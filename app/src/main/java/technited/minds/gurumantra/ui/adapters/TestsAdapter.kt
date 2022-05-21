@@ -19,7 +19,7 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
 .TestsViewHolder>(DIFFUTIL_CALLBACK) {
 
     private var previousExpandedPosition = -1
-    private var mExpandedPosition  = -1
+    private var mExpandedPosition = -1
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestsViewHolder =
@@ -45,7 +45,7 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
         holder.bind(getItem(position), onItemClicked)
         val isExpanded: Boolean = position == mExpandedPosition
         holder.name.visibility = if (isExpanded) VISIBLE else GONE
-        holder.more.visibility = if (isExpanded) GONE else VISIBLE
+        holder.more.visibility = if (isExpanded || holder.pdf == 1) GONE else VISIBLE
         holder.more.isActivated = isExpanded
 
         if (isExpanded)
@@ -66,12 +66,13 @@ class TestsAdapter(private val onItemClicked: (Ts) -> Unit) : ListAdapter<Ts, Te
     inner class TestsViewHolder(private val binding: ItemListTestsBinding) : RecyclerView.ViewHolder(binding.root) {
         val name = binding.name
         val more = binding.more
+        var pdf = 0
         fun bind(ts: Ts, onItemClicked: (Ts) -> Unit) {
             binding.apply {
                 test = ts
                 if (ts.ptQuestions != null) {
                     cardView2.visibility = VISIBLE
-                    more.visibility = GONE
+                    pdf = 1
                 }
                 cardView1.setOnClickListener {
                     if (ts.ptQuestions != null) {

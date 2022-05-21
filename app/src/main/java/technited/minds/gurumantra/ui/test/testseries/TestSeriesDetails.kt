@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.test.testseries
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -52,6 +53,7 @@ class TestSeriesDetails : Fragment() {
         setupObservers()
         arguments?.getString("type")?.let { type = it }
 
+        binding.testSeriesDescription.movementMethod = LinkMovementMethod.getInstance()
 
         loadFragment()
         return root
