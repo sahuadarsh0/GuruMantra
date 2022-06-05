@@ -71,13 +71,13 @@ class BlogDetails : Fragment() {
         val id = arguments?.getString("id")
         if (id != null) {
             blogId = id
-            localBlogs.getBlog(blogId).observe(viewLifecycleOwner, {
+            localBlogs.getBlog(blogId).observe(viewLifecycleOwner) {
                 binding.blog = it
                 binding.animationView.visibility = GONE
-            })
+            }
             commentsViewModel.getComments(blogId,"blog")
         }
-        commentsViewModel.comment.observe(viewLifecycleOwner, {
+        commentsViewModel.comment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -107,17 +107,17 @@ class BlogDetails : Fragment() {
 
                 }
             }
-        })
+        }
 
-        commentsViewModel.response.observe(viewLifecycleOwner, {
+        commentsViewModel.response.observe(viewLifecycleOwner) {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(requireContext(), "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
                     binding.postComment.setText("")
-                    commentsViewModel.getComments(blogId,"blog")
+                    commentsViewModel.getComments(blogId, "blog")
                 }
             }
-        })
+        }
 
     }
 

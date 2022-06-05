@@ -113,7 +113,7 @@ class ExamActivity : AppCompatActivity() {
     }
 
     private fun setUpObservers() {
-        examViewModel.testStart.observe(this, {
+        examViewModel.testStart.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
 //                    binding.animationView.visibility = View.VISIBLE
@@ -152,8 +152,8 @@ class ExamActivity : AppCompatActivity() {
 
                 }
             }
-        })
-        examViewModel.testResultUrl.observe(this, {
+        }
+        examViewModel.testResultUrl.observe(this) {
             Log.d("asa", "setUpObservers: ${it?.data!!.resultUrl}")
             when {
                 it.status == Resource.Status.SUCCESS && it.data.resultUrl.isNotEmpty() -> {
@@ -164,7 +164,7 @@ class ExamActivity : AppCompatActivity() {
                     finish()
                 }
             }
-        })
+        }
     }
 
     private fun startExam() {
@@ -286,11 +286,11 @@ class ExamActivity : AppCompatActivity() {
         Toast.makeText(this@ExamActivity, "Test Over", Toast.LENGTH_SHORT)
             .show()
 
-        localAnswers.getAnswersList().observe(this, {
+        localAnswers.getAnswersList().observe(this) {
             if (it.isNotEmpty()) {
                 submitTest(it)
             }
-        })
+        }
     }
 
 

@@ -75,7 +75,7 @@ class DiscussionDetails : Fragment() {
             blogsViewModel.getDiscussionForumDetail(dId)
             commentsViewModel.getComments(dId,"discussion")
         }
-        commentsViewModel.comment.observe(viewLifecycleOwner, {
+        commentsViewModel.comment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -105,17 +105,17 @@ class DiscussionDetails : Fragment() {
 
                 }
             }
-        })
+        }
 
-        commentsViewModel.response.observe(viewLifecycleOwner, {
+        commentsViewModel.response.observe(viewLifecycleOwner) {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(requireContext(), "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
                     binding.postComment.setText("")
-                    commentsViewModel.getComments(dId,"discussion")
+                    commentsViewModel.getComments(dId, "discussion")
                 }
             }
-        })
+        }
         blogsViewModel.dcs.observe(viewLifecycleOwner, {
             if (it.data != null) {
                 binding.discussion = it.data.dcs

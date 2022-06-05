@@ -74,7 +74,7 @@ class TestSeriesDetails : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.testSeriesList.visibility = GONE
 
-        testSeriesViewModel.tests.observe(viewLifecycleOwner, {
+        testSeriesViewModel.tests.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -100,9 +100,9 @@ class TestSeriesDetails : Fragment() {
                 }
 
             }
-        })
+        }
 
-        testSeriesViewModel.testSeriesDetails.observe(viewLifecycleOwner, {
+        testSeriesViewModel.testSeriesDetails.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -112,7 +112,7 @@ class TestSeriesDetails : Fragment() {
                     val details = it.data
 
                     if (details != null) {
-                        if (type != "pdf")
+//                        if (type != "pdf")
                             binding.details = details.tss
                         userSharedPreferences["package"] = details.user?.packageX.toString()
                         binding.animationView.visibility = GONE
@@ -135,9 +135,9 @@ class TestSeriesDetails : Fragment() {
                 }
 
             }
-        })
+        }
 
-        testSeriesViewModel.enroll.observe(viewLifecycleOwner, {
+        testSeriesViewModel.enroll.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -168,9 +168,9 @@ class TestSeriesDetails : Fragment() {
                 }
 
             }
-        })
+        }
 
-        paymentViewModel.payment.observe(viewLifecycleOwner, {
+        paymentViewModel.payment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -208,7 +208,7 @@ class TestSeriesDetails : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

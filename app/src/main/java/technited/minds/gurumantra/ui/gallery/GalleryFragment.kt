@@ -63,7 +63,7 @@ class GalleryFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.galleryList.visibility = View.GONE
 
-        galleryViewModel.gallery.observe(viewLifecycleOwner, {
+        galleryViewModel.gallery.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -93,7 +93,7 @@ class GalleryFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

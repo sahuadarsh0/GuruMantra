@@ -57,7 +57,7 @@ class PackagesFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.packageList.visibility = View.GONE
 
-        packagesViewModel.packages.observe(viewLifecycleOwner, {
+        packagesViewModel.packages.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -91,7 +91,7 @@ class PackagesFragment : Fragment() {
                 }
 
             }
-        })
+        }
 
     }
 
@@ -105,7 +105,7 @@ class PackagesFragment : Fragment() {
         i.putExtra("price", pck.pckPrice.toString())
         i.putExtra("title", pck.pckName)
 
-        paymentViewModel.payment.observe(viewLifecycleOwner, {
+        paymentViewModel.payment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
 //                    binding.animationView.visibility = View.VISIBLE
@@ -137,7 +137,7 @@ class PackagesFragment : Fragment() {
 
                 }
             }
-        })
+        }
         val dialog: MaterialDialog =  MaterialDialog(requireContext()).show {
             title(text = "Apply Coupons ?")
             message(text = "Enter coupon code")

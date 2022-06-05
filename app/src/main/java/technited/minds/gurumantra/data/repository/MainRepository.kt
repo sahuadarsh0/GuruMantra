@@ -61,6 +61,7 @@ class MainRepository @Inject constructor(
 
     suspend fun getEnrolled(userId: String, id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getEnrolled(userId, id)
+        "pdf" -> remoteDataSource.getEnrolledPDFts(userId, id)
         "practice" -> remoteDataSource.getEnrolledSet(userId, id)
         "course" -> remoteDataSource.getEnrolledCourse(userId, id)
         "batch" -> remoteDataSource.getEnrolledBatch(userId, id)
@@ -78,14 +79,14 @@ class MainRepository @Inject constructor(
     suspend fun getTestSeriesDetails(userId: String, id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getTestSeriesDetails(userId, id)
         "practice" -> remoteDataSource.getSetSeriesDetails(userId, id)
-//        "pdf" -> remoteDataSource.getPDFDetails(id)
+        "pdf" -> remoteDataSource.getPDFDetails(userId,id)
         else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
     suspend fun getListTests(id: String, type: String) = when (type) {
         "test" -> remoteDataSource.getListTests(id)
         "practice" -> remoteDataSource.getListSets(id)
-        "pdf" -> remoteDataSource.getPDFDetails(id)
+        "pdf" -> remoteDataSource.getListPDFts(id)
         else -> Resource(Resource.Status.SUCCESS, null, null)
     }
 
@@ -139,8 +140,10 @@ class MainRepository @Inject constructor(
     suspend fun getPaymentData(userId: String, id: String, type: String, coupon: String? = null) = when (type) {
         "package" -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
         "test" -> remoteDataSource.getPaymentDataSeries(userId, id, coupon)
+        "pdf" -> remoteDataSource.getPaymentDataPDFts(userId, id, coupon)
         "practice" -> remoteDataSource.getPaymentDataPractice(userId, id, coupon)
         "course" -> remoteDataSource.getPaymentDataCourse(userId, id, coupon)
+        "notes" -> remoteDataSource.getPaymentDataNotes(userId, id, coupon)
         "batch" -> remoteDataSource.getPaymentDataBatch(userId, id, coupon)
         else -> remoteDataSource.getPaymentDataPackage(userId, id, coupon)
     }
@@ -153,8 +156,10 @@ class MainRepository @Inject constructor(
     ) = when (type) {
         "package" -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
         "test" -> remoteDataSource.purchaseSeries(userId, orderId, paymentId)
+        "pdf" -> remoteDataSource.purchasePDFts(userId, orderId, paymentId)
         "practice" -> remoteDataSource.purchasePractice(userId, orderId, paymentId)
         "course" -> remoteDataSource.purchaseCourse(userId, orderId, paymentId)
+        "notes" -> remoteDataSource.purchaseNotes(userId, orderId, paymentId)
         "batch" -> remoteDataSource.purchaseBatch(userId, orderId, paymentId)
         "postal" -> remoteDataSource.purchasePostal(userId, orderId, paymentId)
         else -> remoteDataSource.purchasePackage(userId, orderId, paymentId)
@@ -169,6 +174,7 @@ class MainRepository @Inject constructor(
         "discussion" -> remoteDataSource.getDiscussionComments(id)
         "conference" -> remoteDataSource.getConfComments(id)
         "live" -> remoteDataSource.getLiveComments(id)
+        "course" -> remoteDataSource.getCourseComments(id)
         else -> remoteDataSource.getComments(id)
     }
 
@@ -183,6 +189,7 @@ class MainRepository @Inject constructor(
         "discussion" -> remoteDataSource.postDiscussionComment(userId, id, comment)
         "conference" -> remoteDataSource.postConfComment(userId, id, comment)
         "live" -> remoteDataSource.postLiveComment(userId, id, comment)
+        "course" -> remoteDataSource.postCourseComment(userId, id, comment)
         else -> remoteDataSource.postComment(userId, id, comment)
     }
 

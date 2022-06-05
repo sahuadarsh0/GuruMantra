@@ -56,7 +56,7 @@ class PostalCoursesFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.coursesList.visibility = View.GONE
 
-        coursesViewModel.postalCourses.observe(viewLifecycleOwner, {
+        coursesViewModel.postalCourses.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -90,8 +90,8 @@ class PostalCoursesFragment : Fragment() {
                 }
 
             }
-        })
-        coursesViewModel.postalOrders.observe(viewLifecycleOwner, {
+        }
+        coursesViewModel.postalOrders.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -125,7 +125,7 @@ class PostalCoursesFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

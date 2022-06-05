@@ -51,7 +51,7 @@ class CouponsFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.couponsList.visibility = View.GONE
 
-        couponsViewModel.coupons.observe(viewLifecycleOwner, {
+        couponsViewModel.coupons.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -67,7 +67,7 @@ class CouponsFragment : Fragment() {
                         binding.animationView.visibility = View.GONE
                         binding.couponsList.visibility = View.VISIBLE
 
-                        if(coupons.coupons.isNullOrEmpty()){
+                        if (coupons.coupons.isNullOrEmpty()) {
                             binding.noCoupon.visibility = View.VISIBLE
                         }
                     }
@@ -88,7 +88,7 @@ class CouponsFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

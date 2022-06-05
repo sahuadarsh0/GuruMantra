@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class Comment(
     @SerializedName("bcId", alternate = ["dcId","pccId","lccId"])
     val bcId: Int,
-    @SerializedName("blogId", alternate = ["dId","pcId","lcId"])
+    @SerializedName("blogId", alternate = ["dId","pcId","lcId","lectureId"])
     val blogId: Int,
     @SerializedName("userId")
     val userId: Int,

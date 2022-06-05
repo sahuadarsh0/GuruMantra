@@ -3,6 +3,7 @@ package technited.minds.gurumantra.ui
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -28,10 +29,10 @@ class WebPage : AppCompatActivity() {
         webSettings.domStorageEnabled = true
         webSettings.allowContentAccess = true
         intent.getStringExtra("url")?.let { binding.webView.loadUrl(it) }
-        back = intent.getBooleanExtra("back",true)
+        back = intent.getBooleanExtra("back", true)
         binding.webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                view.loadUrl(request.url.toString())
                 return false
             }
         }

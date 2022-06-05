@@ -1,8 +1,13 @@
 package technited.minds.gurumantra.ui
 
 import android.content.pm.ActivityInfo
+import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,9 +24,11 @@ import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityPlayNCommentsBinding
 import technited.minds.gurumantra.ui.adapters.CommentsAdapter
 import technited.minds.gurumantra.ui.blogs.CommentsViewModel
+import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class PlayNComments : AppCompatActivity() {
@@ -51,6 +58,29 @@ class PlayNComments : AppCompatActivity() {
             videoUrl = args.url
             callListener()
         }
+        if (args.type == "live" || args.type == "course") {
+            if (args.pdf.isNotEmpty()) {
+                binding.animationView.visibility = View.VISIBLE
+                val webSettings = binding.pdfView.settings
+                webSettings.javaScriptEnabled = true
+                webSettings.setSupportZoom(true)
+                webSettings.useWideViewPort = true
+                webSettings.loadWithOverviewMode = true
+                webSettings.domStorageEnabled = true
+                webSettings.allowContentAccess = true
+                binding.pdfView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + Constants.URL.toString() + args.pdf)
+
+                binding.pdfView.webViewClient = object : WebViewClient() {
+                    override fun onPageFinished(view: WebView, url: String) {
+                        binding.animationView.visibility = View.GONE
+                    }
+                }
+                Log.d("asa", "onCreate: " + Uri.parse(Constants.URL.toString() + args.pdf))
+            }
+            if (args.content.isNotEmpty()) {
+                binding.contentView.text = Html.fromHtml(args.content).toString()
+            }
+        }
         clsId = args.classNo
         type = args.type
         setupRecyclerView()
@@ -65,6 +95,21 @@ class PlayNComments : AppCompatActivity() {
                 )
             }
         }
+        binding.postLabel.setOnClickListener {
+            binding.GComment.visibility = View.VISIBLE
+            binding.GPDF.visibility = View.INVISIBLE
+            binding.GContent.visibility = View.INVISIBLE
+        }
+        binding.pdfLabel.setOnClickListener {
+            binding.GPDF.visibility = View.VISIBLE
+            binding.GComment.visibility = View.INVISIBLE
+            binding.GContent.visibility = View.INVISIBLE
+        }
+        binding.contentLabel.setOnClickListener {
+            binding.GContent.visibility = View.VISIBLE
+            binding.GPDF.visibility = View.INVISIBLE
+            binding.GComment.visibility = View.INVISIBLE
+        }
     }
 
     private fun setupRecyclerView() {
@@ -72,7 +117,7 @@ class PlayNComments : AppCompatActivity() {
     }
 
     private fun setUpObservers() {
-        liveViewModel.joinLive.observe(this, {
+        liveViewModel.joinLive.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -86,6 +131,27 @@ class PlayNComments : AppCompatActivity() {
                         if (joinLiveClass.status == 1) {
                             videoUrl = joinLiveClass.cls.pcVideo
                             binding.animationView.visibility = View.GONE
+                            if (joinLiveClass.cls.lcPdf.isNotEmpty()) {
+                                binding.animationView.visibility = View.VISIBLE
+                                val webSettings = binding.pdfView.settings
+                                webSettings.javaScriptEnabled = true
+                                webSettings.setSupportZoom(true)
+                                webSettings.useWideViewPort = true
+                                webSettings.loadWithOverviewMode = true
+                                webSettings.domStorageEnabled = true
+                                webSettings.allowContentAccess = true
+                                binding.pdfView.loadUrl("http://docs.google.com/gview?embedded=true&url=" + Constants.URL.toString() + joinLiveClass.cls.lcPdf)
+
+                                binding.pdfView.webViewClient = object : WebViewClient() {
+                                    override fun onPageFinished(view: WebView, url: String) {
+                                        binding.animationView.visibility = View.GONE
+                                    }
+                                }
+                                Log.d("asa", "onCreate inner: " + Uri.parse(Constants.URL.toString() + joinLiveClass.cls.lcPdf))
+                            }
+                            if (joinLiveClass.cls.lcContent.isNotEmpty()) {
+                                binding.contentView.text = Html.fromHtml(joinLiveClass.cls.lcContent).toString()
+                            }
                             callListener()
                         } else
                             Toast.makeText(this, joinLiveClass.message, Toast.LENGTH_SHORT).show()
@@ -98,11 +164,11 @@ class PlayNComments : AppCompatActivity() {
                 }
 
             }
-        })
+        }
 
         commentsViewModel.getComments(clsId, type)
 
-        commentsViewModel.comment.observe(this, {
+        commentsViewModel.comment.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                 }
@@ -127,9 +193,9 @@ class PlayNComments : AppCompatActivity() {
 
                 }
             }
-        })
+        }
 
-        commentsViewModel.response.observe(this, {
+        commentsViewModel.response.observe(this) {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(this@PlayNComments, "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
@@ -137,7 +203,7 @@ class PlayNComments : AppCompatActivity() {
                     commentsViewModel.getComments(clsId, type)
                 }
             }
-        })
+        }
 
     }
 

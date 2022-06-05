@@ -1,8 +1,9 @@
 package technited.minds.gurumantra.ui.courses
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,7 +14,6 @@ import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentCoursesBinding
 import technited.minds.gurumantra.model.Course
 import technited.minds.gurumantra.ui.adapters.CoursesAdapter
-import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -51,7 +51,7 @@ class CoursesFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.coursesList.visibility = View.GONE
 
-        coursesViewModel.courses.observe(viewLifecycleOwner, {
+        coursesViewModel.courses.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -66,9 +66,7 @@ class CoursesFragment : Fragment() {
                         coursesAdapter.submitList(courses.courses)
                         binding.animationView.visibility = View.GONE
                         binding.coursesList.visibility = View.VISIBLE
-
                     }
-
                 }
                 Resource.Status.ERROR -> {
                     MaterialDialog(requireContext()).show {
@@ -85,7 +83,7 @@ class CoursesFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

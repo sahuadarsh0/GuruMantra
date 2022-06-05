@@ -7,18 +7,14 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
-import technited.minds.gurumantra.model.Grant
+import technited.minds.gurumantra.model.App
 import technited.minds.gurumantra.utils.Constants
 
 interface UpdateService {
 
 
-    @GET("permissions/{website}/")
-    fun check(
-        @Path("website")
-        website: String?
-    ): Call<Grant>
+    @GET("getAppVersion/")
+    fun check(): Call<App>
 
     companion object {
 

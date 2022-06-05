@@ -74,7 +74,7 @@ class CourseDetails : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.modulesList.visibility = GONE
 
-        coursesViewModel.courseDetails.observe(viewLifecycleOwner, {
+        coursesViewModel.courseDetails.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -118,9 +118,9 @@ class CourseDetails : Fragment() {
                 }
 
             }
-        })
+        }
 
-        coursesViewModel.enroll.observe(viewLifecycleOwner, {
+        coursesViewModel.enroll.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -151,8 +151,8 @@ class CourseDetails : Fragment() {
                 }
 
             }
-        })
-        paymentViewModel.payment.observe(viewLifecycleOwner, {
+        }
+        paymentViewModel.payment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -190,7 +190,7 @@ class CourseDetails : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
@@ -205,8 +205,16 @@ class CourseDetails : Fragment() {
             title(text = module.moduleTitle)
             cornerRadius(16f)
             listItems(items = myItems) { dialog, index, text ->
-                val action = CourseDetailsDirections.actionCoursesDetailsToPlay(module.lectures[index].lectureVideo)
+                val action = CourseDetailsDirections.actionCoursesDetailsToPlayNComments(
+                    module.lectures[index].lectureId.toString(),
+                    module.lectures[index].lectureVideo,
+                    "",
+                    module.lectures[index].lectureContent,
+                    "course"
+                )
                 NavHostFragment.findNavController(this@CourseDetails).navigate(action)
+//                val action = CourseDetailsDirections.actionCoursesDetailsToPlay(module.lectures[index].lectureVideo)
+//                NavHostFragment.findNavController(this@CourseDetails).navigate(action)
             }
 
 

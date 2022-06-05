@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
         val imageList = ArrayList<SlideModel>()
         val smallImageList = ArrayList<SlideModel>()
 
-        homeViewModel.home.observe(viewLifecycleOwner, {
+        homeViewModel.home.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -141,7 +141,7 @@ class HomeFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

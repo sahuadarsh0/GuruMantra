@@ -63,7 +63,7 @@ class SpecialOffersFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.group.visibility = View.GONE
 
-        homeViewModel.specialOffers.observe(viewLifecycleOwner, {
+        homeViewModel.specialOffers.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -79,7 +79,8 @@ class SpecialOffersFragment : Fragment() {
                         pdfSetsAdapter.submitList(home.pdfts)
                         batchesAdapter.submitList(home.batches)
                         coursesAdapter.submitList(home.courses)
-                        binding.marqueeText.text = home.notices.joinToString { notice ->"               * "+notice.content }
+                        binding.marqueeText.text =
+                            home.notices.joinToString { notice -> "               * " + notice.content }
                         binding.marqueeText.isSelected = true
                         binding.animationView.visibility = View.GONE
                         binding.group.visibility = View.VISIBLE
@@ -102,7 +103,7 @@ class SpecialOffersFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

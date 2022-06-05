@@ -35,6 +35,7 @@ object AppModule {
     fun provideBaseUrl() = Constants.BASE_URL.toString()
 
     @Provides
+    @Singleton
     fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor { s: String? -> Log.d("asa", s!!) }
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)

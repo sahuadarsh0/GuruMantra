@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.live
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +16,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
+import com.afollestad.materialdialogs.list.listItems
 import dagger.hilt.android.AndroidEntryPoint
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentBatchDetailsBinding
 import technited.minds.gurumantra.model.MeetingDetailsItem
+import technited.minds.gurumantra.ui.LiveViewModel
 import technited.minds.gurumantra.ui.adapters.MeetingsAdapter
 import technited.minds.gurumantra.ui.payment.PaymentPage
 import technited.minds.gurumantra.ui.payment.PaymentViewModel
@@ -30,6 +33,7 @@ import javax.inject.Inject
 class BatchDetails : Fragment() {
 
     private val batchDetailsViewModel: BatchDetailsViewModel by viewModels()
+    private val liveViewModel: LiveViewModel by viewModels()
     private val paymentViewModel: PaymentViewModel by viewModels()
     private var _binding: FragmentBatchDetailsBinding? = null
     private val meetingsAdapter = MeetingsAdapter(this::onItemClicked)
@@ -56,6 +60,52 @@ class BatchDetails : Fragment() {
 
         binding.batchDescription.movementMethod = LinkMovementMethod.getInstance()
 
+        binding.purchaseBatch.setOnClickListener {
+
+
+            when (binding.details?.batchPackage) {
+                2 -> {
+                    if (userSharedPreferences["package"]!!.toInt() == 2) {
+                        binding.purchaseBatch.visibility = GONE
+                    } else
+                        MaterialDialog(requireContext()).show {
+                            title(text = "Not Enrolled")
+                            message(R.string.enroll_message)
+                            cornerRadius(16f)
+                            positiveButton(text = "OK") { dialog ->
+                                dialog.dismiss()
+                                openPackage()
+                            }
+                        }
+                }
+                3 -> {
+                    val dialog: MaterialDialog = MaterialDialog(requireContext()).show {
+                        title(text = "Apply Coupons ?")
+                        message(text = "Enter coupon code")
+                        cornerRadius(16f)
+                        input(allowEmpty = true) { dialog, text ->
+//                            val coupon: EditText = dialog.getInputField()
+                            paymentViewModel.getPaymentData(
+                                userSharedPreferences["id"]!!,
+                                batchId,
+                                type,
+                                text.toString()
+                            )
+                        }
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                        negativeButton(text = "No Coupons") { dialog ->
+                            paymentViewModel.getPaymentData(
+                                userSharedPreferences["id"]!!,
+                                batchId,
+                                type
+                            )
+                        }
+                    }
+                }
+            }
+        }
         loadFragment()
         return root
     }
@@ -73,7 +123,7 @@ class BatchDetails : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.meetingsList.visibility = GONE
 
-        batchDetailsViewModel.meetings.observe(viewLifecycleOwner, {
+        batchDetailsViewModel.meetings.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -106,8 +156,8 @@ class BatchDetails : Fragment() {
                 }
 
             }
-        })
-        batchDetailsViewModel.batchDetails.observe(viewLifecycleOwner, {
+        }
+        batchDetailsViewModel.batchDetails.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -122,6 +172,25 @@ class BatchDetails : Fragment() {
                         batchEnrolled = details.batchEnrolled
                         binding.animationView.visibility = GONE
 
+                        when (binding.details?.batchPackage) {
+                            1 -> {
+                                binding.purchaseBatch.visibility = GONE
+                            }
+                            2 -> {
+                                if (userSharedPreferences["package"]!!.toInt() == 2) {
+                                    binding.purchaseBatch.visibility = GONE
+                                } else
+                                    MaterialDialog(requireContext()).show {
+                                        title(text = "Not Enrolled")
+                                        message(R.string.enroll_message)
+                                        cornerRadius(16f)
+                                        positiveButton(text = "OK") { dialog ->
+                                            dialog.dismiss()
+                                            openPackage()
+                                        }
+                                    }
+                            }
+                        }
                     }
 
                 }
@@ -131,8 +200,8 @@ class BatchDetails : Fragment() {
                 }
 
             }
-        })
-        paymentViewModel.payment.observe(viewLifecycleOwner, {
+        }
+        paymentViewModel.payment.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -170,8 +239,8 @@ class BatchDetails : Fragment() {
                 }
 
             }
-        })
-        batchDetailsViewModel.enroll.observe(viewLifecycleOwner, {
+        }
+        batchDetailsViewModel.enroll.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -202,7 +271,51 @@ class BatchDetails : Fragment() {
                 }
 
             }
-        })
+        }
+
+        liveViewModel.meeting.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.animationView.visibility = VISIBLE
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val meetings = it.data
+
+                    if (meetings != null) {
+                        //  Zoom Conference
+                        if (batchEnrolled == 1) {
+                            val notices = arrayListOf<String>()
+                            meetings.notices.forEach { notice -> notices.add(Html.fromHtml(notice.content).toString()) }
+                            if (notices.isNotEmpty())
+                                MaterialDialog(requireContext()).show {
+                                    title(text = "Notices")
+                                    listItems(items = notices)
+                                    cornerRadius(16f)
+                                    positiveButton(text = "OK") { dialog ->
+                                        dialog.dismiss()
+                                        val action =
+                                            BatchDetailsDirections.actionBatchDetailsToZoomActivity(meetings.cls.classId.toString())
+                                        findNavController().navigate(action)
+                                    }
+                                }
+                        } else {
+                            val action =
+                                BatchDetailsDirections.actionBatchDetailsToZoomActivity(meetings.cls.classId.toString())
+                            findNavController().navigate(action)
+                        }
+
+                        binding.animationView.visibility = GONE
+                    }
+
+                }
+                Resource.Status.ERROR -> {
+                    binding.animationView.visibility = GONE
+
+                }
+
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -279,11 +392,15 @@ class BatchDetails : Fragment() {
 
             "join" -> when (batchType) { // Join Button
                 0 -> {
-                    val action = BatchDetailsDirections.actionBatchDetailsToZoomActivity(id) // Zoom Conference
-                    findNavController().navigate(action)
+                    liveViewModel.fetchMeeting(userSharedPreferences["id"]!!, id, 0)
+//                    Note : Moved From here to above because of notice section
+//                    val action = BatchDetailsDirections.actionBatchDetailsToZoomActivity(id) // Zoom Conference
+//                    findNavController().navigate(action)
                 }
                 1 -> {
-                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id, "live", "live") //Youtube Live
+                    val action = BatchDetailsDirections.actionBatchDetailsToPlayNComments(id, "live", "","","live")
+                    //Youtube
+                    // Live
                     findNavController().navigate(action)
                 }
             }

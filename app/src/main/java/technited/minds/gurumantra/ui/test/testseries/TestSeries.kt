@@ -85,7 +85,7 @@ class TestSeries : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.testSeriesList.visibility = View.GONE
 
-        testSeriesViewModel.testSeries.observe(viewLifecycleOwner, {
+        testSeriesViewModel.testSeries.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -119,7 +119,7 @@ class TestSeries : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

@@ -91,7 +91,7 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
             Log.e("asa", "Exception in onPaymentSuccess", e)
         }
         finally {
-            paymentsViewModel.purchase.observe(this,{
+            paymentsViewModel.purchase.observe(this) {
                 when (it.status) {
                     Resource.Status.LOADING -> {
 
@@ -118,7 +118,7 @@ class PaymentPage : AppCompatActivity(), PaymentResultListener {
                     }
 
                 }
-            })
+            }
             finish()
         }
     }

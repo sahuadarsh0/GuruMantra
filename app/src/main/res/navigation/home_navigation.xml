@@ -140,12 +140,18 @@
         <action
             android:id="@+id/action_navigation_library_notes_to_navigation_notes"
             app:destination="@id/navigation_notes" />
+        <action
+            android:id="@+id/action_navigation_library_notes_to_navigation_packages"
+            app:destination="@id/navigation_packages" />
     </fragment>
     <fragment
         android:id="@+id/navigation_notes"
         android:name="technited.minds.gurumantra.ui.notes.NotesFragment"
         android:label="@string/sample_notes"
         tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_navigation_notes_to_navigation_packages"
+            app:destination="@id/navigation_packages" />
     </fragment>
     <fragment
         android:id="@+id/navigation_library_type"
@@ -217,6 +223,13 @@
         <action
             android:id="@+id/action_coursesDetails_to_play"
             app:destination="@id/Play"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_coursesDetails_to_PlayNComments"
+            app:destination="@id/PlayNComments"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
@@ -312,6 +325,12 @@
             app:argType="string" />
         <argument
             android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="pdf"
+            app:argType="string" />
+        <argument
+            android:name="content"
             app:argType="string" />
         <argument
             android:name="type"

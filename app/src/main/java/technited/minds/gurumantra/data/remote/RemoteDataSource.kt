@@ -67,7 +67,11 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
 
     //    PDF Tests
     suspend fun getPDF() = getResult { apiService.getPDF() }
-    suspend fun getPDFDetails(ptsId: String) = getResult { apiService.getPDFDetails(ptsId) }
+    suspend fun getPDFDetails(userId: String, ptsId: String) = getResult { apiService.getPDFDetails(userId, ptsId) }
+    suspend fun getListPDFts(ptsId: String) = getResult { apiService.getListPDFts(ptsId) }
+    suspend fun getEnrolledPDFts(userId: String, ptsId: String) =
+        getResult { apiService.getEnrolledPDFts(userId, ptsId) }
+
 
     //Blogs
     suspend fun getBlogs() = getResult { apiService.getBlogs() }
@@ -113,12 +117,18 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getPaymentDataSeries(userId: String, tsId: String, coupon: String? = null) =
         getResult { apiService.getPaymentDataSeries(userId, tsId, coupon) }
 
+    suspend fun getPaymentDataPDFts(userId: String, ptsId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataPDFts(userId, ptsId, coupon) }
+
     suspend fun getPaymentDataPractice(userId: String, pssId: String, coupon: String? = null) =
         getResult { apiService.getPaymentDataPractice(userId, pssId, coupon) }
 
 
     suspend fun getPaymentDataCourse(userId: String, cId: String, coupon: String? = null) =
         getResult { apiService.getPaymentDataCourse(userId, cId, coupon) }
+
+    suspend fun getPaymentDataNotes(userId: String, notesId: String, coupon: String? = null) =
+        getResult { apiService.getPaymentDataNotes(userId, notesId, coupon) }
 
     suspend fun getPaymentDataBatch(userId: String, batchId: String, coupon: String? = null) =
         getResult { apiService.getPaymentDataBatch(userId, batchId, coupon) }
@@ -135,6 +145,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         paymentId: String
     ) = getResult { apiService.purchaseSeries(userId, orderId, paymentId) }
 
+    suspend fun purchasePDFts(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchasePDFts(userId, orderId, paymentId) }
+
     suspend fun purchasePractice(
         userId: String,
         orderId: String,
@@ -146,6 +162,12 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
         orderId: String,
         paymentId: String
     ) = getResult { apiService.purchaseCourse(userId, orderId, paymentId) }
+
+    suspend fun purchaseNotes(
+        userId: String,
+        orderId: String,
+        paymentId: String
+    ) = getResult { apiService.purchaseNotes(userId, orderId, paymentId) }
 
     suspend fun purchaseBatch(
         userId: String,
@@ -171,7 +193,10 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) :
     suspend fun getCourses() = getResult { apiService.getCourses() }
     suspend fun getCourseDetails(userId: String, cid: String) =
         getResult { apiService.getCourseDetails(userId, cid) }
-
+    suspend fun getCourseComments(lectureId: String) = getResult { apiService.getCourseComments(lectureId) }
+    suspend fun postCourseComment(userId: Int, lectureId: Int, comment: String) = getResult {
+        apiService.postCourseComment(userId, lectureId, comment)
+    }
     suspend fun getEnrolledCourse(userId: String, cId: String) =
         getResult { apiService.getEnrolledCourse(userId, cId) }
 

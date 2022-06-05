@@ -61,7 +61,7 @@ class RegisterFragment : Fragment() {
                 }
             }
 
-            loginViewModel.registerDetails.observe(viewLifecycleOwner, {
+            loginViewModel.registerDetails.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Resource.Status.LOADING -> {
                         animationView.visibility = VISIBLE
@@ -109,7 +109,7 @@ class RegisterFragment : Fragment() {
                     }
                 }
 
-            })
+            }
 
         }
     }

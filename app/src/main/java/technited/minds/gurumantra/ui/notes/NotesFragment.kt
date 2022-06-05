@@ -1,11 +1,13 @@
 package technited.minds.gurumantra.ui.notes
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,14 +24,19 @@ import technited.minds.gurumantra.databinding.FragmentNotesBinding
 import technited.minds.gurumantra.model.*
 import technited.minds.gurumantra.ui.CategoryViewModel
 import technited.minds.gurumantra.ui.adapters.NotesAdapter
+import technited.minds.gurumantra.ui.payment.PaymentPage
+import technited.minds.gurumantra.ui.payment.PaymentViewModel
 import technited.minds.gurumantra.utils.Constants
 import technited.minds.gurumantra.utils.Resource
+import technited.minds.gurumantra.utils.SharedPrefs
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NotesFragment : Fragment() {
 
     private var _binding: FragmentNotesBinding? = null
     private val notesViewModel: NotesViewModel by viewModels()
+    private val paymentViewModel: PaymentViewModel by viewModels()
     private val categoryViewModel: CategoryViewModel by viewModels()
     private val notesAdapter = NotesAdapter(this::onItemClicked)
     private val binding get() = _binding!!
@@ -44,6 +51,8 @@ class NotesFragment : Fragment() {
     private var scId = ""
 
 
+    @Inject
+    lateinit var userSharedPreferences: SharedPrefs
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,7 +87,7 @@ class NotesFragment : Fragment() {
 
         binding.filter.setOnClickListener {
             filterDialog.show()
-            categoryViewModel.category.observe(viewLifecycleOwner, {
+            categoryViewModel.category.observe(viewLifecycleOwner) {
                 if (it.data != null) {
                     cts = it.data.cts
                     val names = arrayListOf<String>()
@@ -86,7 +95,7 @@ class NotesFragment : Fragment() {
                     filterCatView.setItems(names)
 
                 }
-            })
+            }
         }
 
         filterCatView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
@@ -96,14 +105,14 @@ class NotesFragment : Fragment() {
         filterSubCatView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             scId = scts[newIndex].scId.toString()
         }
-        categoryViewModel.subCategory.observe(viewLifecycleOwner, {
+        categoryViewModel.subCategory.observe(viewLifecycleOwner) {
             if (it.data != null) {
                 scts = it.data.scts
                 val names = arrayListOf<String>()
                 scts.forEach { names.add(it.scId.toString() + " " + it.scName) }
                 filterSubCatView.setItems(names)
             }
-        })
+        }
         apply.setOnClickListener {
             notesViewModel.filterNotes(cId, scId)
             filterDialog.dismiss()
@@ -118,8 +127,7 @@ class NotesFragment : Fragment() {
         for (note in notes) {
             if (note.notesTitle.contains(strTyped)) {
                 filteredList.add(note)
-            }
-            else if (note.notesTitle.lowercase().contains(strTyped.lowercase())) {
+            } else if (note.notesTitle.lowercase().contains(strTyped.lowercase())) {
                 filteredList.add(note)
             }
         }
@@ -150,7 +158,7 @@ class NotesFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.notesList.visibility = View.GONE
 
-        notesViewModel.notes.observe(viewLifecycleOwner, {
+        notesViewModel.notes.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -162,6 +170,7 @@ class NotesFragment : Fragment() {
 
                     if (getNotes != null) {
                         notes = getNotes.notes
+                        notes.forEach { note -> note.userPackage = userSharedPreferences["package"]!!.toInt() }
                         notesAdapter.submitList(getNotes.notes)
                         if (getNotes.nts != null)
                             binding.title.text = getNotes.nts
@@ -186,7 +195,47 @@ class NotesFragment : Fragment() {
                 }
 
             }
-        })
+        }
+
+        paymentViewModel.payment.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.animationView.visibility = View.VISIBLE
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val details = it.data
+
+                    if (details != null) {
+                        if (details.status == 1) {
+                            Toast.makeText(requireContext(), details.message, Toast.LENGTH_SHORT).show()
+
+                            val i = Intent(activity, PaymentPage::class.java)
+                            i.putExtra("price", details.data.amount.toString())
+                            i.putExtra("title", details.data.name)
+                            i.putExtra("orderId", details.data.orderId)
+                            i.putExtra("type", "notes")
+                            startActivity(i)
+                        }
+                    }
+                    binding.animationView.visibility = View.GONE
+
+                }
+                Resource.Status.ERROR -> {
+                    MaterialDialog(requireContext()).show {
+                        title(text = "API ERROR")
+                        message(text = it.message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                        }
+                    }
+                    binding.animationView.visibility = View.GONE
+
+                }
+
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -195,14 +244,56 @@ class NotesFragment : Fragment() {
     }
 
     private fun onItemClicked(note: Note) {
-        startActivity(
-            PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
-                context,
-                Constants.URL.toString() + note.notesPDF,                                // PDF URL in String format
-                note.notesTitle,                        // PDF Name/Title in String format
-                "",                  // If nothing specific, Put "" it will save to Downloads
-                enableDownload = false                    // This param is true by defualt.
-            )
-        )
+        when (note.packageX) {
+            1 -> {
+
+                startActivity(
+                    PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                        context,
+                        Constants.URL.toString() + note.notesPDF,                                // PDF URL in String format
+                        note.notesTitle,                        // PDF Name/Title in String format
+                        "",                  // If nothing specific, Put "" it will save to Downloads
+                        enableDownload = false                    // This param is true by defualt.
+                    )
+                )
+            }
+
+            2 -> {
+                if (userSharedPreferences["package"]!!.toInt() == 2) {
+                    startActivity(
+                        PdfViewerActivity.launchPdfFromUrl(           //PdfViewerActivity.Companion.launchPdfFromUrl(..   :: incase of JAVA
+                            context,
+                            Constants.URL.toString() + note.notesPDF,                                // PDF URL in String format
+                            note.notesTitle,                        // PDF Name/Title in String format
+                            "",                  // If nothing specific, Put "" it will save to Downloads
+                            enableDownload = false                    // This param is true by defualt.
+                        )
+                    )
+                } else
+                    MaterialDialog(requireContext()).show {
+                        title(text = "Not Enrolled")
+                        message(R.string.enroll_message)
+                        cornerRadius(16f)
+                        positiveButton(text = "OK") { dialog ->
+                            dialog.dismiss()
+                            openPackage()
+                        }
+                    }
+
+            }
+
+            3 -> {
+                paymentViewModel.getPaymentData(
+                    userSharedPreferences["id"]!!,
+                    note.noteId.toString(),
+                    "notes",
+                    ""
+                )
+            }
+        }
+    }
+
+    private fun openPackage() {
+        findNavController().navigate(R.id.action_navigation_library_notes_to_navigation_packages)
     }
 }

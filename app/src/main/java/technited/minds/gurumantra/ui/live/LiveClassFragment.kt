@@ -38,7 +38,6 @@ class LiveClassFragment : Fragment() {
         liveClassViewModel.getBatches(type)
         setupRecyclerView()
         setupObservers()
-
         return root
     }
 
@@ -50,7 +49,7 @@ class LiveClassFragment : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.batchesList.visibility = GONE
 
-        liveClassViewModel.batches.observe(viewLifecycleOwner, {
+        liveClassViewModel.batches.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -84,7 +83,7 @@ class LiveClassFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

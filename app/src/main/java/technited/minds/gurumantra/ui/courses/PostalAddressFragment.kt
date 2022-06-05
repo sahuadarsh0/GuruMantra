@@ -71,7 +71,7 @@ class PostalAddressFragment : Fragment() {
                 }
             }
 
-            coursesViewModel.submitPostalResult.observe(viewLifecycleOwner, {
+            coursesViewModel.submitPostalResult.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Resource.Status.LOADING -> {
                         animationView.visibility = VISIBLE
@@ -103,7 +103,7 @@ class PostalAddressFragment : Fragment() {
                     }
                 }
 
-            })
+            }
         }
     }
 

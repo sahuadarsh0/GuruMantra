@@ -205,9 +205,19 @@ interface ApiService {
 
     @GET("getPDFtsDetails")
     suspend fun getPDFDetails(
+        @Query("userId") uId: String,
         @Query("ptsId") pssId: String
-    ): Response<ListTests>
+    ): Response<TestDetails>
 
+    @GET("getPDFtestsLists")
+    suspend fun getListPDFts(@Query("ptsId") ptsId: String): Response<ListTests>
+
+    //    enroll
+    @GET("pdfts/enroll")
+    suspend fun getEnrolledPDFts(
+        @Query("userId") userId: String,
+        @Query("ptsId") ptsId: String
+    ): Response<Enrolled>
 
     //    getBlogs------------------------------------------------------------------------------
     @GET("getBlogs")
@@ -305,6 +315,13 @@ interface ApiService {
         @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
+    @GET("pdfts/generateOrderId")
+    suspend fun getPaymentDataPDFts(
+        @Query("userId") userId: String,
+        @Query("ptsId") ptsId: String,
+        @Query("couponCode") coupon: String? = null
+    ): Response<PaymentOrder>
+
 
     @GET("getOrderIdPracseries")
     suspend fun getPaymentDataPractice(
@@ -317,6 +334,13 @@ interface ApiService {
     suspend fun getPaymentDataCourse(
         @Query("userId") userId: String,
         @Query("cId") cId: String,
+        @Query("couponCode") coupon: String? = null
+    ): Response<PaymentOrder>
+
+    @GET("notes/generateOrderId")
+    suspend fun getPaymentDataNotes(
+        @Query("userId") userId: String,
+        @Query("notesId") cId: String,
         @Query("couponCode") coupon: String? = null
     ): Response<PaymentOrder>
 
@@ -350,6 +374,17 @@ interface ApiService {
     ): Response<String>
 
     @FormUrlEncoded
+    @POST("pdfts/purchase")
+    suspend fun purchasePDFts(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
+
+    @FormUrlEncoded
     @POST("purchasePracseries")
     suspend fun purchasePractice(
         @Field("userId")
@@ -363,6 +398,17 @@ interface ApiService {
     @FormUrlEncoded
     @POST("purchaseCourse")
     suspend fun purchaseCourse(
+        @Field("userId")
+        userId: String?,
+        @Field("orderId")
+        orderId: String?,
+        @Field("paymentId")
+        paymentId: String?
+    ): Response<String>
+
+    @FormUrlEncoded
+    @POST("notes/purchase")
+    suspend fun purchaseNotes(
         @Field("userId")
         userId: String?,
         @Field("orderId")
@@ -412,6 +458,24 @@ interface ApiService {
         @Query("userId") userId: String,
         @Query("cid") cId: String
     ): Response<CourseDetails>
+
+    // Course Comments
+
+    @GET("course/getComments/")
+    suspend fun getCourseComments(
+        @Query("lectureId") lectureId: String,
+    ): Response<GetComment>
+
+    @FormUrlEncoded
+    @POST("course/postComment")
+    suspend fun postCourseComment(
+        @Field("userId")
+        userId: Int?,
+        @Field("lectureId")
+        lectureId: Int?,
+        @Field("comment")
+        comment: String?
+    ): Response<CommentResponse>
 
     //    enroll
 

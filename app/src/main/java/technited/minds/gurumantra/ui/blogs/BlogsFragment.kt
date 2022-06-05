@@ -77,7 +77,7 @@ class BlogsFragment : Fragment() {
 
         binding.filter.setOnClickListener {
             filterDialog.show()
-            categoryViewModel.category.observe(viewLifecycleOwner, {
+            categoryViewModel.category.observe(viewLifecycleOwner) {
                 if (it.data != null) {
                     cts = it.data.cts
                     val names = arrayListOf<String>()
@@ -85,7 +85,7 @@ class BlogsFragment : Fragment() {
                     filterCatView.setItems(names)
 
                 }
-            })
+            }
         }
 
         filterCatView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
@@ -95,14 +95,14 @@ class BlogsFragment : Fragment() {
         filterSubCatView.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             scId = scts[newIndex].scId.toString()
         }
-        categoryViewModel.subCategory.observe(viewLifecycleOwner, {
+        categoryViewModel.subCategory.observe(viewLifecycleOwner) {
             if (it.data != null) {
                 scts = it.data.scts
                 val names = arrayListOf<String>()
                 scts.forEach { names.add(it.scId.toString() + " " + it.scName) }
                 filterSubCatView.setItems(names)
             }
-        })
+        }
         apply.setOnClickListener {
             blogsViewModel.filterBlogs(cId, scId)
             filterDialog.dismiss()
@@ -150,7 +150,7 @@ class BlogsFragment : Fragment() {
         binding.animationView.visibility = View.VISIBLE
         binding.blogsList.visibility = View.GONE
         blogsViewModel.getBlogs()
-        blogsViewModel.blogs.observe(viewLifecycleOwner, {
+        blogsViewModel.blogs.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -183,7 +183,7 @@ class BlogsFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

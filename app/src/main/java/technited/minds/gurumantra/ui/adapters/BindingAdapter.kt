@@ -2,6 +2,7 @@ package technited.minds.gurumantra.ui.adapters
 
 import android.graphics.Paint
 import android.text.Html
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -71,11 +72,25 @@ object BindingAdapters {
             if (text >= 0) {
                 output = "In Stock"
                 view.setTextColor(getColor(view.context, R.color.zm_green))
-            }else{
+            } else {
                 output = "Out of Stock"
                 view.setTextColor(getColor(view.context, R.color.red))
             }
         }
         view.text = output
+    }
+
+    @BindingAdapter("android:notePackage", "android:userPackage")
+    @JvmStatic
+    fun setVisible(view: ImageView, note: Int?, user: Int?) {
+        if (note != null && user != null) {
+            if (note == 1) {
+                view.visibility = View.GONE
+            } else if (user == 2 && note == 2) {
+                view.visibility = View.GONE
+            } else  {
+                view.visibility = View.VISIBLE
+            }
+        }
     }
 }

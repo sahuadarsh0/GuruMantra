@@ -43,12 +43,18 @@ class MeetingsAdapter(private val onItemClicked: (MeetingDetailsItem, String) ->
     override fun onBindViewHolder(holder: MeetingsViewHolder, position: Int) {
         holder.bind(getItem(position), onItemClicked)
         val isExpanded: Boolean = position == mExpandedPosition
-        holder.desc.visibility = if (isExpanded) View.VISIBLE else View.GONE
-        holder.more.visibility = if (isExpanded) View.INVISIBLE else View.VISIBLE
+        when {
+            isExpanded -> {
+                holder.desc.visibility = View.VISIBLE
+                holder.more.visibility = View.INVISIBLE
+                previousExpandedPosition = holder.bindingAdapterPosition
+            }
+            else -> {
+                holder.desc.visibility = View.GONE
+                holder.more.visibility = View.VISIBLE
+            }
+        }
         holder.more.isActivated = isExpanded
-
-        if (isExpanded)
-            previousExpandedPosition = holder.bindingAdapterPosition
         holder.more.setOnClickListener {
             mExpandedPosition = if (isExpanded) -1 else position
             TransitionManager.beginDelayedTransition(recyclerView)

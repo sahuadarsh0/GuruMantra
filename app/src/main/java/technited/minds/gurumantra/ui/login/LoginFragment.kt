@@ -63,7 +63,7 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), "Enter Email and Password", Toast.LENGTH_SHORT).show()
                 }
             }
-            loginViewModel.loginDetails.observe(viewLifecycleOwner, {
+            loginViewModel.loginDetails.observe(viewLifecycleOwner) {
                 when (it.status) {
                     Resource.Status.LOADING -> {
                         animationView.visibility = VISIBLE
@@ -111,7 +111,7 @@ class LoginFragment : Fragment() {
                     }
                 }
 
-            })
+            }
         }
     }
 

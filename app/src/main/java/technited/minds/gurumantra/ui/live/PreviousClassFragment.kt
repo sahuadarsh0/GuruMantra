@@ -56,7 +56,7 @@ class PreviousClassFragment : Fragment() {
         binding.animationView.visibility = VISIBLE
         binding.prevList.visibility = GONE
 
-        liveClassViewModel.previousClasses.observe(viewLifecycleOwner, {
+        liveClassViewModel.previousClasses.observe(viewLifecycleOwner) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = VISIBLE
@@ -90,7 +90,7 @@ class PreviousClassFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
@@ -108,6 +108,8 @@ class PreviousClassFragment : Fragment() {
             PreviousClassFragmentDirections.actionPreviousToPlayNComments(
                 previousClassItem.pcId.toString(),
                 previousClassItem.pcVideo,
+                previousClassItem.lcPdf+"",
+                previousClassItem.lcContent+"",
                 batchType
             )
         findNavController().navigate(action)

@@ -24,6 +24,7 @@ data class Note(
     val notesPDF: String,
     @SerializedName("package")
     val packageX: Int,
+    var userPackage: Int,
     @SerializedName("notesPrice")
     val notesPrice: Int,
     @SerializedName("notesValidity")

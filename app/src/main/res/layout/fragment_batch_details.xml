@@ -55,6 +55,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/batch_name"
                 tools:text="@string/zm_description_passcode_security_202232" />
+            <Button
+                android:id="@+id/purchase_batch"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/purple_500"
+                android:padding="5dp"
+                android:text="@string/purchase_batch"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:cornerRadius="6dp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/batch_description"
+                app:layout_constraintWidth_percent=".5" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/meetings_list"
@@ -69,7 +86,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/batch_description"
+                app:layout_constraintTop_toBottomOf="@+id/purchase_batch"
                 app:spanCount="2"
                 tools:itemCount="8"
                 tools:listitem="@layout/item_list_meetings" />

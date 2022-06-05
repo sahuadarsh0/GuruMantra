@@ -54,7 +54,7 @@ class ZoomActivity : AppCompatActivity() {
     }
 
     private fun setUpObservers() {
-        liveViewModel.meeting.observe(this, {
+        liveViewModel.meeting.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.animationView.visibility = View.VISIBLE
@@ -84,7 +84,7 @@ class ZoomActivity : AppCompatActivity() {
                 }
 
             }
-        })
+        }
     }
 
 

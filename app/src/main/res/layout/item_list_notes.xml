@@ -67,11 +67,13 @@
                 tools:text="General" />
 
             <ImageView
+                android:id="@+id/lock"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_lock"
-                android:visibility="@{note.packageX == 2 ? View.VISIBLE : View.GONE}"
+                android:userPackage="@{note.userPackage}"
+                android:notePackage="@{note.packageX}"
                 app:layout_constraintBottom_toBottomOf="@+id/notes_package"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -80,11 +82,12 @@
                 app:tint="@color/red" />
 
             <ImageView
+                android:id="@+id/eye"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/zm_mm_template_eye_icon"
-                android:visibility="@{note.packageX == 1 ? View.VISIBLE : View.GONE}"
+                android:visibility="@{note.packageX == 1 || note.packageX == note.userPackage? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="@+id/notes_package"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

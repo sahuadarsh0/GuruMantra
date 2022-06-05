@@ -1,14 +1,15 @@
 package technited.minds.gurumantra.ui.blogs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import com.afollestad.materialdialogs.MaterialDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -17,13 +18,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.ActivityBlogWebPageBinding
-import technited.minds.gurumantra.model.Comment
 import technited.minds.gurumantra.ui.adapters.CommentsAdapter
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
-import android.content.Intent
-import technited.minds.gurumantra.model.Blog
 
 
 @AndroidEntryPoint
@@ -50,8 +48,8 @@ class BlogWebPage : AppCompatActivity() {
         webSettings.allowContentAccess = true
         intent.getStringExtra("url")?.let { binding.webView.loadUrl(it) }
         binding.webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                view.loadUrl(request.url.toString())
                 return false
             }
         }
@@ -92,7 +90,7 @@ class BlogWebPage : AppCompatActivity() {
             blogId = id
             commentsViewModel.getComments(blogId, "blog")
         }
-        commentsViewModel.comment.observe(this, {
+        commentsViewModel.comment.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
                 }
@@ -118,9 +116,9 @@ class BlogWebPage : AppCompatActivity() {
 
                 }
             }
-        })
+        }
 
-        commentsViewModel.response.observe(this, {
+        commentsViewModel.response.observe(this) {
             if (it.data != null) {
                 if (it.data.data == 1) {
                     Toast.makeText(this@BlogWebPage, "Comment Posted Successfully", Toast.LENGTH_SHORT).show()
@@ -128,7 +126,7 @@ class BlogWebPage : AppCompatActivity() {
                     commentsViewModel.getComments(blogId, "blog")
                 }
             }
-        })
+        }
 
     }
 

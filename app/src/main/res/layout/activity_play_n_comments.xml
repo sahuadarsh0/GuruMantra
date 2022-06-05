@@ -21,18 +21,61 @@
 
         <TextView
             android:id="@+id/post_label"
-            style="@style/TextBlack.medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:background="@drawable/zm_edit_text"
+            android:backgroundTint="@color/grey_font"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="6dp"
+            android:textSize="13sp"
             android:text="@string/post_comment"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/pdf_label"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/youtube"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/youtube" />
+
+        <TextView
+            android:id="@+id/pdf_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/zm_edit_text"
+            android:backgroundTint="@color/grey_font"
+            android:gravity="center"
+            android:paddingHorizontal="6dp"
+            android:textSize="13sp"
+            android:paddingVertical="10dp"
+            android:text="PDF"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/post_label"
+            app:layout_constraintEnd_toStartOf="@+id/content_label"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/post_label"
+            app:layout_constraintTop_toTopOf="@+id/post_label" />
+
+        <TextView
+            android:id="@+id/content_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/zm_edit_text"
+            android:backgroundTint="@color/grey_font"
+            android:gravity="center"
+            android:paddingHorizontal="6dp"
+            android:textSize="13sp"
+            android:paddingVertical="10dp"
+            android:text="@string/zm_tab_content"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/pdf_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pdf_label"
+            app:layout_constraintTop_toTopOf="@+id/pdf_label" />
 
         <EditText
             android:id="@+id/post_comment"
@@ -95,6 +138,33 @@
             tools:itemCount="2"
             tools:listitem="@layout/item_list_comments" />
 
+        <WebView
+            android:id="@+id/pdf_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pdf_label" />
+
+        <TextView
+            android:id="@+id/content_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content_label" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
             android:layout_width="100dp"
@@ -106,5 +176,32 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loader" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/GComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="post_button,post_comment,comments_list"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="577dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/GPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="pdf_view"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="577dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/GContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="content_view"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="577dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
