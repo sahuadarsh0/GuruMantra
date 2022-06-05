@@ -6,7 +6,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import technited.minds.gurumantra.model.App
 import technited.minds.gurumantra.utils.Constants
 
@@ -15,6 +18,10 @@ interface UpdateService {
 
     @GET("getAppVersion/")
     fun check(): Call<App>
+
+    @FormUrlEncoded
+    @POST("updateFCMToken/")
+    fun updateToken(@Field("fcmToken") token: String?): Call<App>
 
     companion object {
 

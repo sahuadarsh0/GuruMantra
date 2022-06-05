@@ -1,6 +1,5 @@
 package technited.minds.gurumantra.firebase
 
-import android.app.Notification
 import android.app.Notification.DEFAULT_SOUND
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,18 +7,20 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.DEFAULT_VIBRATE
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import retrofit2.Call
+import retrofit2.Callback
 import technited.minds.gurumantra.BaseApplication.Companion.FCM_CHANNEL_ID
 import technited.minds.gurumantra.R
-import technited.minds.gurumantra.ui.MainActivity
+import technited.minds.gurumantra.data.remote.UpdateService
+import technited.minds.gurumantra.model.App
 import technited.minds.gurumantra.ui.SplashActivity
+import technited.minds.gurumantra.ui.login.LoginActivity
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -34,7 +35,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val body = remoteMessage.notification!!.body
             if (title != null) {
                 if (body != null) {
-                    pushNotification(this,title,body)
+                    pushNotification(this, title, body)
                 }
             }
         }
@@ -122,6 +123,19 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun sendRegistrationToServer(token: String?) {
         // TODO: Implement this method to send token to your app server.
         Log.d(TAG, "sendRegistrationTokenToServer($token)")
+        val checkUserCall: Call<App> = UpdateService.create().updateToken(token)
+        checkUserCall.enqueue(object : Callback<App?> {
+            override fun onResponse(
+                call: Call<App?>,
+                response: retrofit2.Response<App?>
+            ) {
+
+            }
+
+
+            override fun onFailure(call: Call<App?>, t: Throwable) {
+            }
+        })
     }
 
     companion object {

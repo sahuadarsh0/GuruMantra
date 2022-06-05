@@ -203,7 +203,7 @@ interface ApiService {
     @GET("getPDFts")
     suspend fun getPDF(): Response<TestSeries>
 
-    @GET("getPDFtsDetails")
+    @GET("getPDFtsDetailsV2")
     suspend fun getPDFDetails(
         @Query("userId") uId: String,
         @Query("ptsId") pssId: String
