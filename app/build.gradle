@@ -13,8 +13,8 @@ android {
         applicationId "technited.minds.gurumantra"
         minSdk 22
         targetSdk 31
-        versionCode 33
-        versionName "3.3"
+        versionCode 40
+        versionName "4.0"
         buildConfigField("String","SDK_KEY",SDK_KEY)
         buildConfigField("String","SDK_JWTTOKEN",SDK_JWTTOKEN)
         buildConfigField("String","SDK_SECRET",SDK_SECRET)
@@ -78,8 +78,8 @@ dependencies {
 
 
     // Other Library
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
     implementation "com.airbnb.android:lottie:4.2.0"
     implementation 'com.eightbitlab:blurview:1.6.6'
     implementation 'com.afollestad.material-dialogs:core:3.3.0'

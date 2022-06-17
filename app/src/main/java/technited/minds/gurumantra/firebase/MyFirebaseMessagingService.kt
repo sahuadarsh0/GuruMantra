@@ -131,15 +131,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             ) {
 
             }
-
-
             override fun onFailure(call: Call<App?>, t: Throwable) {
             }
         })
     }
 
     companion object {
-        private const val TAG = "MyFirebaseMsgService"
+        private const val TAG = "asa"
     }
 
 

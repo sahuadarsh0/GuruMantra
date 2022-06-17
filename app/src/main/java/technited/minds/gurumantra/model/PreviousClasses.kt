@@ -32,10 +32,10 @@ data class PreviousClassItem(
     val lcStartTime: String,
 
     @SerializedName("lcContent")
-    val lcContent: String,
+    var lcContent: String? = null,
 
     @SerializedName("lcPdf")
-    val lcPdf: String,
+    var lcPdf: String? = null,
 
     @SerializedName("created_at")
     val createdAt: String,

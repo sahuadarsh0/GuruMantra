@@ -131,7 +131,7 @@ class PlayNComments : AppCompatActivity() {
                         if (joinLiveClass.status == 1) {
                             videoUrl = joinLiveClass.cls.pcVideo
                             binding.animationView.visibility = View.GONE
-                            if (joinLiveClass.cls.lcPdf.isNotEmpty()) {
+                            if (!joinLiveClass.cls.lcPdf.isNullOrEmpty()) {
                                 binding.animationView.visibility = View.VISIBLE
                                 val webSettings = binding.pdfView.settings
                                 webSettings.javaScriptEnabled = true
@@ -149,7 +149,7 @@ class PlayNComments : AppCompatActivity() {
                                 }
                                 Log.d("asa", "onCreate inner: " + Uri.parse(Constants.URL.toString() + joinLiveClass.cls.lcPdf))
                             }
-                            if (joinLiveClass.cls.lcContent.isNotEmpty()) {
+                            if (!joinLiveClass.cls.lcContent.isNullOrEmpty()) {
                                 binding.contentView.text = Html.fromHtml(joinLiveClass.cls.lcContent).toString()
                             }
                             callListener()

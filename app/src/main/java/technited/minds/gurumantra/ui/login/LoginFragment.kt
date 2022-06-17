@@ -2,7 +2,6 @@ package technited.minds.gurumantra.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -19,6 +18,7 @@ import technited.minds.gurumantra.R
 import technited.minds.gurumantra.databinding.FragmentLoginBinding
 import technited.minds.gurumantra.model.LoginDetails
 import technited.minds.gurumantra.ui.MainActivity
+import technited.minds.gurumantra.ui.WebPage
 import technited.minds.gurumantra.utils.Resource
 import technited.minds.gurumantra.utils.SharedPrefs
 import javax.inject.Inject
@@ -47,8 +47,7 @@ class LoginFragment : Fragment() {
             it.findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
         }
         binding.linkForgetPassword.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_navigation_login_to_navigation_register)
-            Toast.makeText(context, "Feature Coming soon", Toast.LENGTH_SHORT).show()
+            startWebActivity()
         }
         return root
     }
@@ -119,6 +118,12 @@ class LoginFragment : Fragment() {
         val i = Intent(requireContext(), MainActivity::class.java)
         activity?.startActivity(i)
         activity?.finish()
+    }
+
+    private fun startWebActivity() {
+        val intent = Intent(requireContext(), WebPage::class.java)
+        intent.putExtra("url", "https://gurumantra.online/forget-password")
+        startActivity(intent)
     }
 
     private fun send(email: String, password: String) {

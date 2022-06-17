@@ -20,7 +20,7 @@ interface UpdateService {
     fun check(): Call<App>
 
     @FormUrlEncoded
-    @POST("updateFCMToken/")
+    @POST("updateFCMToken")
     fun updateToken(@Field("fcmToken") token: String?): Call<App>
 
     companion object {

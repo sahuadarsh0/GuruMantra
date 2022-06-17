@@ -23,6 +23,7 @@ import retrofit2.Callback
 import technited.minds.gurumantra.R
 import technited.minds.gurumantra.data.remote.Service
 import technited.minds.gurumantra.data.remote.UpdateService
+import technited.minds.gurumantra.firebase.MyFirebaseMessagingService
 import technited.minds.gurumantra.model.App
 import technited.minds.gurumantra.model.Grant
 import technited.minds.gurumantra.ui.login.LoginActivity
@@ -62,10 +63,29 @@ class SplashActivity : AppCompatActivity() {
             // Log and toast
             val msg = "token $token"
             Log.d("asa", msg)
+            sendRegistrationToServer(token)
 //            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
     }
 
+    private fun sendRegistrationToServer(token: String?) {
+        // TODO: Implement this method to send token to your app server.
+        Log.d("asa", "sendRegistrationTokenToServer($token)")
+        val checkUserCall: Call<App> = UpdateService.create().updateToken(token)
+        checkUserCall.enqueue(object : Callback<App?> {
+            override fun onResponse(
+                call: Call<App?>,
+                response: retrofit2.Response<App?>
+            ) {
+                Log.d("asa", "onResponse: ")
+            }
+
+
+            override fun onFailure(call: Call<App?>, t: Throwable) {
+                Log.d("asa", "onFailure: ")
+            }
+        })
+    }
     private fun check() {
         val checkUserCall: Call<Grant> = Service.create().check("gurumantra")
         checkUserCall.enqueue(object : Callback<Grant?> {
